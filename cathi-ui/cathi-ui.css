@@ -541,71 +541,25 @@
 .cathi-icon-btn--rose   .cathi-icon-btn__icon { background: #ffd9e6; }
 
 /* =========================================================
- * 18. 雷达图 .cathi-radar（纯 CSS，性格卡风格）
- *    参考：动物岛性格截图的五维雷达图
+ * 18. 雷达图 .cathi-radar（SVG 方案，性格卡风格）
+ *     由演示页 JS 根据 data-v / data-labels 渲染 svg。
  * ======================================================= */
 .cathi-radar {
   position: relative;
-  width: 160px; height: 160px;
+  width: 200px; height: 200px;
   margin: 0 auto;
 }
-.cathi-radar__grid {
-  position: absolute; inset: 0;
-  /* 五边形背景网格 — 用 conic-gradient 分割 */
-  background:
-    conic-gradient(
-      from 90deg at 50% 50%,
-      var(--cathi-border) 0deg 72deg,
-      transparent 72deg 144deg,
-      var(--cathi-border) 144deg 216deg,
-      transparent 216deg 288deg,
-      var(--cathi-border) 288deg 360deg
-    );
-  clip-path: polygon(50% 2%, 97% 38%, 82% 90%, 18% 90%, 3% 38%);
-  opacity: .4;
+.cathi-radar svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.cathi-radar .grid-poly { fill: none; stroke: var(--cathi-border); stroke-width: 1; }
+.cathi-radar .axis-line { stroke: var(--cathi-border); stroke-width: 1; }
+.cathi-radar .data-poly {
+  fill: currentColor; fill-opacity: .3;
+  stroke: currentColor; stroke-width: 2.5; stroke-linejoin: round;
+  transition: all .5s var(--cathi-ease);
 }
-.cathi-radar__axis {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(to bottom, var(--cathi-border) 2px, transparent 2px),
-    linear-gradient(to top, var(--cathi-border) 2px, transparent 2px),
-    linear-gradient(to right bottom, var(--cathi-border) 2px, transparent 2px),
-    linear-gradient(to left bottom, var(--cathi-border) 2px, transparent 2px),
-    linear-gradient(to left, var(--cathi-border) 2px, transparent 2px),
-    linear-gradient(to right, var(--cathi-border) 2px, transparent 2px);
-  clip-path: polygon(50% 2%, 97% 38%, 82% 90%, 18% 90%, 3% 38%);
-  opacity: .25;
-}
-.cathi-radar__shape {
-  position: absolute; inset: 0;
-  /* 数据形状 — 由 JS 或内联 style 设置 --val1~5 (0~100) */
-  --v1: 60; --v2: 45; --v3: 70; --v4: 55; --v5: 40;
-  clip-path: polygon(
-    50% calc(2% + (98% - 2%) * (100 - var(--v1)) / 100),
-    calc(97% - (97% - 3%) * (100 - var(--v2)) / 100) calc(38% + (90% - 38%) * (100 - var(--v2)) / 100 * .35),
-    calc(82% - (82% - 18%) * (100 - var(--v3)) / 100) calc(90% - (90% - 2%) * var(--v3) / 100),
-    calc(18% + (82% - 18%) * (100 - var(--v4)) / 100) calc(90% - (90% - 2%) * var(--v4) / 100),
-    calc(3% + (97% - 3%) * (100 - var(--v5)) / 100) calc(38% + (90% - 38%) * (100 - var(--v5)) / 100 * .35)
-  );
-  background: currentColor;
-  opacity: .35;
-  transition: clip-path .5s var(--cathi-ease);
-}
-.cathi-radar__labels {
-  position: absolute; inset: 0;
-  font-size: 10px;
-  font-weight: 800;
-  color: var(--cathi-text-faint);
-}
-.cathi-radar__labels span {
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-.cathi-radar__labels .r-l1 { top: 0%;   left: 50%; }  /* 运动 */
-.cathi-radar__labels .r-l2 { top: 32%;  left: 92%; } /* 音乐 */
-.cathi-radar__labels .r-l3 { top: 94%;  left: 78%; } /* 可爱 */
-.cathi-radar__labels .r-l4 { top: 94%;  left: 22%; } /* 教育 */
-.cathi-radar__labels .r-l5 { top: 32%;  left: 8%;  }  /* 耐心 */
+.cathi-radar .data-dot { fill: currentColor; }
+.cathi-radar .axis-label { font: 800 11px var(--cathi-font); fill: var(--cathi-text-faint); }
+.cathi-radar .axis-label.active { fill: currentColor; }
 
 /* =========================================================
  * 19. 角色卡 .cathi-char-card（动物岛性格类型）
@@ -1012,4 +966,149 @@
   height: 100%;
   border-radius: var(--cathi-r-pill);
   transition: width .5s var(--cathi-ease);
+}
+
+/* =========================================================
+ * 29. 暗色主题 .cathi-theme-dark
+ *     作用到 .cathi-root（或外层容器）即可整站换肤。
+ * ======================================================= */
+.cathi-theme-dark {
+  --cathi-bg:            #2b2620;
+  --cathi-bg-alt:        #332d26;
+  --cathi-surface:       #3a332b;
+  --cathi-surface-2:     #443c33;
+  --cathi-text:          #f3e9d8;
+  --cathi-text-soft:     #c9b89c;
+  --cathi-text-faint:    #9a8a70;
+  --cathi-border:        #564a3c;
+  --cathi-border-strong: #6d5c48;
+  --cathi-primary-soft:  #14463f;
+  --cathi-amber-soft:    #4a3a1e;
+  --cathi-pink-soft:     #4a2a33;
+  --cathi-sky-soft:      #1f3a47;
+  --cathi-grape-soft:    #382a4a;
+  --cathi-shadow-sm:  0 2px 0 rgba(0,0,0,.45);
+  --cathi-shadow-md:  0 4px 0 rgba(0,0,0,.5), 0 8px 16px rgba(0,0,0,.4);
+  --cathi-shadow-lg:  0 6px 0 rgba(0,0,0,.5), 0 14px 28px rgba(0,0,0,.55);
+  --cathi-shadow-inset: inset 0 2px 4px rgba(0,0,0,.45);
+}
+.cathi-theme-dark .cathi-window__body,
+.cathi-theme-dark .cathi-window__header { background: var(--cathi-surface); }
+
+/* =========================================================
+ * 30. iOS 风格设置列表项 .cathi-list
+ *     参考：iOS 设置卡片（图标 + 标题 + 副标题 + 右侧开关/箭头）
+ * ======================================================= */
+.cathi-list {
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-lg);
+  overflow: hidden;
+}
+.cathi-list__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--cathi-border);
+}
+.cathi-list__row:last-child { border-bottom: none; }
+.cathi-list__row--link { cursor: pointer; transition: background var(--cathi-dur); }
+.cathi-list__row--link:hover { background: var(--cathi-surface-2); }
+.cathi-list__icon {
+  width: 38px; height: 38px;
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+  background: var(--cathi-primary-soft);
+}
+.cathi-list__icon--amber { background: var(--cathi-amber-soft); }
+.cathi-list__icon--pink  { background: var(--cathi-pink-soft); }
+.cathi-list__icon--sky   { background: var(--cathi-sky-soft); }
+.cathi-list__icon--grape { background: var(--cathi-grape-soft); }
+.cathi-list__body { flex: 1; min-width: 0; }
+.cathi-list__title { font-weight: 800; font-size: 15px; color: var(--cathi-text); }
+.cathi-list__sub { font-size: 12px; color: var(--cathi-text-soft); font-weight: 600; }
+.cathi-list__chevron { color: var(--cathi-text-faint); font-size: 18px; flex-shrink: 0; }
+
+/* =========================================================
+ * 31. 数字角标 .cathi-badge
+ * ======================================================= */
+.cathi-has-badge { position: relative; display: inline-flex; }
+.cathi-badge {
+  position: absolute; top: -6px; right: -6px;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--cathi-r-pill);
+  background: var(--cathi-pink); color: #fff;
+  font-size: 11px; font-weight: 900;
+  border: 2px solid var(--cathi-surface);
+  box-shadow: var(--cathi-shadow-sm);
+  box-sizing: border-box;
+}
+.cathi-badge--primary { background: var(--cathi-primary); }
+.cathi-badge--amber   { background: var(--cathi-amber); }
+.cathi-badge--dot {
+  width: 12px; height: 12px; min-width: 0; padding: 0;
+  top: -2px; right: -2px;
+}
+
+/* =========================================================
+ * 32. Toast 通知 .cathi-toast
+ * ======================================================= */
+.cathi-toast-wrap {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; gap: 10px;
+  z-index: 9999; pointer-events: none;
+}
+.cathi-toast {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 18px;
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-left: 5px solid var(--cathi-primary);
+  border-radius: var(--cathi-r-md);
+  box-shadow: var(--cathi-shadow-md);
+  font-weight: 800; font-size: 14px; color: var(--cathi-text);
+  animation: cathi-toast-in .3s var(--cathi-ease);
+  pointer-events: auto; max-width: 360px;
+}
+.cathi-toast--warn  { border-left-color: var(--cathi-amber); }
+.cathi-toast--error { border-left-color: #e8a0a0; }
+.cathi-toast__icon { font-size: 18px; }
+.cathi-toast.is-out { animation: cathi-toast-out .3s var(--cathi-ease) forwards; }
+@keyframes cathi-toast-in  { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cathi-toast-out { to   { opacity: 0; transform: translateY(-12px); } }
+
+/* =========================================================
+ * 33. 移动端底部 Tab Bar .cathi-tabbar（NookPhone 风格）
+ * ======================================================= */
+.cathi-tabbar {
+  display: flex; justify-content: space-around; align-items: center;
+  background: var(--cathi-surface);
+  border-top: 2px solid var(--cathi-border);
+  padding: 8px 4px;
+  box-shadow: 0 -4px 12px rgba(87,68,48,.08);
+}
+.cathi-tabbar__item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 16px; border-radius: 14px;
+  color: var(--cathi-text-faint);
+  text-decoration: none; font-size: 11px; font-weight: 800;
+  cursor: pointer; transition: all var(--cathi-dur);
+}
+.cathi-tabbar__item .ico { font-size: 22px; line-height: 1; }
+.cathi-tabbar__item.active { color: var(--cathi-primary-dark); background: var(--cathi-primary-soft); }
+.cathi-tabbar__item:active { transform: scale(.94); }
+
+/* =========================================================
+ * 34. 细节打磨：focus / hover / active 统一
+ * ======================================================= */
+.cathi-switch input:focus-visible + .cathi-switch__track { outline: 3px solid var(--cathi-amber-soft); outline-offset: 2px; }
+.cathi-icon-btn:focus-visible { outline: 3px solid var(--cathi-amber-soft); outline-offset: 2px; }
+.cathi-key:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.cathi-nav-item:focus-visible { outline: 3px solid var(--cathi-amber-soft); outline-offset: -2px; }
+.cathi-card:not(.cathi-card--flat):hover {
+  transform: translateY(-3px);
+  transition: transform var(--cathi-dur) var(--cathi-ease);
 }

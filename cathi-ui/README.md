@@ -6,7 +6,7 @@
 
 ## ✨ 特性
 
-- **28 类组件**：按钮 / 卡片 / 标签 / 头像 / 输入框 / 进度条 / 开关 / 窗口框架 / 时间显示 / 条纹进度 / 药丸单选 / 图标网格 / 雷达图 / 角色卡 / 数字键盘 / 侧边导航 / 标签页 / 任务项 / 设置面板 / 波浪分隔线 / 搜索栏 / 操作按钮组 / 关系进度条 …
+- **32+ 类组件**：按钮 / 卡片 / 标签 / 头像 / 输入框 / 进度条 / 开关 / 窗口框架 / 时间显示 / 条纹进度 / 药丸单选 / 图标网格 / 雷达图 / 角色卡 / 数字键盘 / 侧边导航 / 标签页 / 任务项 / 设置面板 / 波浪分隔线 / 搜索栏 / 操作按钮组 / 关系进度条 …（另含暗色主题 / iOS 设置列表 / 角标 / Toast / 底部 Tab Bar）
 - **CSS 变量驱动**：改 `:root` token 就能整体换肤
 - **框架无关**：纯 CSS，HTML/React/Vue/Svelte 都能直接用
 - **零依赖**：不需要 JS 框架、不需要构建工具
@@ -59,7 +59,7 @@
 - `.cathi-time-display` — 时间日期显示
 - `.cathi-radio-pills` — 药丸单选组（Splatoon 标签页风格）
 - `.cathi-icon-grid` — 图标网格（NookPhone 快捷入口）
-- `.cathi-radar` — CSS 五维雷达图（性格卡）
+- `.cathi-radar` — 五维雷达图（性格卡，SVG 精确渲染 + 过渡动画）
 - `.cathi-char-card` — 角色卡（6 种性格色彩主题）
 - `.cathi-keypad` — 彩色数字键盘（游戏答题风格）
 - `.cathi-sidebar-nav` — 侧边导航（个人站风格）
@@ -70,6 +70,14 @@
 - `.cathi-search-bar` — 圆角搜索栏
 - `.cathi-action-bar` — 操作按钮组
 - `.cathi-relation-bar` — 关系进度条
+
+### 增强（v3）
+- `.cathi-theme-dark` — 暗色主题（加在 `.cathi-root` 即可整站换肤）
+- `.cathi-list` — iOS 风格设置列表项（图标 + 标题 + 副标题 + 右侧开关/箭头）
+- `.cathi-badge` — 数字角标（头像/图标右上角未读数、纯色点）
+- `.cathi-toast` — Toast 通知（success / warn / error，自带轻量 JS）
+- `.cathi-tabbar` — 移动端底部 Tab Bar（NookPhone 风格）
+- `.cathi-radar` 重做为 SVG（修复旧 clip-path 顶点误差，支持平滑过渡）
 
 ## 🏗️ 项目结构
 

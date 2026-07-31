@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cathi-ui v2 · 治愈系设计系统</title>
+  <title>cathi-ui v3 · 治愈系设计系统</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="cathi-ui.css">
@@ -48,7 +48,7 @@
 
     <!-- ═══ Hero ═══ -->
     <div class="hero">
-      <h1>🐱 cathi-ui v2</h1>
+      <h1>🐱 cathi-ui v3</h1>
       <p>自研治愈系（cozy）UI 设计系统 · MIT 授权 · 可商用</p>
       <div class="cathi-row cathi-center" style="justify-content:center;margin-top:24px;flex-wrap:wrap">
         <button class="cathi-btn">主按钮</button>
@@ -56,6 +56,7 @@
         <button class="cathi-btn cathi-btn--pink">樱粉</button>
         <button class="cathi-btn cathi-btn--sky">天蓝</button>
         <button class="cathi-btn cathi-btn--ghost">幽灵</button>
+        <button class="cathi-btn cathi-btn--ghost" id="themeToggle">🌙 暗色</button>
       </div>
     </div>
 
@@ -193,12 +194,7 @@
           <h3 class="cathi-char-card__name">SISTER</h3>
           <p class="cathi-char-card__sub">运动值：HJK-LMA-008</p>
           <p class="cathi-char-card__desc">万事难不倒意志坚定的老姐姐</p>
-          <div class="cathi-radar" style="--v1:80;--v2:65;--v3:55;--v4:75;--v5:60;color:#e8a0a0">
-            <div class="cathi-radar__grid"></div>
-            <div class="cathi-radar__axis"></div>
-            <div class="cathi-radar__shape"></div>
-            <div class="cathi-radar__labels"><span class="r-l1">运动</span><span class="r-l2">音乐</span><span class="r-l3">可爱</span><span class="r-l4">教育</span><span class="r-l5">耐心</span></div>
-          </div>
+          <div class="cathi-radar" data-v="80,65,55,75,60" data-labels="运动,音乐,可爱,教育,耐心" style="color:#e8a0a0"></div>
           <div class="cathi-char-card__tags">
             <span class="cathi-tag cathi-tag--pink">❤️ 喜欢</span>
             <span class="cathi-tag">🎤 唱歌</span>
@@ -229,12 +225,7 @@
           <h3 class="cathi-char-card__name">LAZY</h3>
           <p class="cathi-char-card__sub">运动值：NLAJ-065</p>
           <p class="cathi-char-card__desc">佛系天花板，坐姿合意就要生活</p>
-          <div class="cathi-radar" style="--v1:25;--v2:50;--v3:90;--v4:35;--v5:85;color:#e0c850">
-            <div class="cathi-radar__grid"></div>
-            <div class="cathi-radar__axis"></div>
-            <div class="cathi-radar__shape"></div>
-            <div class="cathi-radar__labels"><span class="r-l1">运动</span><span class="r-l2">音乐</span><span class="r-l3">可爱</span><span class="r-l4">教育</span><span class="r-l5">耐心</span></div>
-          </div>
+          <div class="cathi-radar" data-v="25,50,90,35,85" data-labels="运动,音乐,可爱,教育,耐心" style="color:#e0c850"></div>
           <div class="cathi-char-card__tags">
             <span class="cathi-tag cathi-tag--amber">😴 爱睡</span>
             <span class="cathi-tag">🍔 吃货</span>
@@ -258,12 +249,7 @@
           <h3 class="cathi-char-card__name">SPORTY</h3>
           <p class="cathi-char-card__sub">运动值：HJK-ABG-046</p>
           <p class="cathi-char-card__desc">肌肉就是最通用的魅力方程式</p>
-          <div class="cathi-radar" style="--v1:95;--v2:55;--v3:45;--v4:50;--v5:70;color:#e09858">
-            <div class="cathi-radar__grid"></div>
-            <div class="cathi-radar__axis"></div>
-            <div class="cathi-radar__shape"></div>
-            <div class="cathi-radar__labels"><span class="r-l1">运动</span><span class="r-l2">音乐</span><span class="r-l3">可爱</span><span class="r-l4">教育</span><span class="r-l5">耐心</span></div>
-          </div>
+          <div class="cathi-radar" data-v="95,55,45,50,70" data-labels="运动,音乐,可爱,教育,耐心" style="color:#e09858"></div>
           <div class="cathi-char-card__tags">
             <span class="cathi-tag cathi-tag--pink">🏃 跑步</span>
             <span class="cathi-tag">🏋️ 健身</span>
@@ -521,6 +507,91 @@
       </div>
     </div>
 
+    <!-- ═══ 10. iOS 设置列表 + 角标 + Toast ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon cathi-ribbon--pink">iOS 设置列表</span>
+      <div class="demo-grid" style="margin-top:20px">
+        <div class="cathi-list">
+          <div class="cathi-list__row">
+            <span class="cathi-list__icon">🔔</span>
+            <div class="cathi-list__body">
+              <div class="cathi-list__title">通知</div>
+              <div class="cathi-list__sub">允许应用发送提醒</div>
+            </div>
+            <label class="cathi-switch"><input type="checkbox" checked><span class="cathi-switch__track"></span></label>
+          </div>
+          <div class="cathi-list__row">
+            <span class="cathi-list__icon cathi-list__icon--amber">🌙</span>
+            <div class="cathi-list__body">
+              <div class="cathi-list__title">深色模式</div>
+              <div class="cathi-list__sub">跟随系统</div>
+            </div>
+            <label class="cathi-switch"><input type="checkbox"><span class="cathi-switch__track"></span></label>
+          </div>
+          <div class="cathi-list__row cathi-list__row--link">
+            <span class="cathi-list__icon cathi-list__icon--sky">🔒</span>
+            <div class="cathi-list__body">
+              <div class="cathi-list__title">隐私与安全</div>
+              <div class="cathi-list__sub">管理权限与密码</div>
+            </div>
+            <span class="cathi-list__chevron">›</span>
+          </div>
+          <div class="cathi-list__row cathi-list__row--link">
+            <span class="cathi-list__icon cathi-list__icon--grape">ℹ️</span>
+            <div class="cathi-list__body">
+              <div class="cathi-list__title">关于本机</div>
+            </div>
+            <span class="cathi-list__chevron">›</span>
+          </div>
+        </div>
+
+        <div class="cathi-stack" style="gap:20px">
+          <div class="cathi-card">
+            <div class="cathi-card__title">数字角标 Badge</div>
+            <div class="cathi-row" style="gap:24px;justify-content:center;flex-wrap:wrap">
+              <span class="cathi-has-badge">
+                <img class="cathi-avatar" src="https://i.pravatar.cc/120?img=11" alt="">
+                <span class="cathi-badge">3</span>
+              </span>
+              <span class="cathi-has-badge">
+                <img class="cathi-avatar cathi-avatar--round" src="https://i.pravatar.cc/120?img=12" alt="">
+                <span class="cathi-badge cathi-badge--primary">9+</span>
+              </span>
+              <span class="cathi-has-badge">
+                <span class="cathi-icon-btn" style="background:var(--cathi-amber-soft)"><span class="cathi-icon-btn__icon">💬</span></span>
+                <span class="cathi-badge cathi-badge--dot cathi-badge--amber"></span>
+              </span>
+            </div>
+          </div>
+          <div class="cathi-card">
+            <div class="cathi-card__title">Toast 通知</div>
+            <div class="cathi-row" style="justify-content:center;gap:10px;flex-wrap:wrap">
+              <button class="cathi-btn cathi-btn--sm" onclick="cathiToast('保存成功！','success')">成功</button>
+              <button class="cathi-btn cathi-btn--amber cathi-btn--sm" onclick="cathiToast('注意：即将超时','warn')">警告</button>
+              <button class="cathi-btn cathi-btn--pink cathi-btn--sm" onclick="cathiToast('出错了，请重试','error')">错误</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 11. 底部 Tab Bar（移动端）═══ -->
+    <div class="section">
+      <span class="cathi-ribbon">底部 Tab Bar</span>
+      <div class="cathi-window" style="margin-top:20px;max-width:420px">
+        <div class="cathi-window__body" style="padding:24px 16px 8px">
+          <div style="text-align:center;font-weight:900;font-size:18px;margin-bottom:8px">🐱 猫猫岛 App</div>
+          <p class="cathi-muted" style="text-align:center;font-size:13px">下面是移动端底部导航栏示例</p>
+        </div>
+        <nav class="cathi-tabbar" id="demoTabbar">
+          <a class="cathi-tabbar__item active"><span class="ico">🏠</span>首页</a>
+          <a class="cathi-tabbar__item"><span class="ico">🗺️</span>地图</a>
+          <a class="cathi-tabbar__item"><span class="ico">💬</span>消息</a>
+          <a class="cathi-tabbar__item"><span class="ico">👤</span>我的</a>
+        </nav>
+      </div>
+    </div>
+
   </div>
 
   <!-- 简单交互：标签页切换 -->
@@ -549,6 +620,65 @@
         setTimeout(() => key.style.transform = '', 150);
       });
     });
+
+    // 暗色主题切换
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const dark = document.body.classList.toggle('cathi-theme-dark');
+        themeToggle.textContent = dark ? '☀️ 亮色' : '🌙 暗色';
+      });
+    }
+
+    // 底部 Tab Bar 切换
+    const demoBar = document.getElementById('demoTabbar');
+    if (demoBar) {
+      demoBar.querySelectorAll('.cathi-tabbar__item').forEach(it => {
+        it.addEventListener('click', e => {
+          e.preventDefault();
+          demoBar.querySelectorAll('.cathi-tabbar__item').forEach(x => x.classList.remove('active'));
+          it.classList.add('active');
+        });
+      });
+    }
+
+    // Toast 通知
+    function cathiToast(msg, type) {
+      let wrap = document.querySelector('.cathi-toast-wrap');
+      if (!wrap) { wrap = document.createElement('div'); wrap.className = 'cathi-toast-wrap'; document.body.appendChild(wrap); }
+      const el = document.createElement('div');
+      el.className = 'cathi-toast' + (type && type !== 'success' ? ' cathi-toast--' + type : '');
+      const icon = type === 'error' ? '⚠️' : type === 'warn' ? '⚠️' : '✅';
+      el.innerHTML = '<span class="cathi-toast__icon">' + icon + '</span><span>' + msg + '</span>';
+      wrap.appendChild(el);
+      setTimeout(() => { el.classList.add('is-out'); setTimeout(() => el.remove(), 300); }, 2600);
+    }
+
+    // 雷达图 SVG 渲染（五维）
+    function cathiRenderRadar(el) {
+      const v = (el.dataset.v || '').split(',').map(Number);
+      const labels = (el.dataset.labels || '').split(',');
+      const n = v.length, cx = 100, cy = 100, R = 78;
+      const pt = (i, r) => {
+        const ang = -Math.PI / 2 + i * 2 * Math.PI / n;
+        return [cx + r * Math.cos(ang), cy + r * Math.sin(ang)];
+      };
+      let grid = '';
+      [1, 0.75, 0.5, 0.25].forEach(k => {
+        const p = [];
+        for (let i = 0; i < n; i++) { const [x, y] = pt(i, R * k); p.push(x.toFixed(1) + ',' + y.toFixed(1)); }
+        grid += '<polygon class="grid-poly" points="' + p.join(' ') + '"/>';
+      });
+      let axes = '';
+      for (let i = 0; i < n; i++) { const [x, y] = pt(i, R); axes += '<line class="axis-line" x1="' + cx + '" y1="' + cy + '" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '"/>'; }
+      const cl = v => Math.max(0, Math.min(100, v)) / 100;
+      let dp = '', dots = '';
+      for (let i = 0; i < n; i++) { const [x, y] = pt(i, R * cl(v[i])); dp += x.toFixed(1) + ',' + y.toFixed(1) + ' '; dots += '<circle class="data-dot" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3"/>'; }
+      let lbls = '';
+      for (let i = 0; i < n; i++) { const [x, y] = pt(i, R + 16); lbls += '<text class="axis-label" x="' + x.toFixed(1) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="middle">' + (labels[i] || '') + '</text>'; }
+      el.innerHTML = '<svg viewBox="0 0 200 200">' + grid + axes + '<polygon class="data-poly" points="' + dp.trim() + '"/>' + dots + lbls + '</svg>';
+    }
+    document.querySelectorAll('.cathi-radar').forEach(cathiRenderRadar);
   </script>
 </body>
 </html>
