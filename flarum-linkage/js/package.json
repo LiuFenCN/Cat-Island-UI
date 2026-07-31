@@ -1,0 +1,1 @@
+{"name":"cathi-flarum-linkage","version":"1.0.0","private":true,"scripts":{"build":"webpack --mode production"},"dependencies":{"less":"^4.8.1","mithril":"^2.3.8"},"devDependencies":{"@babel/core":"^7.29.7","@babel/plugin-transform-react-jsx":"^7.29.7","babel-loader":"^10.1.1","webpack":"^5.0.0","webpack-cli":"^5.0.0"}}

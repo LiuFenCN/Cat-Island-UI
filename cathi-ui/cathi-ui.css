@@ -1,0 +1,1015 @@
+/*!
+ * cathi-ui — 自研治愈系（cozy）UI 设计系统
+ * 纯手写实现，不依赖任何第三方 UI 库源码。
+ * 授权：MIT（见 LICENSE）。可商用、可修改、需保留本声明。
+ *
+ * 用法：
+ *   <link rel="stylesheet" href="cathi-ui.css">
+ *   然后在任意 HTML / 框架里使用 .cathi-* 类即可。
+ */
+
+/* =========================================================
+ * 1. 设计 Token（CSS 变量）
+ *    改这里就能整体换肤。
+ * ======================================================= */
+:root {
+  /* —— 品牌主色（薄荷绿） —— */
+  --cathi-primary:        #18c2b3;
+  --cathi-primary-dark:   #0e9d91;
+  --cathi-primary-soft:   #d7f5f1;
+
+  /* —— 辅助色（暖琥珀 / 樱粉 / 天蓝） —— */
+  --cathi-amber:          #ffb454;
+  --cathi-amber-dark:     #e08e2c;
+  --cathi-amber-soft:     #fff1d6;
+  --cathi-pink:           #ff8fab;
+  --cathi-pink-dark:      #e76b8c;
+  --cathi-pink-soft:      #ffe3ec;
+  --cathi-sky:            #6cc6ef;
+  --cathi-sky-soft:       #dcefff;
+  --cathi-grape:          #b08bf8;
+  --cathi-grape-soft:     #efe6ff;
+
+  /* —— 表面 / 背景（奶油纸感） —— */
+  --cathi-bg:             #f6f1e1;
+  --cathi-bg-alt:         #fffdf6;
+  --cathi-surface:        #ffffff;
+  --cathi-surface-2:      #fbf6e8;
+
+  /* —— 文字（可可棕） —— */
+  --cathi-text:           #574430;
+  --cathi-text-soft:      #8a7659;
+  --cathi-text-faint:     #b6a688;
+  --cathi-text-invert:    #ffffff;
+
+  /* —— 描边 —— */
+  --cathi-border:         #ecdfc2;
+  --cathi-border-strong:  #d9c79c;
+
+  /* —— 圆角 —— */
+  --cathi-r-xs:   8px;
+  --cathi-r-sm:   12px;
+  --cathi-r-md:   18px;
+  --cathi-r-lg:   24px;
+  --cathi-r-xl:   32px;
+  --cathi-r-pill: 999px;
+
+  /* —— 阴影（治愈系 3D 按压感） —— */
+  --cathi-shadow-sm:  0 2px 0 rgba(87, 68, 48, .10);
+  --cathi-shadow-md:  0 4px 0 rgba(87, 68, 48, .14), 0 8px 16px rgba(87, 68, 48, .12);
+  --cathi-shadow-lg:  0 6px 0 rgba(87, 68, 48, .14), 0 14px 28px rgba(87, 68, 48, .16);
+  --cathi-shadow-inset: inset 0 2px 4px rgba(87, 68, 48, .12);
+
+  /* —— 字体 —— */
+  --cathi-font: "Nunito", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
+
+  /* —— 间距标尺 —— */
+  --cathi-sp-1: 4px;
+  --cathi-sp-2: 8px;
+  --cathi-sp-3: 12px;
+  --cathi-sp-4: 16px;
+  --cathi-sp-5: 24px;
+  --cathi-sp-6: 32px;
+  --cathi-sp-7: 48px;
+
+  /* —— 动效 —— */
+  --cathi-ease: cubic-bezier(.34, 1.56, .64, 1); /* 轻微回弹 */
+  --cathi-dur:  .18s;
+}
+
+/* =========================================================
+ * 2. 基础重置（作用域限定在 .cathi-root，避免污染宿主）
+ * ======================================================= */
+.cathi-root {
+  font-family: var(--cathi-font);
+  color: var(--cathi-text);
+  background: var(--cathi-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.cathi-root *,
+.cathi-root *::before,
+.cathi-root *::after { box-sizing: border-box; }
+
+/* =========================================================
+ * 3. 按钮 .cathi-btn
+ * ======================================================= */
+.cathi-btn {
+  --_bg: var(--cathi-primary);
+  --_bg-dark: var(--cathi-primary-dark);
+  --_fg: var(--cathi-text-invert);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cathi-sp-2);
+  padding: 10px 22px;
+  border: none;
+  border-radius: var(--cathi-r-pill);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--_bg-dark), 0 8px 14px rgba(87, 68, 48, .18);
+  transition: transform var(--cathi-dur) var(--cathi-ease),
+              box-shadow var(--cathi-dur) var(--cathi-ease),
+              filter var(--cathi-dur);
+  user-select: none;
+}
+.cathi-btn:hover { filter: brightness(1.04); }
+.cathi-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--_bg-dark), 0 3px 8px rgba(87, 68, 48, .18);
+}
+.cathi-btn:focus-visible { outline: 3px solid var(--cathi-amber-soft); outline-offset: 2px; }
+
+/* 颜色变体 */
+.cathi-btn--amber  { --_bg: var(--cathi-amber);  --_bg-dark: var(--cathi-amber-dark); }
+.cathi-btn--pink   { --_bg: var(--cathi-pink);   --_bg-dark: var(--cathi-pink-dark); }
+.cathi-btn--sky    { --_bg: var(--cathi-sky);    --_bg-dark: #3fa9da; }
+.cathi-btn--grape  { --_bg: var(--cathi-grape);  --_bg-dark: #8f63e0; }
+
+/* 幽灵 / 描边 */
+.cathi-btn--ghost {
+  --_fg: var(--cathi-text);
+  background: var(--cathi-surface);
+  box-shadow: 0 4px 0 var(--cathi-border-strong), 0 8px 14px rgba(87, 68, 48, .10);
+  border: 2px solid var(--cathi-border-strong);
+}
+.cathi-btn--ghost:active { box-shadow: 0 0 0 var(--cathi-border-strong); }
+
+/* 尺寸 */
+.cathi-btn--sm { padding: 6px 14px; font-size: 13px; box-shadow: 0 3px 0 var(--_bg-dark); }
+.cathi-btn--lg { padding: 14px 30px; font-size: 17px; box-shadow: 0 5px 0 var(--_bg-dark); }
+.cathi-btn--block { display: flex; width: 100%; }
+
+/* =========================================================
+ * 4. 卡片 .cathi-card
+ * ======================================================= */
+.cathi-card {
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-lg);
+  padding: var(--cathi-sp-5);
+  box-shadow: var(--cathi-shadow-md);
+}
+.cathi-card--flat { box-shadow: var(--cathi-shadow-sm); }
+.cathi-card--soft { background: var(--cathi-surface-2); }
+.cathi-card--pop  { box-shadow: var(--cathi-shadow-lg); }
+
+/* 波点纹理表面 */
+.cathi-card--dotted {
+  background-color: var(--cathi-surface);
+  background-image: radial-gradient(var(--cathi-border) 1.5px, transparent 1.6px);
+  background-size: 16px 16px;
+  background-position: 0 0;
+}
+.cathi-card__title {
+  margin: 0 0 var(--cathi-sp-3);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--cathi-text);
+}
+
+/* =========================================================
+ * 5. 燕尾 Ribbon 标题（.cathi-ribbon）
+ * ======================================================= */
+.cathi-ribbon {
+  display: inline-block;
+  position: relative;
+  padding: 6px 22px;
+  background: var(--cathi-primary);
+  color: var(--cathi-text-invert);
+  font-weight: 800;
+  border-radius: var(--cathi-r-sm) var(--cathi-r-sm) var(--cathi-r-sm) 0;
+  box-shadow: var(--cathi-shadow-sm);
+}
+.cathi-ribbon::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -10px;
+  border-width: 10px 0 0 10px;
+  border-style: solid;
+  border-color: var(--cathi-primary-dark) transparent transparent transparent;
+}
+.cathi-ribbon--amber { background: var(--cathi-amber); }
+.cathi-ribbon--amber::after { border-color: var(--cathi-amber-dark) transparent transparent transparent; }
+.cathi-ribbon--pink  { background: var(--cathi-pink); }
+.cathi-ribbon--pink::after  { border-color: var(--cathi-pink-dark) transparent transparent transparent; }
+
+/* =========================================================
+ * 6. 标签 / 徽章 .cathi-tag
+ * ======================================================= */
+.cathi-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 12px;
+  border-radius: var(--cathi-r-pill);
+  font-size: 12px;
+  font-weight: 800;
+  background: var(--cathi-primary-soft);
+  color: var(--cathi-primary-dark);
+  border: 1.5px solid transparent;
+}
+.cathi-tag--amber { background: var(--cathi-amber-soft);  color: var(--cathi-amber-dark); }
+.cathi-tag--pink  { background: var(--cathi-pink-soft);   color: var(--cathi-pink-dark); }
+.cathi-tag--sky   { background: var(--cathi-sky-soft);    color: #2f8fc0; }
+.cathi-tag--grape { background: var(--cathi-grape-soft);  color: #7a4fd0; }
+.cathi-tag--outline { background: transparent; border-color: var(--cathi-border-strong); color: var(--cathi-text-soft); }
+
+/* =========================================================
+ * 7. 头像 .cathi-avatar
+ * ======================================================= */
+.cathi-avatar {
+  width: 56px; height: 56px;
+  border-radius: var(--cathi-r-md);
+  object-fit: cover;
+  border: 3px solid var(--cathi-surface);
+  box-shadow: var(--cathi-shadow-sm);
+  background: var(--cathi-primary-soft);
+}
+.cathi-avatar--round { border-radius: var(--cathi-r-pill); }
+.cathi-avatar--sm { width: 36px; height: 36px; border-width: 2px; }
+.cathi-avatar--lg { width: 88px; height: 88px; }
+
+/* =========================================================
+ * 8. 表单输入 .cathi-input / textarea / select
+ * ======================================================= */
+.cathi-input,
+.cathi-textarea,
+.cathi-select {
+  width: 100%;
+  padding: 11px 16px;
+  border: 2px solid var(--cathi-border-strong);
+  border-radius: var(--cathi-r-md);
+  background: var(--cathi-surface);
+  color: var(--cathi-text);
+  font-family: inherit;
+  font-size: 15px;
+  box-shadow: var(--cathi-shadow-inset);
+  transition: border-color var(--cathi-dur), box-shadow var(--cathi-dur);
+}
+.cathi-input::placeholder,
+.cathi-textarea::placeholder { color: var(--cathi-text-faint); }
+.cathi-input:focus,
+.cathi-textarea:focus,
+.cathi-select:focus {
+  outline: none;
+  border-color: var(--cathi-primary);
+  box-shadow: 0 0 0 4px var(--cathi-primary-soft);
+}
+.cathi-field { display: flex; flex-direction: column; gap: var(--cathi-sp-2); margin-bottom: var(--cathi-sp-4); }
+.cathi-field__label { font-weight: 800; font-size: 14px; color: var(--cathi-text-soft); }
+
+/* =========================================================
+ * 9. 进度条 .cathi-progress
+ * ======================================================= */
+.cathi-progress {
+  width: 100%;
+  height: 16px;
+  background: var(--cathi-surface-2);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-pill);
+  overflow: hidden;
+  box-shadow: var(--cathi-shadow-inset);
+}
+.cathi-progress__fill {
+  height: 100%;
+  border-radius: var(--cathi-r-pill);
+  background: linear-gradient(180deg, var(--cathi-primary), var(--cathi-primary-dark));
+  transition: width .5s var(--cathi-ease);
+}
+.cathi-progress__fill--amber { background: linear-gradient(180deg, var(--cathi-amber), var(--cathi-amber-dark)); }
+.cathi-progress__fill--pink  { background: linear-gradient(180deg, var(--cathi-pink),  var(--cathi-pink-dark)); }
+
+/* =========================================================
+ * 10. 开关 .cathi-switch
+ * ======================================================= */
+.cathi-switch { position: relative; display: inline-block; width: 52px; height: 30px; }
+.cathi-switch input { opacity: 0; width: 0; height: 0; }
+.cathi-switch__track {
+  position: absolute; inset: 0;
+  background: var(--cathi-border-strong);
+  border-radius: var(--cathi-r-pill);
+  transition: background var(--cathi-dur);
+}
+.cathi-switch__track::before {
+  content: "";
+  position: absolute; left: 4px; top: 4px;
+  width: 22px; height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: var(--cathi-shadow-sm);
+  transition: transform var(--cathi-dur) var(--cathi-ease);
+}
+.cathi-switch input:checked + .cathi-switch__track { background: var(--cathi-primary); }
+.cathi-switch input:checked + .cathi-switch__track::before { transform: translateX(22px); }
+
+/* =========================================================
+ * 11. 提示气泡 / 便签 .cathi-note
+ * ======================================================= */
+.cathi-note {
+  padding: var(--cathi-sp-3) var(--cathi-sp-4);
+  border-radius: var(--cathi-r-md);
+  background: var(--cathi-amber-soft);
+  border-left: 5px solid var(--cathi-amber);
+  color: var(--cathi-text);
+  font-size: 14px;
+}
+.cathi-note--primary { background: var(--cathi-primary-soft); border-left-color: var(--cathi-primary); }
+.cathi-note--pink    { background: var(--cathi-pink-soft);    border-left-color: var(--cathi-pink); }
+
+/* =========================================================
+ * 12. 工具类
+ * ======================================================= */
+.cathi-row { display: flex; align-items: center; gap: var(--cathi-sp-3); flex-wrap: wrap; }
+.cathi-stack { display: flex; flex-direction: column; gap: var(--cathi-sp-3); }
+.cathi-dotgrid {
+  background-color: var(--cathi-bg-alt);
+  background-image: radial-gradient(var(--cathi-border) 1.5px, transparent 1.6px);
+  background-size: 18px 18px;
+}
+.cathi-muted { color: var(--cathi-text-soft); }
+.cathi-center { text-align: center; }
+
+/* =========================================================
+ * 13. 窗口/面板框架 .cathi-window（macOS / iOS 风格）
+ *    参考：PortaOS 截图、callai 应用卡片
+ * ======================================================= */
+.cathi-window {
+  position: relative;
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-lg);
+  box-shadow: var(--cathi-shadow-lg);
+  overflow: hidden;
+}
+.cathi-window__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--cathi-surface-2);
+  border-bottom: 2px solid var(--cathi-border);
+}
+.cathi-window__traffic {
+  display: flex;
+  gap: 8px;
+}
+.cathi-window__dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,.15);
+  cursor: pointer;
+  transition: filter .15s;
+}
+.cathi-window__dot:hover { filter: brightness(1.1); }
+.cathi-window__dot--red   { background: #ff5f57; }
+.cathi-window__dot--yellow{ background: #febc2e; }
+.cathi-window__dot--green { background: #28c840; }
+.cathi-window__title {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--cathi-text-soft);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.cathi-window__body {
+  padding: var(--cathi-sp-5);
+}
+
+/* =========================================================
+ * 14. 时间/日期显示 .cathi-time-display（iOS 风格）
+ *    参考：callai 截图中的 "SUNDAY Jul 12 13:58"
+ * ======================================================= */
+.cathi-time-display {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cathi-sp-2);
+  padding: 6px 14px;
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-md);
+  font-family: var(--cathi-font);
+}
+.cathi-time-display__dow {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--cathi-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.cathi-time-display__date {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cathi-text-soft);
+}
+.cathi-time-display__time {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--cathi-text);
+  letter-spacing: -1px;
+}
+
+/* =========================================================
+ * 15. 条纹进度条 .cathi-progress--striped
+ *    参考：callai 截图中的绿色条纹进度条 + 百分比
+ * ======================================================= */
+.cathi-progress--striped .cathi-progress__fill {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(255,255,255,.25) 8px,
+    rgba(255,255,255,.25) 16px
+  );
+  background-size: auto 100%;
+}
+.cathi-progress__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.cathi-progress__pct {
+  font-weight: 900;
+  color: var(--cathi-primary-dark);
+  font-size: 16px;
+}
+.cathi-progress__pct--amber { color: var(--cathi-amber-dark); }
+
+/* =========================================================
+ * 16. 药丸单选组 .cathi-radio-pills（Splatoon 标签页风格）
+ *    参考：Splatoon 资源目录截图的 "全部/官方链接/Wiki/工具..."
+ * ======================================================= */
+.cathi-radio-pills {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--cathi-surface-2);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-pill);
+  flex-wrap: wrap;
+}
+.cathi-radio-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 18px;
+  border: none;
+  border-radius: var(--cathi-r-pill);
+  background: transparent;
+  color: var(--cathi-text-soft);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--cathi-dur);
+}
+.cathi-radio-pill:hover { color: var(--cathi-text); }
+.cathi-radio-pill input { position: absolute; opacity: 0; pointer-events: none; }
+.cathi-radio-pill input:checked + span,
+.cathi-radio-pill.active {
+  background: var(--cathi-surface);
+  color: var(--cathi-text);
+  box-shadow: var(--cathi-shadow-sm);
+  font-weight: 800;
+}
+.cathi-radio-pill input:focus-visible + span {
+  outline: 2px solid var(--cathi-primary);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+ * 17. 图标网格 .cathi-icon-grid（NookPhone 快捷入口风格）
+ *    参考：NookPhone 截图的 Quick Access 图标矩阵
+ * ======================================================= */
+.cathi-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: var(--cathi-sp-3);
+}
+.cathi-icon-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--cathi-sp-3) var(--cathi-sp-2);
+  border: 2px solid transparent;
+  border-radius: var(--cathi-r-md);
+  background: var(--cathi-surface);
+  cursor: pointer;
+  transition: all var(--cathi-dur);
+  text-decoration: none;
+}
+.cathi-icon-btn:hover {
+  border-color: var(--cathi-border-strong);
+  box-shadow: var(--cathi-shadow-sm);
+  transform: translateY(-2px);
+}
+.cathi-icon-btn__icon {
+  width: 48px; height: 48px;
+  border-radius: var(--cathi-r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  /* 默认色由内联 style 或子类控制 */
+}
+.cathi-icon-btn__label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--cathi-text-soft);
+  text-align: center;
+  line-height: 1.2;
+}
+/* 图标按钮色彩变体 */
+.cathi-icon-btn--purple .cathi-icon-btn__icon { background: #e8d5ff; }
+.cathi-icon-btn--blue   .cathi-icon-btn__icon { background: #d4ecff; }
+.cathi-icon-btn--amber  .cathi-icon-btn__icon { background: #fff1d6; }
+.cathi-icon-btn--pink   .cathi-icon-btn__icon { background: #ffe3ec; }
+.cathi-icon-btn--teal   .cathi-icon-btn__icon { background: #d7f5f1; }
+.cathi-icon-btn--coral  .cathi-icon-btn__icon { background: #ffe0d6; }
+.cathi-icon-btn--lime   .cathi-icon-btn__icon { background: #f0ffd6; }
+.cathi-icon-btn--rose   .cathi-icon-btn__icon { background: #ffd9e6; }
+
+/* =========================================================
+ * 18. 雷达图 .cathi-radar（纯 CSS，性格卡风格）
+ *    参考：动物岛性格截图的五维雷达图
+ * ======================================================= */
+.cathi-radar {
+  position: relative;
+  width: 160px; height: 160px;
+  margin: 0 auto;
+}
+.cathi-radar__grid {
+  position: absolute; inset: 0;
+  /* 五边形背景网格 — 用 conic-gradient 分割 */
+  background:
+    conic-gradient(
+      from 90deg at 50% 50%,
+      var(--cathi-border) 0deg 72deg,
+      transparent 72deg 144deg,
+      var(--cathi-border) 144deg 216deg,
+      transparent 216deg 288deg,
+      var(--cathi-border) 288deg 360deg
+    );
+  clip-path: polygon(50% 2%, 97% 38%, 82% 90%, 18% 90%, 3% 38%);
+  opacity: .4;
+}
+.cathi-radar__axis {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, var(--cathi-border) 2px, transparent 2px),
+    linear-gradient(to top, var(--cathi-border) 2px, transparent 2px),
+    linear-gradient(to right bottom, var(--cathi-border) 2px, transparent 2px),
+    linear-gradient(to left bottom, var(--cathi-border) 2px, transparent 2px),
+    linear-gradient(to left, var(--cathi-border) 2px, transparent 2px),
+    linear-gradient(to right, var(--cathi-border) 2px, transparent 2px);
+  clip-path: polygon(50% 2%, 97% 38%, 82% 90%, 18% 90%, 3% 38%);
+  opacity: .25;
+}
+.cathi-radar__shape {
+  position: absolute; inset: 0;
+  /* 数据形状 — 由 JS 或内联 style 设置 --val1~5 (0~100) */
+  --v1: 60; --v2: 45; --v3: 70; --v4: 55; --v5: 40;
+  clip-path: polygon(
+    50% calc(2% + (98% - 2%) * (100 - var(--v1)) / 100),
+    calc(97% - (97% - 3%) * (100 - var(--v2)) / 100) calc(38% + (90% - 38%) * (100 - var(--v2)) / 100 * .35),
+    calc(82% - (82% - 18%) * (100 - var(--v3)) / 100) calc(90% - (90% - 2%) * var(--v3) / 100),
+    calc(18% + (82% - 18%) * (100 - var(--v4)) / 100) calc(90% - (90% - 2%) * var(--v4) / 100),
+    calc(3% + (97% - 3%) * (100 - var(--v5)) / 100) calc(38% + (90% - 38%) * (100 - var(--v5)) / 100 * .35)
+  );
+  background: currentColor;
+  opacity: .35;
+  transition: clip-path .5s var(--cathi-ease);
+}
+.cathi-radar__labels {
+  position: absolute; inset: 0;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--cathi-text-faint);
+}
+.cathi-radar__labels span {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.cathi-radar__labels .r-l1 { top: 0%;   left: 50%; }  /* 运动 */
+.cathi-radar__labels .r-l2 { top: 32%;  left: 92%; } /* 音乐 */
+.cathi-radar__labels .r-l3 { top: 94%;  left: 78%; } /* 可爱 */
+.cathi-radar__labels .r-l4 { top: 94%;  left: 22%; } /* 教育 */
+.cathi-radar__labels .r-l5 { top: 32%;  left: 8%;  }  /* 耐心 */
+
+/* =========================================================
+ * 19. 角色卡 .cathi-char-card（动物岛性格类型）
+ *    参考：动物岛性格截图（大姐型/高傲型/慵懒型/暴躁型/运动型）
+ * ======================================================= */
+.cathi-char-card {
+  position: relative;
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-lg);
+  padding: var(--cathi-sp-5) var(--cathi-sp-4);
+  box-shadow: var(--cathi-shadow-md);
+  overflow: hidden;
+  min-width: 260px;
+  max-width: 320px;
+}
+/* 角色卡色彩主题 */
+.cathi-char-card--big     { --char-color: #e8a0a0; --char-dark: #d07070; } /* 大姐型 红 */
+.cathi-char-card--snooty  { --char-color: #d4c4ff; --char-dark: #a090e0; } /* 高傲型 紫 */
+.cathi-char-card--lazy    { --char-color: #fff1b8; --char-dark: #e0c850; } /* 慵懒型 黄 */
+.cathi-char-card--peppy   { --char-color: #a8e8c8; --char-dark: #58b888; } /* 暴躁型 绿 */
+.cathi-char-card--sporty  { --char-color: #ffc8a8; --char-dark: #e09858; } /* 运动型 橙 */
+.cathi-char-card--normal  { --char-color: #d4ecff; --char-dark: #68b8e8; } /* 普通 蓝 */
+
+.cathi-char-card__avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--cathi-surface);
+  margin: 0 auto var(--cathi-sp-3);
+  display: block;
+  object-fit: cover;
+  background: var(--char-color);
+}
+.cathi-char-card__badge {
+  display: inline-block;
+  padding: 4px 20px;
+  background: var(--char-color, var(--cathi-primary));
+  color: var(--char-dark, var(--cathi-primary-dark));
+  font-weight: 900;
+  font-size: 14px;
+  border-radius: var(--cathi-r-pill);
+  margin-bottom: var(--cathi-sp-3);
+  /* 燕尾效果 */
+  position: relative;
+}
+.cathi-char-card__badge::after {
+  content: "";
+  position: absolute; left: 14px; bottom: -8px;
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: var(--char-color, var(--cathi-primary)) transparent transparent;
+}
+.cathi-char-card__name {
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  margin: 0 0 2px;
+}
+.cathi-char-card__sub {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cathi-text-soft);
+  text-align: center;
+  margin: 0 0 var(--cathi-sp-4);
+}
+.cathi-char-card__desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--cathi-text-soft);
+  margin: 0 0 var(--cathi-sp-4);
+}
+.cathi-char-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--cathi-sp-4);
+}
+.cathi-char-card__tags .cathi-tag {
+  font-size: 11px;
+  padding: 2px 10px;
+}
+
+/* =========================================================
+ * 20. 数字键盘 .cathi-keypad（游戏答题风格）
+ *    参考：数学测验截图的彩色数字键盘
+ * ======================================================= */
+.cathi-keypad {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  max-width: 420px;
+}
+.cathi-key {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255,255,255,.6);
+  border-radius: var(--cathi-r-md);
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  cursor: pointer;
+  transition: transform var(--cathi-dur), box-shadow var(--cathi-dur);
+  box-shadow: 0 4px 0 rgba(0,0,0,.18), 0 6px 12px rgba(0,0,0,.10);
+  user-select: none;
+}
+.cathi-key:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.cathi-key:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.18);
+}
+/* 键盘按键色彩（彩虹分布） */
+.cathi-key--pink   { background: #f08ca0; }
+.cathi-key--blue   { background: #7ba8e8; }
+.cathi-key--yellow { background: #f5d86a; }
+.cathi-key--teal   { background: #5dd4b8; }
+.cathi-key--orange { background: #e8a85c; }
+.cathi-key--purple { background: #b08bf8; }
+.cathi-key--green  { background: #6bc98c; }
+.cathi-key--coral  { background: #f08070; }
+.cathi-key--lime   { background: #c8e060; }
+.cathi-key--gray   { background: #e8e4dc; color: var(--cathi-text); border-color: rgba(0,0,0,.1); }
+.cathi-key--wide { grid-column: span 2; aspect-ratio: auto; padding: 14px; }
+
+/* =========================================================
+ * 21. 侧边导航 .cathi-sidebar-nav（个人站风格）
+ *    参考：个人网站模板截图的左侧图标导航
+ * ======================================================= */
+.cathi-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--cathi-sp-4) var(--cathi-sp-3);
+  width: 200px;
+  background: var(--cathi-surface);
+  border-right: 2px solid var(--cathi-border);
+  min-height: 400px;
+}
+.cathi-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--cathi-sp-3);
+  padding: 10px 14px;
+  border-radius: var(--cathi-r-sm);
+  text-decoration: none;
+  color: var(--cathi-text-soft);
+  font-weight: 700;
+  font-size: 14px;
+  transition: all var(--cathi-dur);
+}
+.cathi-nav-item:hover {
+  background: var(--cathi-surface-2);
+  color: var(--cathi-text);
+}
+.cathi-nav-item.active {
+  background: var(--cathi-primary-soft);
+  color: var(--cathi-primary-dark);
+  font-weight: 800;
+}
+.cathi-nav-item__icon {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+ * 22. 标签页面板 .cathi-tabs（NookPhone 三栏标签风格）
+ *    参考：NookPhone 截图的 QUICK ACCESS / ISLAND PROJECTS / ISLAND SETTINGS
+ * ======================================================= */
+.cathi-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--cathi-border);
+  padding: 0 var(--cathi-sp-3);
+}
+.cathi-tab {
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cathi-text-faint);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--cathi-dur);
+}
+.cathi-tab:hover { color: var(--cathi-text-soft); }
+.cathi-tab.active {
+  color: var(--cathi-text);
+  font-weight: 900;
+}
+.cathi-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 3px;
+  background: var(--cathi-primary);
+  border-radius: 3px 3px 0 0;
+}
+.cathi-tab-panel { display: none; padding: var(--cathi-sp-5); }
+.cathi-tab-panel.active { display: block; }
+
+/* =========================================================
+ * 23. 任务列表项 .cathi-task-item（NookPhone 建造列表风格）
+ *    参考：NookPhone 的 "Bridge to North Shore" / "Museum Art Gallery"
+ * ======================================================= */
+.cathi-task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--cathi-sp-3);
+  padding: var(--cathi-sp-3) var(--cathi-sp-4);
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-md);
+  margin-bottom: var(--cathi-sp-3);
+  transition: box-shadow var(--cathi-dur);
+}
+.cathi-task-item:hover { box-shadow: var(--cathi-shadow-sm); }
+.cathi-task-item__add {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--cathi-primary-soft);
+  border: 2px solid var(--cathi-primary);
+  color: var(--cathi-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--cathi-dur);
+}
+.cathi-task-item__add:hover {
+  background: var(--cathi-primary);
+  color: #fff;
+  transform: scale(1.08);
+}
+.cathi-task-item__text {
+  flex: 1;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--cathi-text);
+}
+.cathi-task-item__icon {
+  width: 32px; height: 32px;
+  border-radius: var(--cathi-r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  background: var(--cathi-primary-soft);
+}
+
+/* =========================================================
+ * 24. 设置面板 .cathi-settings-panel（NookPhone 右侧黄板风格）
+ *    参考：NookPhone 右侧黄色设置区
+ * ======================================================= */
+.cathi-settings-panel {
+  background: var(--cathi-amber-soft);
+  border: 2px solid var(--cathi-amber);
+  border-radius: var(--cathi-r-lg);
+  padding: var(--cathi-sp-5);
+}
+.cathi-settings-panel__title {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--cathi-text);
+  margin: 0 0 var(--cathi-sp-4);
+}
+.cathi-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--cathi-sp-3) 0;
+  border-bottom: 1px dashed var(--cathi-border);
+}
+.cathi-setting-row:last-child { border-bottom: none; }
+.cathi-setting-row__label {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--cathi-text);
+}
+
+/* =========================================================
+ * 25. 波浪分隔线 .cathi-wave-divider（NookPhone 风格）
+ * ======================================================= */
+.cathi-wave-divider {
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0 15 Q30 0 60 15 T120 15 T180 15 T240 15 T300 15 T360 15 T420 15 T480 15 T540 15 T600 15 T660 15 T720 15 T780 15 T840 15 T900 15 T960 15 T1020 15 T1080 15 T1140 15 T1200 15 V30 H0 Z' fill='%23ffb454' fill-opacity='.35'/%3E%3C/svg%3E") repeat-x center / 600px 100%;
+  margin: var(--cathi-sp-4) 0;
+}
+.cathi-wave-divider--teal {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0 15 Q30 0 60 15 T120 15 T180 15 T240 15 T300 15 T360 15 T420 15 T480 15 T540 15 T600 15 T660 15 T720 15 T780 15 T840 15 T900 15 T960 15 T1020 15 T1080 15 T1140 15 T1200 15 V30 H0 Z' fill='%2318c2b3' fill-opacity='.25'/%3E%3C/svg%3E");
+}
+
+/* =========================================================
+ * 26. 搜索栏 .cathi-search-bar（Splatoon 风格圆角搜索框）
+ * ======================================================= */
+.cathi-search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--cathi-sp-2);
+  padding: 10px 18px;
+  background: var(--cathi-surface);
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-pill);
+  box-shadow: var(--cathi-shadow-inset);
+  max-width: 480px;
+}
+.cathi-search-bar__input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--cathi-text);
+  outline: none;
+}
+.cathi-search-bar__input::placeholder { color: var(--cathi-text-faint); }
+.cathi-search-bar__icon {
+  font-size: 18px;
+  color: var(--cathi-text-faint);
+  flex-shrink: 0;
+}
+.cathi-search-bar__btn {
+  padding: 5px 14px;
+  border: 2px solid var(--cathi-border-strong);
+  border-radius: var(--cathi-r-sm);
+  background: var(--cathi-surface);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--cathi-text-soft);
+  cursor: pointer;
+}
+
+/* =========================================================
+ * 27. 操作按钮组 .cathi-action-bar（callai 底部操作按钮行）
+ *    参考：callai 截图底部的 编辑/复制/删除/闪电 按钮
+ * ======================================================= */
+.cathi-action-bar {
+  display: flex;
+  gap: var(--cathi-sp-2);
+  justify-content: flex-end;
+  margin-top: var(--cathi-sp-3);
+}
+.cathi-action-btn {
+  width: 42px; height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--cathi-border);
+  border-radius: var(--cathi-r-sm);
+  background: var(--cathi-surface);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all var(--cathi-dur);
+  box-shadow: 0 3px 0 var(--cathi-border-strong);
+}
+.cathi-action-btn:hover { transform: translateY(-2px); }
+.cathi-action-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--cathi-border-strong); }
+.cathi-action-btn--danger { border-color: #e8a0a0; color: #d07070; }
+.cathi-action-btn--primary { border-color: var(--cathi-primary); color: var(--cathi-primary-dark); }
+
+/* =========================================================
+ * 28. 关系进度条 .cathi-relation-bar（性格卡关系值）
+ *    参考：动物岛性格截图底部的 "好感度" 进度条
+ * ======================================================= */
+.cathi-relation-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--cathi-sp-2);
+}
+.cathi-relation-bar__avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--cathi-surface);
+  flex-shrink: 0;
+}
+.cathi-relation-bar__info { flex: 1; }
+.cathi-relation-bar__name {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--cathi-text);
+}
+.cathi-relation-bar__track {
+  height: 10px;
+  background: var(--cathi-surface-2);
+  border: 1.5px solid var(--cathi-border);
+  border-radius: var(--cathi-r-pill);
+  overflow: hidden;
+}
+.cathi-relation-bar__fill {
+  height: 100%;
+  border-radius: var(--cathi-r-pill);
+  transition: width .5s var(--cathi-ease);
+}

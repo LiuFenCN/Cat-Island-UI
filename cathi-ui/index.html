@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cathi-ui v2 · 治愈系设计系统</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cathi-ui.css">
+  <style>
+    body { margin: 0; background: var(--cathi-bg); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
+    .hero {
+      text-align: center; padding: 48px 24px; border-radius: 32px;
+      background: linear-gradient(160deg, var(--cathi-primary-soft), var(--cathi-amber-soft));
+      box-shadow: var(--cathi-shadow-lg);
+      margin-bottom: 40px;
+    }
+    .hero h1 { font-size: 42px; margin: 0 0 8px; font-weight: 900; }
+    .hero p { margin: 0; color: var(--cathi-text-soft); font-weight: 700; }
+    .section { margin-top: 48px; }
+    .section h2 { font-weight: 900; margin-bottom: 20px; display:flex; align-items:center; gap:10px }
+    .swatch { width: 52px; height: 52px; border-radius: 14px; box-shadow: var(--cathi-shadow-sm); border: 3px solid #fff; }
+    .palette { display: flex; gap: 12px; flex-wrap: wrap; }
+    .palette figure { margin: 0; text-align: center; font-size: 11px; font-weight: 800; color: var(--cathi-text-soft); }
+
+    /* Demo layout helpers */
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+    .demo-flex { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+    .demo-sidebar-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      border: 2px solid var(--cathi-border);
+      border-radius: var(--cathi-r-lg);
+      overflow: hidden;
+      box-shadow: var(--cathi-shadow-md);
+    }
+    @media (max-width:640px) {
+      .demo-sidebar-layout { grid-template-columns: 1fr; }
+      .cathi-sidebar-nav { width: auto; border-right: none; border-bottom: 2px solid var(--cathi-border); flex-direction: row; overflow-x: auto; }
+      .cathi-nav-item { white-space: nowrap; }
+    }
+  </style>
+</head>
+<body class="cathi-root">
+  <div class="wrap">
+
+    <!-- ═══ Hero ═══ -->
+    <div class="hero">
+      <h1>🐱 cathi-ui v2</h1>
+      <p>自研治愈系（cozy）UI 设计系统 · MIT 授权 · 可商用</p>
+      <div class="cathi-row cathi-center" style="justify-content:center;margin-top:24px;flex-wrap:wrap">
+        <button class="cathi-btn">主按钮</button>
+        <button class="cathi-btn cathi-btn--amber">琥珀</button>
+        <button class="cathi-btn cathi-btn--pink">樱粉</button>
+        <button class="cathi-btn cathi-btn--sky">天蓝</button>
+        <button class="cathi-btn cathi-btn--ghost">幽灵</button>
+      </div>
+    </div>
+
+    <!-- ═══ 1. 配色 Token ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon">配色 Token</span>
+      <div class="palette" style="margin-top:20px">
+        <figure><div class="swatch" style="background:var(--cathi-primary)"></div>primary</figure>
+        <figure><div class="swatch" style="background:var(--cathi-amber)"></div>amber</figure>
+        <figure><div class="swatch" style="background:var(--cathi-pink)"></div>pink</figure>
+        <figure><div class="swatch" style="background:var(--cathi-sky)"></div>sky</figure>
+        <figure><div class="swatch" style="background:var(--cathi-grape)"></div>grape</figure>
+        <figure><div class="swatch" style="background:var(--cathi-bg)"></div>bg</figure>
+        <figure><div class="swatch" style="background:var(--cathi-text)"></div>text</figure>
+      </div>
+    </div>
+
+    <!-- ═══ 2. 窗口/面板框架（macOS 风格）—— 参考 PortaOS 截图 ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon cathi-ribbon--pink">窗口面板</span>
+      <div class="demo-grid" style="margin-top:20px">
+        <!-- macOS 风格窗口 -->
+        <div class="cathi-window" style="min-width:300px">
+          <div class="cathi-window__header">
+            <div class="cathi-window__traffic">
+              <span class="cathi-window__dot cathi-window__dot--red"></span>
+              <span class="cathi-window__dot cathi-window__dot--yellow"></span>
+              <span class="cathi-window__dot cathi-window__dot--green"></span>
+            </div>
+            <span class="cathi-window__title">文辑</span>
+            <div style="width:52px"></div><!-- spacer -->
+          </div>
+          <div class="cathi-window__body">
+            <h3 style="margin:0 0 8px;font-weight:900;font-size:18px">欢迎来到我的折腾日志 🎉</h3>
+            <p class="cathi-muted" style="margin:0;font-size:14px">希望这些记录对你也有所启发。或者至少让你在面对同样问题时，少走一些弯路 😄</p>
+          </div>
+        </div>
+
+        <!-- iOS 卡片风格窗口 -->
+        <div class="cathi-window" style="min-width:280px;border-radius:24px">
+          <div class="cathi-window__header" style="border-bottom:none;padding-bottom:4px">
+            <div class="cathi-window__traffic">
+              <span class="cathi-window__dot cathi-window__dot--red"></span>
+              <span class="cathi-window__dot cathi-window__dot--yellow"></span>
+              <span class="cathi-window__dot cathi-window__dot--green"></span>
+            </div>
+            <span class="cathi-window__title">callai</span>
+            <div style="width:52px"></div>
+          </div>
+          <div class="cathi-window__body" style="padding:20px">
+            <div class="cathi-row" style="margin-bottom:14px">
+              <img src="https://api.dicebear.com/7.x/bottts/svg?seed=callai" class="cathi-avatar" alt="">
+              <div>
+                <div style="font-weight:900;font-size:18px">callai</div>
+                <div class="cathi-muted" style="font-size:13px">Ciallo～(∠・ω&lt; )</div>
+              </div>
+            </div>
+            <div class="cathi-time-display">
+              <span class="cathi-time-display__dow">FRIDAY</span>
+              <span class="cathi-time-display__date">Aug 01</span>
+              <span class="cathi-time-display__time">19:24</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 3. 任务卡片 + 条纹进度条 —— 参考 callai 截图 ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon cathi-ribbon--amber">任务卡片</span>
+      <div style="margin-top:20px;max-width:420px">
+        <!-- 任务项 1 -->
+        <div class="cathi-card" style="margin-bottom:16px">
+          <div class="cathi-row" style="justify-content:space-between;margin-bottom:8px">
+            <span style="font-weight:900;font-size:17px">本地 echo 测试</span>
+            <label class="cathi-switch"><input type="checkbox" checked><span class="cathi-switch__track"></span></label>
+          </div>
+          <div class="cathi-row" style="margin-bottom:10px;flex-wrap:wrap">
+            <span class="cathi-tag">每天</span>
+            <span class="cathi-tag cathi-tag--outline">08:00</span>
+            <span class="cathi-tag cathi-tag--outline">13:00</span>
+            <span class="cathi-tag cathi-tag--pink">+1</span>
+          </div>
+          <div class="cathi-progress__label">
+            <span class="cathi-muted">下次触发 · 7月12日 16:00</span>
+            <span class="cathi-progress__pct">92%</span>
+          </div>
+          <div class="cathi-progress cathi-progress--striped">
+            <div class="cathi-progress__fill" style="width:92%"></div>
+          </div>
+          <div style="margin-top:8px">
+            <span class="cathi-tag cathi-tag--outline">echo</span>
+          </div>
+          <div class="cathi-action-bar">
+            <button class="cathi-action-btn">✏️</button>
+            <button class="cathi-action-btn">📋</button>
+            <button class="cathi-action-btn cathi-action-btn--danger">🗑️</button>
+            <button class="cathi-action-btn cathi-action-btn--primary">⚡</button>
+          </div>
+        </div>
+
+        <!-- 任务项 2（带海洋底部装饰感） -->
+        <div class="cathi-card" style="position:relative;overflow:hidden">
+          <div class="cathi-row" style="justify-content:space-between;margin-bottom:8px">
+            <span style="font-weight:900;font-size:17px">Sleep</span>
+            <label class="cathi-switch"><input type="checkbox" checked><span class="cathi-switch__track"></span></label>
+          </div>
+          <div class="cathi-row" style="margin-bottom:10px;flex-wrap:wrap">
+            <span class="cathi-tag">每天</span>
+            <span class="cathi-tag cathi-tag--outline">08:00</span>
+            <span class="cathi-tag cathi-tag--outline">23:00</span>
+            <span class="cathi-tag cathi-tag--pink">+1</span>
+          </div>
+          <div class="cathi-progress__label">
+            <span class="cathi-muted">下次触发 · 7月12日 16:00</span>
+            <span class="cathi-progress__pct cathi-progress__pct--amber">45%</span>
+          </div>
+          <div class="cathi-progress cathi-progress--striped">
+            <div class="cathi-progress__fill cathi-progress__fill--amber" style="width:45%"></div>
+          </div>
+          <!-- 海洋装饰底边 -->
+          <div style="height:30px;margin:10px -20px -20px;background:linear-gradient(180deg,transparent 40%,#a8e8c8 70%,#5dd4b8 100%);border-radius:0 0 18px 18px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;gap:8px;font-size:14px;opacity:.6">🐟⛵🌊🐬</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 4. 角色卡 + 雷达图 —— 参考动物岛性格截图 ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon">角色卡 / 雷达图</span>
+      <div class="demo-grid" style="margin-top:20px">
+        <!-- 大姐型 -->
+        <div class="cathi-char-card cathi-char-card--big">
+          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=sister&backgroundColor=f8bbd9" class="cathi-char-card__avatar" alt="">
+          <div class="cathi-char-card__badge">大姐型</div>
+          <h3 class="cathi-char-card__name">SISTER</h3>
+          <p class="cathi-char-card__sub">运动值：HJK-LMA-008</p>
+          <p class="cathi-char-card__desc">万事难不倒意志坚定的老姐姐</p>
+          <div class="cathi-radar" style="--v1:80;--v2:65;--v3:55;--v4:75;--v5:60;color:#e8a0a0">
+            <div class="cathi-radar__grid"></div>
+            <div class="cathi-radar__axis"></div>
+            <div class="cathi-radar__shape"></div>
+            <div class="cathi-radar__labels"><span class="r-l1">运动</span><span class="r-l2">音乐</span><span class="r-l3">可爱</span><span class="r-l4">教育</span><span class="r-l5">耐心</span></div>
+          </div>
+          <div class="cathi-char-card__tags">
+            <span class="cathi-tag cathi-tag--pink">❤️ 喜欢</span>
+            <span class="cathi-tag">🎤 唱歌</span>
+            <span class="cathi-tag cathi-tag--amber">💪 运动</span>
+          </div>
+          <div class="cathi-stack" style="gap:8px">
+            <div class="cathi-relation-bar">
+              <img src="https://api.dicebear.com/7.x/bottts/svg?seed=a" class="cathi-relation-bar__avatar" alt="">
+              <div class="cathi-relation-bar__info">
+                <div class="cathi-relation-bar__name">猫猫岛居民 (Stitches)</div>
+                <div class="cathi-relation-bar__track"><div class="cathi-relation-bar__fill" style="width:72%;background:#f08ca0"></div></div>
+              </div>
+            </div>
+            <div class="cathi-relation-bar">
+              <img src="https://api.dicebear.com/7.x/bottts/svg?seed=b" class="cathi-relation-bar__avatar" alt="">
+              <div class="cathi-relation-bar__info">
+                <div class="cathi-relation-bar__name">邻居 (Kitty)</div>
+                <div class="cathi-relation-bar__track"><div class="cathi-relation-bar__fill" style="width:58%;background:#f08ca0"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 慵懒型 -->
+        <div class="cathi-char-card cathi-char-card--lazy">
+          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=lazy&backgroundColor=fff1b8" class="cathi-char-card__avatar" alt="">
+          <div class="cathi-char-card__badge">慵懒型</div>
+          <h3 class="cathi-char-card__name">LAZY</h3>
+          <p class="cathi-char-card__sub">运动值：NLAJ-065</p>
+          <p class="cathi-char-card__desc">佛系天花板，坐姿合意就要生活</p>
+          <div class="cathi-radar" style="--v1:25;--v2:50;--v3:90;--v4:35;--v5:85;color:#e0c850">
+            <div class="cathi-radar__grid"></div>
+            <div class="cathi-radar__axis"></div>
+            <div class="cathi-radar__shape"></div>
+            <div class="cathi-radar__labels"><span class="r-l1">运动</span><span class="r-l2">音乐</span><span class="r-l3">可爱</span><span class="r-l4">教育</span><span class="r-l5">耐心</span></div>
+          </div>
+          <div class="cathi-char-card__tags">
+            <span class="cathi-tag cathi-tag--amber">😴 爱睡</span>
+            <span class="cathi-tag">🍔 吃货</span>
+            <span class="cathi-tag cathi-tag--pink">🌙 夜猫</span>
+          </div>
+          <div class="cathi-stack" style="gap:8px">
+            <div class="cathi-relation-bar">
+              <img src="https://api.dicebear.com/7.x/bottts/svg?seed=c" class="cathi-relation-bar__avatar" alt="">
+              <div class="cathi-relation-bar__info">
+                <div class="cathi-relation-bar__name">好友 (Lolly)</div>
+                <div class="cathi-relation-bar__track"><div class="cathi-relation-bar__fill" style="width:85%;background:#e0c850"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 运动型 -->
+        <div class="cathi-char-card cathi-char-card--sporty">
+          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=sporty&backgroundColor=ffc8a8" class="cathi-char-card__avatar" alt="">
+          <div class="cathi-char-card__badge">运动型</div>
+          <h3 class="cathi-char-card__name">SPORTY</h3>
+          <p class="cathi-char-card__sub">运动值：HJK-ABG-046</p>
+          <p class="cathi-char-card__desc">肌肉就是最通用的魅力方程式</p>
+          <div class="cathi-radar" style="--v1:95;--v2:55;--v3:45;--v4:50;--v5:70;color:#e09858">
+            <div class="cathi-radar__grid"></div>
+            <div class="cathi-radar__axis"></div>
+            <div class="cathi-radar__shape"></div>
+            <div class="cathi-radar__labels"><span class="r-l1">运动</span><span class="r-l2">音乐</span><span class="r-l3">可爱</span><span class="r-l4">教育</span><span class="r-l5">耐心</span></div>
+          </div>
+          <div class="cathi-char-card__tags">
+            <span class="cathi-tag cathi-tag--pink">🏃 跑步</span>
+            <span class="cathi-tag">🏋️ 健身</span>
+            <span class="cathi-tag cathi-tag--amber">⚽ 足球</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 5. 搜索栏 + 药丸标签页 —— 参考 Splatoon 资源目录截图 ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon cathi-ribbon--amber">搜索 & 标签页</span>
+      <div style="margin-top:20px">
+        <div class="cathi-card">
+          <!-- 头部：标题 + 搜索栏 -->
+          <div class="cathi-row" style="margin-bottom:16px;flex-wrap:wrap;gap:12px">
+            <h3 style="margin:0;font-weight:900;font-size:20px">Awesome Splatoon3</h3>
+            <button class="cathi-btn cathi-btn--ghost cathi-btn--sm">贡献</button>
+            <div class="cathi-search-bar" style="flex:1;min-width:200px">
+              <span class="cathi-search-bar__icon">🔍</span>
+              <input class="cathi-search-bar__input" placeholder="搜索资源…">
+              <button class="cathi-search-bar__btn">⌘K</button>
+            </div>
+            <select class="cathi-select" style="width:auto;padding:8px 12px">
+              <option>简体中文</option>
+              <option>English</option>
+              <option>日本語</option>
+            </select>
+            <button class="cathi-btn cathi-btn--amber cathi-btn--sm">🐱 9</button>
+          </div>
+
+          <!-- 药丸单选标签组 -->
+          <div class="cathi-radio-pills" style="margin-bottom:20px">
+            <label class="cathi-radio-pill active"><input type="radio" name="tab" checked><span>✅ 全部</span></label>
+            <label class="cathi-radio-pill"><input type="radio" name="tab"><span>官方链接</span></label>
+            <label class="cathi-radio-pill"><input type="radio" name="tab"><span>Wiki</span></label>
+            <label class="cathi-radio-pill"><input type="radio" name="tab"><span>工具</span></label>
+            <label class="cathi-radio-pill"><input type="radio" name="tab"><span>开发</span></label>
+            <label class="cathi-radio-pill"><input type="radio" name="tab"><span>素材</span></label>
+          </div>
+
+          <div class="cathi-muted" style="margin-bottom:12px;font-weight:700">29 个资源</div>
+
+          <!-- 资源卡片网格 -->
+          <div class="demo-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+            <div class="cathi-card cathi-card--flat" style="padding:18px">
+              <span class="cathi-tag" style="margin-bottom:8px">官方链接</span>
+              <h4 style="margin:4px 0 6px;font-weight:900;font-size:16px">Splatoon 3 Official Site</h4>
+              <p class="cathi-muted" style="margin:0 0 10px;font-size:13px">斯普拉遁 3 的任天堂官方网站。</p>
+              <a style="color:var(--cathi-primary-dark);font-weight:800;font-size:13px;text-decoration:none">splatoon.nintendo.com →</a>
+            </div>
+            <div class="cathi-card cathi-card--flat" style="padding:18px">
+              <span class="cathi-tag cathi-tag--amber" style="margin-bottom:8px">官方链接</span>
+              <h4 style="margin:4px 0 6px;font-weight:900;font-size:16px">SplatoonJP</h4>
+              <p class="cathi-muted" style="margin:0 0 10px;font-size:13px">斯普拉遁官方日文 X 那号。</p>
+              <a style="color:var(--cathi-primary-dark);font-weight:800;font-size:13px;text-decoration:none">x.com →</a>
+            </div>
+            <div class="cathi-card cathi-card--flat" style="padding:18px">
+              <span class="cathi-tag cathi-tag--sky" style="margin-bottom:8px">Wiki</span>
+              <h4 style="margin:4px 0 6px;font-weight:900;font-size:16px">Inkipedia: Splatoon 3</h4>
+              <p class="cathi-muted" style="margin:0 0 10px;font-size:13px">社区维护的百科考，涵盖机制、武器、装备、场地。</p>
+              <a style="color:var(--cathi-primary-dark);font-weight:800;font-size:13px;text-decoration:none">splatoonwiki.org →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 6. 数字键盘 —— 参考数学测验截图 ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon cathi-ribbon--pink">数字键盘</span>
+      <div style="margin-top:20px">
+        <div class="cathi-card" style="text-align:center;max-width:500px;margin:0 auto">
+          <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+            <span style="font-size:36px;font-weight:900">3 + 3 =</span>
+            <div class="cathi-input" style="text-align:center;font-size:28px;font-weight:900;width:80px;padding:10px;border-color:#f08ca0;color:#d07070">9</div>
+          </div>
+          <p class="cathi-muted" style="margin:0 0 16px;font-size:13px">✦ 输入答案并按回车确认</p>
+          <div class="cathi-keypad" style="margin:0 auto">
+            <button class="cathi-key cathi-key--pink">1</button>
+            <button class="cathi-key cathi-key--blue">2</button>
+            <button class="cathi-key cathi-key--yellow">3</button>
+            <button class="cathi-key cathi-key--teal">4</button>
+            <button class="cathi-key cathi-key--orange">5</button>
+            <button class="cathi-key cathi-key--purple">6</button>
+            <button class="cathi-key cathi-key--green">7</button>
+            <button class="cathi-key cathi-key--coral">8</button>
+            <button class="cathi-key cathi-key--teal" style="box-shadow:inset 0 2px 6px rgba(0,0,0,.15)">9</button>
+            <button class="cathi-key cathi-key--lime">0</button>
+            <button class="cathi-key cathi-key--gray">⌫</button>
+          </div>
+          <div style="margin-top:16px">
+            <button class="cathi-btn cathi-btn--pink">正确答案是: 6</button>
+          </div>
+          <div class="cathi-row" style="justify-content:center;margin-top:12px;gap:8px">
+            <span style="font-size:24px">❤️</span><span style="font-size:24px">❤️</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 7. NookPhone 面板（标签页 + 图标网格 + 任务列表 + 设置面板）═══ -->
+    <div class="section">
+      <span class="cathi-ribbon cathi-ribbon--amber">NookPhone 面板</span>
+      <div class="cathi-window" style="margin-top:20px;max-width:720px">
+        <div class="cathi-window__header">
+          <div class="cathi-window__traffic">
+            <span class="cathi-window__dot cathi-window__dot--red"></span>
+            <span class="cathi-window__dot cathi-window__dot--yellow"></span>
+            <span class="cathi-window__dot cathi-window__dot--green"></span>
+          </div>
+          <span class="cathi-window__title">Resident Representative's Desk</span>
+          <div style="width:52px"></div>
+        </div>
+        <div class="cathi-window__body" style="padding:20px">
+          <!-- 标题行 -->
+          <div class="cathi-row" style="margin-bottom:6px;align-items:flex-end;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-weight:900;font-size:20px;color:var(--cathi-text)">Resident Representative's Desk</div>
+              <div class="cathi-muted" style="font-size:13px">Managing Animal Island with style.</div>
+            </div>
+            <div class="cathi-time-display" style="margin-left:auto">
+              <span class="cathi-time-display__dow">TUE</span>
+              <span class="cathi-time-display__date">5/19</span>
+              <span class="cathi-time-display__time">11:57</span>
+            </div>
+            <span style="font-size:18px;font-weight:800;color:var(--cathi-text-faint)">AM</span>
+          </div>
+
+          <!-- 波浪分隔线 -->
+          <div class="cathi-wave-divider"></div>
+
+          <!-- 标签页 -->
+          <div class="cathi-tabs" style="margin-bottom:20px">
+            <button class="cathi-tab active">QUICK ACCESS</button>
+            <button class="cathi-tab">ISLAND PROJECTS</button>
+            <button class="cathi-tab">ISLAND SETTINGS</button>
+          </div>
+
+          <!-- 标签内容：三列布局 -->
+          <div class="demo-grid" style="grid-template-columns:200px 1fr 180px;gap:20px">
+            <!-- 左：图标网格 -->
+            <div>
+              <div class="cathi-muted" style="font-size:12px;font-weight:800;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Tuesday</div>
+              <div class="cathi-icon-grid" style="grid-template-columns:repeat(3,1fr)">
+                <a class="cathi-icon-btn cathi-icon-btn--purple"><span class="cathi-icon-btn__icon">📷</span><span class="cathi-icon-btn__label">相机</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--blue"><span class="cathi-icon-btn__icon">🗺️</span><span class="cathi-icon-btn__label">地图</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--amber"><span class="cathi-icon-btn__icon">👕</span><span class="cathi-icon-btn__label">衣服</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--coral"><span class="cathi-icon-btn__icon">🖼️</span><span class="cathi-icon-btn__label">相册</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--pink"><span class="cathi-icon-btn__icon">🛒</span><span class="cathi-icon-btn__label">购物</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--teal"><span class="cathi-icon-btn__icon">📍</span><span class="cathi-icon-btn__label">定位</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--green"><span class="cathi-icon-btn__icon">👕</span><span class="cathi-icon-btn__label">定制</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--rose"><span class="cathi-icon-btn__icon">🚁</span><span class="cathi-icon-btn__label">飞行</span></a>
+                <a class="cathi-icon-btn cathi-icon-btn--lime"><span class="cathi-icon-btn__icon">💬</span><span class="cathi-icon-btn__label">消息</span></a>
+              </div>
+            </div>
+
+            <!-- 中：任务列表 -->
+            <div>
+              <div style="font-weight:900;font-size:17px;margin-bottom:12px">Active Construction</div>
+              <div class="cathi-task-item">
+                <span class="cathi-task-item__add">+</span>
+                <span class="cathi-task-item__text">Bridge to North Shore</span>
+                <span class="cathi-task-item__icon">🌿</span>
+              </div>
+              <div class="cathi-task-item">
+                <span class="cathi-task-item__add">+</span>
+                <span class="cathi-task-item__text">Museum Art Gallery</span>
+                <span class="cathi-task-item__icon">🌿</span>
+              </div>
+              <div class="cathi-row" style="margin-top:16px;gap:10px">
+                <button class="cathi-btn cathi-btn--ghost cathi-btn--sm" style="flex:1">New</button>
+                <button class="cathi-btn cathi-btn--pink cathi-btn--sm" style="flex:1">Help</button>
+              </div>
+            </div>
+
+            <!-- 右：设置面板 -->
+            <div class="cathi-settings-panel">
+              <button class="cathi-btn cathi-btn--ghost cathi-btn--sm" style="width:100%;margin-bottom:12px">My Paradise</button>
+              <button class="cathi-btn cathi-btn--ghost cathi-btn--sm" style="width:100%;margin-bottom:16px;opacity:.6">Select Ordinance ›</button>
+              <div class="cathi-settings-panel__title">Alerts</div>
+              <div class="cathi-setting-row">
+                <span class="cathi-setting-row__label">ON</span>
+                <label class="cathi-switch"><input type="checkbox" checked><span class="cathi-switch__track"></span></label>
+              </div>
+              <div class="cathi-setting-row">
+                <span class="cathi-setting-row__label">Allow visitors</span>
+                <label class="cathi-switch"><input type="checkbox" checked><span class="cathi-switch__track"></span></label>
+              </div>
+              <button class="cathi-btn cathi-btn--amber cathi-btn--sm" style="width:100%;margin-top:12px">Save Config</button>
+              <div class="cathi-wave-divider cathi-wave-divider--teal" style="margin:12px 0"></div>
+              <div class="cathi-muted" style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px">TOOLS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 8. 侧边导航布局 —— 参考个人站模板截图 ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon">侧边导航布局</span>
+      <div class="demo-sidebar-layout" style="margin-top:20px;max-width:720px">
+        <nav class="cathi-sidebar-nav">
+          <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=me&backgroundColor=d4ecff" class="cathi-avatar cathi-avatar--round" style="width:72px;height:72px;margin:0 auto 16px;border-width:3px" alt="">
+          <a class="cathi-nav-item active"><span class="cathi-nav-item__icon" style="background:#d4ecff">🏠</span>Home</a>
+          <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#ffe0d6">📂</span>Projects</a>
+          <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#e8d5ff">📄</span>CV</a>
+          <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#d7f5f1">📝</span>Blog</a>
+          <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#fff1d6">👤</span>Personal</a>
+          <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#ffe3ec">📌</span>Notes</a>
+          <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#dcefff">✉️</span>Contact</a>
+          <div style="margin-top:auto;padding-top:12px;border-top:2px solid var(--cathi-border)">
+            <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#e8e4dc">🌙</span>Dark Mode</a>
+            <a class="cathi-nav-item"><span class="cathi-nav-item__icon" style="background:#e8e4dc">🐙</span>GitHub</a>
+          </div>
+        </nav>
+        <div style="padding:32px;background:var(--cathi-bg-alt)">
+          <div style="font-size:28px;margin-bottom:8px">🐾 🐱</div>
+          <h2 style="margin:0 0 4px;font-weight:900;font-size:28px">Hey there<br>I'm Your Name</h2>
+          <p class="cathi-muted" style="margin:0 0 24px">Welcome to my personal website.<br>Feel free to look around and learn more about me!</p>
+
+          <h3 style="font-weight:900;margin:0 0 12px">Font sample</h3>
+          <div class="cathi-stack" style="gap:8px;font-size:14px;line-height:1.8">
+            <div><strong>EN:</strong> The quick brown fox jumps over the lazy dog. 0123456789</div>
+            <div><strong>简体:</strong> 看着眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。</div>
+            <div><strong>繁體:</strong> 人生若只如初見，何事秋風悲畫扇。</div>
+            <div><strong>日本語:</strong> いろはにほへと ちりぬるを — 言葉は揺であれ。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 9. 基础组件回顾 ═══ -->
+    <div class="section">
+      <span class="cathi-ribbon">基础组件</span>
+      <div class="cathi-stack" style="margin-top:20px">
+        <div class="cathi-row" style="flex-wrap:wrap">
+          <span class="cathi-tag">默认</span>
+          <span class="cathi-tag cathi-tag--amber">琥珀</span>
+          <span class="cathi-tag cathi-tag--sky">天蓝</span>
+          <span class="cathi-tag cathi-tag--grape">葡萄</span>
+          <span class="cathi-tag cathi-tag--outline">描边</span>
+          <img class="cathi-avatar cathi-avatar--sm" src="https://i.pravatar.cc/120?img=15" alt="">
+          <img class="cathi-avatar" src="https://i.pravatar.cc/120?img=32" alt="">
+        </div>
+        <div class="cathi-field">
+          <label class="cathi-field__label">昵称</label>
+          <input class="cathi-input" placeholder="请输入昵称…">
+        </div>
+        <div class="cathi-row" style="justify-content:space-between">
+          <span class="cathi-field__label">接收通知</span>
+          <label class="cathi-switch"><input type="checkbox" checked><span class="cathi-switch__track"></span></label>
+        </div>
+        <div class="cathi-note cathi-note--primary">提示：所有组件均为纯手写 CSS，可直接拷进任意项目使用。MIT 授权可商用。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 简单交互：标签页切换 -->
+  <script>
+    document.querySelectorAll('.cathi-tabs').forEach(tabBar => {
+      tabBar.querySelectorAll('.cathi-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabBar.querySelectorAll('.cathi-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+        });
+      });
+    });
+    // 药丸单选
+    document.querySelectorAll('.cathi-radio-pills').forEach(group => {
+      group.querySelectorAll('.cathi-radio-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          group.querySelectorAll('.cathi-radio-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+        });
+      });
+    });
+    // 数字键盘点击效果
+    document.querySelectorAll('.cathi-key').forEach(key => {
+      key.addEventListener('click', () => {
+        key.style.transform = 'translateY(3px) scale(.95)';
+        setTimeout(() => key.style.transform = '', 150);
+      });
+    });
+  </script>
+</body>
+</html>

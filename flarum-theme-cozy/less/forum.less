@@ -1,0 +1,254 @@
+// ══════════════════════════════════════════════════════════════
+//  猫猫岛主题 (Cozy Theme) — 自研 cathi-ui 设计语言
+//  主色 #18c2b3 · 文字 #574430 · 背景 #f6f1e1 / #fffdf6
+//  圆角 12/18/24/50px · 字体 Nunito · 3D 按钮阴影
+//  纯手写实现，不依赖任何第三方 UI 库源码（MIT）
+// ══════════════════════════════════════════════════════════════
+
+@import (css) url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+// ── cathi-ui 设计 token（与 cathi-ui.css 对齐）──
+@cathi-primary:        #18c2b3;
+@cathi-primary-hover:  #3dd4c6;
+@cathi-primary-active: #11a89b;
+@cathi-primary-bg:     #e6f9f6;
+@cathi-text:           #794f27;
+@cathi-text-body:      #725d42;
+@cathi-text-secondary: #9f927d;
+@cathi-text-muted:     #8a7b66;
+@cathi-bg:             #f8f8f0;
+@cathi-bg-content:     #f7f3df;
+@cathi-border:         #c4b89e;
+@cathi-border-hover:   #a89878;
+@cathi-radius-sm:      12px;
+@cathi-radius:         18px;
+@cathi-radius-lg:      24px;
+@cathi-radius-pill:    50px;
+@cathi-shadow-btn:     #bdaea0;
+@cathi-shadow-soft:    rgba(120, 100, 70, 0.18);
+@cathi-focus-yellow:   #ffcc00;
+@cathi-success:        #6fba2c;
+@cathi-ease:           cubic-bezier(0.4, 0, 0.2, 1);
+
+// 若 Flarum 2.0 暴露 CSS 变量，则覆盖（部分核心组件会跟随）
+:root {
+    --primary-color: @cathi-primary;
+    --primary-color-hover: @cathi-primary-hover;
+    --body-bg: @cathi-bg;
+    --text-color: @cathi-text-body;
+    --control-bg: #ffffff;
+    --control-color: @cathi-text-secondary;
+    --header-bg: @cathi-bg;
+    --header-color: @cathi-primary-active;
+    --header-control-bg: #ffffff;
+    --header-control-color: @cathi-text;
+    --border-color: @cathi-border;
+    --muted-color: @cathi-text-secondary;
+    --shadow-color: @cathi-shadow-soft;
+}
+
+// ── 全局基础 ──
+body {
+    font-family: 'Nunito', 'Noto Sans SC', -apple-system, 'PingFang SC', 'Hiragino Sans GB', sans-serif !important;
+    background: @cathi-bg;
+    color: @cathi-text-body;
+    font-weight: 500;
+}
+
+a {
+    color: @cathi-primary-active;
+    transition: color 0.2s @cathi-ease;
+}
+a:hover { color: @cathi-primary-hover; }
+
+// ── 顶栏 Header ──
+.Header {
+    background: @cathi-bg !important;
+    border-bottom: 3px solid @cathi-border;
+    box-shadow: 0 2px 10px @cathi-shadow-soft;
+}
+.Header-controls .Button,
+.Header .Button,
+.Header .Search {
+    border-radius: @cathi-radius-pill !important;
+}
+.Header .Navigation .Navigation-item {
+    border-radius: @cathi-radius-pill !important;
+}
+
+// ── 按钮（动森 3D 风格）──
+.Button {
+    border-radius: @cathi-radius-pill !important;
+    font-weight: 700;
+    font-family: inherit;
+    border: 2px solid @cathi-border;
+    transition: transform 0.12s @cathi-ease, box-shadow 0.12s @cathi-ease, background 0.2s @cathi-ease;
+}
+.Button:hover { border-color: @cathi-border-hover; }
+
+.Button--primary {
+    background: @cathi-primary !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 0 @cathi-shadow-btn !important;
+}
+.Button--primary:hover {
+    background: @cathi-primary-hover !important;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 @cathi-shadow-btn !important;
+}
+.Button--primary:active {
+    transform: translateY(3px) !important;
+    box-shadow: 0 1px 0 @cathi-shadow-btn !important;
+}
+
+.Button--danger {
+    background: #e05a5a !important;
+    border: none !important;
+    color: #fff !important;
+    box-shadow: 0 4px 0 #c24545 !important;
+}
+
+// ── 卡片 / 讨论列表 / 帖子 ──
+.Card,
+.DiscussionListItem,
+.Post,
+.UserCard {
+    border-radius: @cathi-radius !important;
+    border: 2px solid @cathi-border !important;
+    background: #ffffff;
+    box-shadow: 0 2px 8px @cathi-shadow-soft;
+}
+.DiscussionListItem {
+    margin-bottom: 10px;
+    padding: 14px 18px;
+    transition: transform 0.12s @cathi-ease, background 0.2s @cathi-ease;
+}
+.DiscussionListItem:hover {
+    background: @cathi-primary-bg;
+    transform: translateY(-1px);
+}
+.DiscussionListItem .DiscussionListItem-title {
+    font-weight: 700;
+    color: @cathi-text;
+}
+.DiscussionListItem .DiscussionListItem-info .username {
+    color: @cathi-primary-active;
+    font-weight: 700;
+}
+
+.Post {
+    padding: 16px;
+}
+.Post-body {
+    color: @cathi-text-body;
+    line-height: 1.7;
+}
+.Post-body p { margin: 0 0 10px; }
+
+// ── 输入框 ──
+.FormControl,
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    border-radius: @cathi-radius-sm !important;
+    border: 2px solid @cathi-border !important;
+    background: #ffffff !important;
+    color: @cathi-text-body !important;
+    box-shadow: inset 0 2px 0 @cathi-shadow-btn !important;
+    font-family: inherit;
+}
+.FormControl:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: @cathi-primary !important;
+    outline: none;
+    box-shadow: inset 0 2px 0 @cathi-shadow-btn, 0 0 0 3px fade(@cathi-primary, 25%) !important;
+}
+
+// ── 标签 ──
+.Tag {
+    border-radius: @cathi-radius-pill !important;
+    font-weight: 700;
+    padding: 2px 12px !important;
+}
+
+// ── 提示 Alert ──
+.Alert {
+    border-radius: @cathi-radius !important;
+    border: 2px solid @cathi-border;
+    font-weight: 600;
+}
+
+// ── 下拉菜单 / 弹层 ──
+.Dropdown-menu,
+.Menu,
+.Popover {
+    border-radius: @cathi-radius !important;
+    border: 2px solid @cathi-border !important;
+    overflow: hidden;
+    box-shadow: 0 6px 20px @cathi-shadow-soft;
+}
+.Dropdown-menu .Dropdown-item,
+.Menu .MenuItem {
+    font-weight: 600;
+}
+.Dropdown-menu .Dropdown-item:hover,
+.Menu .MenuItem:hover {
+    background: @cathi-primary-bg;
+}
+
+// ── Hero 区（标签页头部等）──
+.Hero {
+    background: @cathi-primary-bg !important;
+    border-radius: @cathi-radius-lg !important;
+    border: 2px solid @cathi-border;
+    color: @cathi-text;
+}
+
+// ── 个人卡片英雄区圆角 ──
+.UserCard-hero {
+    border-radius: @cathi-radius-lg @cathi-radius-lg 0 0;
+}
+
+// ── 编辑器 Composer ──
+.Composer {
+    border-radius: @cathi-radius @cathi-radius 0 0 !important;
+    border: 2px solid @cathi-border !important;
+    border-bottom: none !important;
+}
+.Composer .FormControl {
+    border-radius: @cathi-radius-sm !important;
+}
+
+// ── 头像圆角（保留圆形，动森风更圆润）──
+.Avatar {
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 4px @cathi-shadow-soft;
+}
+
+// ── 侧边栏导航项 ──
+.App .IndexSidebar .Item,
+.App-nav .Item {
+    border-radius: @cathi-radius !important;
+}
+
+// ── 滚动条（webkit）──
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: @cathi-bg; }
+::-webkit-scrollbar-thumb {
+    background: @cathi-border;
+    border-radius: @cathi-radius-pill;
+    border: 2px solid @cathi-bg;
+}
+::-webkit-scrollbar-thumb:hover { background: @cathi-border-hover; }
+
+// ── 选中态高亮 ──
+::selection {
+    background: fade(@cathi-primary, 30%);
+    color: @cathi-text;
+}
