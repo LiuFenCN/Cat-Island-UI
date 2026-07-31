@@ -1,18 +1,85 @@
 # Cat Island UI
 
-Cat Island（猫岛）系设计系统与 Flarum 论坛扩展集合。全部 **MIT 授权、可商用**，不含任何第三方商标或闭源代码。
+自研治愈系 CSS 组件库。**MIT 授权，可商用，零依赖。**
 
-## 目录结构
-- `cathi-ui/` —— 自研治愈系 CSS 组件库（28+ 组件，零依赖，MIT）
-- `flarum-linkage/` —— Flarum 2.0 论坛联动系统扩展（猫猫币 / 等级 / 装饰商城）
-- `flarum-theme-cozy/` —— Flarum 2.0 治愈系论坛主题
+引入一个 CSS 文件即可使用全部组件。
 
-## 设计说明
-- 配色、圆角、字体均为全新设计，参考动森风格但完全手写复刻。
-- 未使用 `animal-island-ui` 任何源码（其许可证为 CC BY-NC 4.0 禁止商用）。
-- 未使用任天堂 / 动物森友会任何商标。
-- 界面字体使用 **Nunito**（SIL Open Font License，可商用）。
+[→ 在线预览 Demo](./index.html)
 
-## 部署提示
-- `cathi-ui/` 为纯静态资源，直接引入 `cathi-ui.css` 即可。
-- `flarum-linkage` / `flarum-theme-cozy` 为 Flarum 扩展，部署时复制至 `flarum/extensions/<name>/`，注册到 `composer/installed.json`，启用并 `php flarum assets:publish`。
+## 快速开始
+
+```html
+<link rel="stylesheet" href="cathi-ui.css">
+<div class="cathi-root">
+  <button class="cathi-btn cathi-btn--primary">Hello</button>
+</div>
+```
+
+所有组件必须放在 `.cathi-root` 内（它定义了 Design Token）。
+
+## 组件清单（v3）
+
+| 分类 | 组件 | 说明 |
+|------|------|------|
+| 基础 | `.cathi-btn` | 按钮（实心/轮廓/幽灵/禁用 + 5 色 + 3 尺寸） |
+| 基础 | `.cathi-card` | 圆角卡片（带 header / body / footer 插槽） |
+| 基础 | `.cathi-tag` | 标签（圆角/点状/可关闭） |
+| 基础 | `.cathi-avatar` | 头像（圆/圆角/带状态点/带角标） |
+| 基础 | `.cathi-input` | 输入框（文本/搜索/文本域 + 图标插槽） |
+| 反馈 | `.cathi-progress` | 进度条（直线/条纹/不定） |
+| 反馈 | `.cathi-switch` | 开关（iOS 风格） |
+| 反馈 | `.cathi-badge` | 数字角标 / 状态点 |
+| 反馈 | `.cathi-toast` | Toast 通知（success / warn / error） |
+| 数据 | `.cathi-radar` | SVG 五维雷达图（性格卡风格，JS 渲染） |
+| 数据 | `.cathi-relation-bar` | 关系进度条 |
+| 展示 | `.cathi-char-card` | 角色卡（6 色性格，含雷达图） |
+| 展示 | `.cathi-ribbon` | 燕尾 Ribbon 角标 |
+| 展示 | `.cathi-note` | 便签纸（4 色） |
+| 展示 | `.cathi-window` | 窗口框架（macOS 风格标题栏） |
+| 展示 | `.cathi-time-display` | 时间显示（数字时钟） |
+| 导航 | `.cathi-sidebar` | 侧边导航栏 |
+| 导航 | `.cathi-tabs` | 标签页切换 |
+| 导航 | `.cathi-tabbar` | 移动端底部 Tab Bar |
+| 导航 | `.cathi-breadcrumb` | 面包屑导航 |
+| 表单 | `.cathi-radio-pills` | 药丸单选组 |
+| 表单 | `.cathi-numpad` | 数字键盘（NookPhone 风格） |
+| 表单 | `.cathi-icon-grid` | 图标网格选择器 |
+| 表单 | `.cathi-search-bar` | 搜索栏 |
+| 布局 | `.cathi-task-item` | 任务项（勾选状态） |
+| 布局 | `.cathi-settings-panel` | 设置面板分组 |
+| 布局 | `.cathi-action-group` | 操作按钮组 |
+| 布局 | `.cathi-list` | iOS 风格设置列表项 |
+| 分隔 | `.cathi-wave-divider` | 波浪分隔线 |
+| 主题 | `.cathi-theme-dark` | 暗色主题（加在 .cathi-root 上即生效） |
+
+## Design Token
+
+在 `.cathi-root` 上覆盖 CSS 变量即可全局换色：
+
+```css
+:root {
+  --cathi-primary: #18c2b3;    /* 主色 */
+  --cathi-amber:  #ffb454;     /* 琥珀 */
+  --cathi-pink:   #ff8fab;     /* 粉 */
+  --cathi-sky:    #6cc6ef;     /* 天蓝 */
+  --cathi-grape:  #b08bf8;     /* 葡萄紫 */
+  --cathi-bg:     #f6f1e1;     /* 奶油底 */
+  --cathi-text:   #574430;     /* 可可文字 */
+}
+```
+
+## 字体
+
+默认使用 **Nunito**（SIL Open Font License，可商用）。未引入字体文件——由外部 CDN 或自行托管提供：
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+```
+
+## 浏览器支持
+
+现代浏览器（Chrome / Firefox / Safari / Edge 近两个版本）。雷达图组件依赖 SVG。
+
+## License
+
+MIT

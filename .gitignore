@@ -1,5 +1,3 @@
-node_modules/
-vendor/
-dist/
 *.log
 .DS_Store
+README-CATHI-UI.md
