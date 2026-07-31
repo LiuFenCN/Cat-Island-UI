@@ -1,6 +1,6 @@
 # Cat Island UI
 
-自研治愈系 CSS 组件库。**MIT 授权，可商用，零依赖。**
+自研治愈系 CSS 组件库。**CC BY-NC 4.0 许可（非商业用途），零外部依赖。**
 
 引入一个 CSS 文件即可使用全部组件。
 
@@ -70,10 +70,10 @@
 
 ## 字体
 
-默认使用 **Nunito**（SIL Open Font License，可商用）。未引入字体文件——由外部 CDN 或自行托管提供：
+默认使用 **Nunito**（SIL Open Font License，已随仓库本地托管于 `assets/fonts/`）。无需任何外部 CDN：
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts/nunito.css">
 ```
 
 ## 浏览器支持
@@ -82,4 +82,4 @@
 
 ## License
 
-MIT
+CC BY-NC 4.0（署名 — 非商业性使用）。**禁止将本组件库用于任何商业目的。** 完整条款见仓库 `LICENSE` 文件与 https://creativecommons.org/licenses/by-nc/4.0/
