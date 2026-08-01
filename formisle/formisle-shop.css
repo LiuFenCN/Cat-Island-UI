@@ -1,0 +1,256 @@
+/*!
+ * formisle-shop.css — 形屿 FORMISLE 商城组件扩展（基于 Cat-Island-UI）
+ * ----------------------------------------------------------------
+ * 这是「形屿 FORMISLE」治愈风 3D 资产商城的代码化组件层。
+ * 它**复用** Cat-Island-UI 的设计令牌（--cathi-*），仅在商城场景下
+ * 补充少量语义令牌，并新增商城专属组件类（作品卡 / 价格 / 订单行 /
+ * 退款药丸 / 进度时间线 等）。
+ *
+ * 用法：
+ *   <link rel="stylesheet" href="cathi-ui.css">
+ *   <link rel="stylesheet" href="formisle/formisle-shop.css">
+ *   <div class="cathi-root formisle-root"> ... </div>
+ *
+ * 引入顺序：必须先引入 cathi-ui.css，本文件依赖其令牌与基础重置。
+ * 授权：与 Cat-Island-UI 一致（见仓库 LICENSE）。本文件为自研原创。
+ */
+
+/* =========================================================
+ * 1. 补充令牌（仅商城需要的语义变量）
+ *    —— 其余颜色/圆角/阴影/字体全部沿用 --cathi-*
+ * ======================================================= */
+.formisle-root {
+  /* 价格金（cathi-ui 缺省无此语义色，FORMISLE 用其制造"价值感"） */
+  --formisle-price:        #b58a0a;
+  --formisle-price-soft:   #fbf3d8;
+  /* 评分文字（与次要文字同色，不使用 ★ 字符以规避字体/解析问题） */
+  --formisle-rating:       var(--cathi-text-soft);
+  /* 薄荷浅底（复用 cathi 主色浅底，确保选中态一致） */
+  --formisle-mint-bg:      var(--cathi-primary-soft);
+  /* 3D 按钮硬投影（与 cathi 一致，仅颜色复用棕调） */
+  --formisle-shadow-3d:    0 5px 0 rgba(87, 68, 48, .16), 0 10px 18px rgba(87, 68, 48, .12);
+}
+
+/* =========================================================
+ * 2. 作品卡 ProductCard
+ * ======================================================= */
+.formisle-product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cathi-bg-alt);
+  border: 1px solid var(--cathi-border);
+  border-radius: var(--cathi-r-lg);
+  overflow: hidden;
+  transition: transform var(--cathi-dur) var(--cathi-ease),
+              box-shadow var(--cathi-dur) var(--cathi-ease);
+}
+.formisle-product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--cathi-shadow-md);
+}
+.formisle-product-card__thumb {
+  width: 100%;
+  aspect-ratio: 360 / 200;
+  object-fit: cover;
+  display: block;
+  background: var(--cathi-surface-2);
+}
+.formisle-product-card__body {
+  padding: var(--cathi-sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cathi-sp-2);
+}
+.formisle-product-card__title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cathi-text);
+  margin: 0;
+}
+.formisle-product-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--cathi-sp-2);
+  font-size: 14px;
+  color: var(--cathi-text-soft);
+}
+.formisle-product-card__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--formisle-mint-bg);
+  border: 1px solid var(--cathi-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--cathi-primary-dark);
+}
+.formisle-product-card__price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: var(--cathi-sp-1);
+}
+.formisle-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--formisle-price);
+}
+.formisle-rating {
+  font-size: 14px;
+  color: var(--formisle-rating);
+}
+
+/* =========================================================
+ * 3. 订单行 OrderRow（购物车 / 我的订单 / 退款选择）
+ * ======================================================= */
+.formisle-order-row {
+  display: flex;
+  align-items: center;
+  gap: var(--cathi-sp-4);
+  padding: var(--cathi-sp-4);
+  background: var(--cathi-bg-alt);
+  border: 1px solid var(--cathi-border);
+  border-radius: var(--cathi-r-md);
+}
+.formisle-order-row__thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--cathi-r-sm);
+  object-fit: cover;
+  background: var(--cathi-surface-2);
+  flex: none;
+}
+.formisle-order-row__info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.formisle-order-row__name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cathi-text);
+  margin: 0 0 4px;
+}
+.formisle-order-row__meta {
+  font-size: 13px;
+  color: var(--cathi-text-soft);
+}
+.formisle-order-row__price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--formisle-price);
+  flex: none;
+}
+
+/* =========================================================
+ * 4. 退款 / 原因药丸 Pills（单选组）
+ * ======================================================= */
+.formisle-pills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cathi-sp-3);
+}
+.formisle-pill {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: var(--cathi-r-sm);
+  background: var(--cathi-bg-alt);
+  border: 1px solid var(--cathi-border);
+  font-size: 14px;
+  color: var(--cathi-text);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color var(--cathi-dur), background var(--cathi-dur);
+}
+.formisle-pill--selected {
+  background: var(--formisle-mint-bg);
+  border: 1.5px solid var(--cathi-primary);
+  font-weight: 800;
+  color: var(--cathi-primary-dark);
+}
+
+/* =========================================================
+ * 5. 进度时间线 Timeline（退款 / 售后 / 订单状态）
+ * ======================================================= */
+.formisle-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cathi-sp-4);
+}
+.formisle-timeline__step {
+  display: flex;
+  align-items: center;
+  gap: var(--cathi-sp-3);
+}
+.formisle-timeline__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--cathi-border-strong);   /* 未完成 */
+}
+.formisle-timeline__dot--done {
+  background: var(--cathi-primary);          /* 完成 / 当前 */
+}
+.formisle-timeline__title {
+  font-size: 14px;
+  color: var(--cathi-text-soft);
+  margin: 0;
+}
+.formisle-timeline__title--done {
+  font-weight: 800;
+  color: var(--cathi-text);
+}
+.formisle-timeline__time {
+  font-size: 12px;
+  color: var(--cathi-text-soft);
+  margin: 2px 0 0;
+}
+
+/* =========================================================
+ * 6. 商城卡片容器（承载表单字段）
+ * ======================================================= */
+.formisle-panel {
+  background: var(--cathi-bg-alt);
+  border: 1px solid var(--cathi-border);
+  border-radius: var(--cathi-r-lg);
+  padding: var(--cathi-sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cathi-sp-4);
+}
+.formisle-panel__label {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cathi-text);
+  margin: 0;
+}
+.formisle-field input,
+.formisle-field textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--cathi-text);
+  background: var(--cathi-surface);
+  border: 1px solid var(--cathi-border);
+  border-radius: var(--cathi-r-sm);
+  padding: 12px 14px;
+  resize: vertical;
+}
+.formisle-field input:focus,
+.formisle-field textarea:focus {
+  outline: none;
+  border-color: var(--cathi-primary);
+}
+
+/* =========================================================
+ * 7. 栅格工具（作品网格）
+ * ======================================================= */
+.formisle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--cathi-sp-5);
+}
