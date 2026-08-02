@@ -80,6 +80,21 @@
 
 现代浏览器（Chrome / Firefox / Safari / Edge 近两个版本）。雷达图组件依赖 SVG。
 
+## 商城扩展（Formisle Shop Kit）
+
+`formisle/` 是「形屿 FORMISLE」治愈风 3D 资产商城的组件扩展层，**构建在 Cat-Island-UI 之上**：
+复用本库全部设计令牌，仅补充商城场景的语义令牌与组件类（作品卡 / 订单行 / 退款药丸 /
+进度时间线 / 表单面板等）。含可运行 `demo.html`、组件规范 `COMPONENTS.md`、经验手册
+`EXPERIENCE.md` 与多格式令牌（`design-tokens.json` / `tailwind.theme.js`）。
+
+```html
+<link rel="stylesheet" href="cathi-ui.css">
+<link rel="stylesheet" href="formisle/formisle-shop.css">
+<div class="cathi-root formisle-root"> ... </div>
+```
+
+详见 [`formisle/README.md`](./formisle/README.md)。
+
 ## License
 
 CC BY-NC 4.0（署名 — 非商业性使用）。**禁止将本组件库用于任何商业目的。** 完整条款见仓库 `LICENSE` 文件与 https://creativecommons.org/licenses/by-nc/4.0/

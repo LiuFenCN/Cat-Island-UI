@@ -1,0 +1,49 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "comment": "形屿 FORMISLE 商城设计令牌。基础色板复用 Cat-Island-UI(--cathi-*)，仅列商城增量与语义别名。",
+  "color": {
+    "price": { "value": "#b58a0a", "type": "color", "description": "价格金，仅用于金额，制造价值感" },
+    "priceSoft": { "value": "#fbf3d8", "type": "color", "description": "价格金浅底" },
+    "mintBg": { "value": "{color.mint.value}", "type": "color", "description": "薄荷青浅底（别名自 cathi primary-soft）" },
+    "mint": { "value": "#19c8b9", "type": "color", "description": "主行动色（与 cathi-primary #18c2b3 几乎一致）" },
+    "cream": { "value": "#f8f8f0", "type": "color", "description": "页面奶油米底（cathi-bg #f6f1e1 近同）" },
+    "card": { "value": "#fffdf6", "type": "color", "description": "卡片底（= cathi-bg-alt）" },
+    "brown": { "value": "#6b4423", "type": "color", "description": "暖棕标题（cathi-text #574430 近同）" },
+    "brownBody": { "value": "#5a4a39", "type": "color", "description": "正文深棕" },
+    "gray": { "value": "#8a7460", "type": "color", "description": "辅助灰字（= cathi-text-soft）" },
+    "graySoft": { "value": "#a89684", "type": "color", "description": "浅灰，禁用/占位" },
+    "border": { "value": "#e6dcc6", "type": "color", "description": "主边框（cathi-border #ecdfc2 近同）" },
+    "borderSoft": { "value": "#f1ede1", "type": "color", "description": "分割线" },
+    "dotGray": { "value": "#d9cfba", "type": "color", "description": "时间线未完成节点" }
+  },
+  "radius": {
+    "sm": { "value": "10px", "type": "dimension" },
+    "md": { "value": "12px", "type": "dimension" },
+    "lg": { "value": "16px", "type": "dimension" }
+  },
+  "shadow": {
+    "3d": {
+      "value": "0 5px 0 rgba(87,68,48,0.16), 0 10px 18px rgba(87,68,48,0.12)",
+      "type": "shadow",
+      "description": "3D 按钮硬投影（cathi 用棕调，非模糊）"
+    },
+    "card": { "value": "0 4px 0 rgba(87,68,48,0.14), 0 8px 16px rgba(87,68,48,0.12)", "type": "shadow" }
+  },
+  "font": {
+    "cn": { "value": "Noto Sans SC", "type": "fontFamily" },
+    "num": { "value": "Nunito", "type": "fontFamily" }
+  },
+  "spacing": {
+    "1": { "value": "8px", "type": "dimension" },
+    "2": { "value": "12px", "type": "dimension" },
+    "3": { "value": "16px", "type": "dimension" },
+    "4": { "value": "20px", "type": "dimension" },
+    "5": { "value": "24px", "type": "dimension" },
+    "6": { "value": "28px", "type": "dimension" },
+    "7": { "value": "32px", "type": "dimension" },
+    "8": { "value": "40px", "type": "dimension" },
+    "9": { "value": "48px", "type": "dimension" },
+    "10": { "value": "56px", "type": "dimension" },
+    "11": { "value": "64px", "type": "dimension" }
+  }
+}

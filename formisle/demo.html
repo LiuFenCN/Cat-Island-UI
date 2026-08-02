@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formisle Shop Kit · 基于 Cat-Island-UI 的商城扩展 Demo</title>
+  <link rel="stylesheet" href="../cathi-ui.css">
+  <link rel="stylesheet" href="formisle-shop.css">
+  <link rel="stylesheet" href="../assets/fonts/nunito.css">
+  <style>
+    body { margin: 0; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 80px; }
+    .section { margin-top: 56px; }
+    .section > h2 {
+      font-size: 22px; font-weight: 800; color: var(--cathi-text);
+      margin: 0 0 20px;
+    }
+    .lead { color: var(--cathi-text-soft); font-size: 15px; max-width: 640px; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .page-title { font-size: 32px; font-weight: 800; color: var(--cathi-text); margin: 0 0 8px; }
+    label.formisle-panel__label { display: block; }
+  </style>
+</head>
+<body>
+  <div class="cathi-root formisle-root">
+    <div class="wrap">
+
+      <header>
+        <h1 class="page-title">形屿 FORMISLE · 商城扩展 Demo</h1>
+        <p class="lead">本页所有组件均构建在 Cat-Island-UI 的设计令牌之上，仅补充了商城语义令牌与组件类。
+          配色、圆角、阴影、字体与 cathi-ui 完全一致。</p>
+      </header>
+
+      <!-- 1. 作品卡网格 -->
+      <section class="section">
+        <h2>作品卡 ProductCard</h2>
+        <div class="formisle-grid">
+          <article class="formisle-product-card">
+            <img class="formisle-product-card__thumb" src="../assets/avatars/avatar-a.svg" alt="" onerror="this.style.background='var(--cathi-surface-2)'">
+            <div class="formisle-product-card__body">
+              <h3 class="formisle-product-card__title">星云引擎 3D 资产包</h3>
+              <div class="formisle-product-card__author">
+                <span class="formisle-product-card__avatar">林</span> 林深
+              </div>
+              <div class="formisle-product-card__price-row">
+                <span class="formisle-price">¥129.00</span>
+                <span class="formisle-rating">4.9 分</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="formisle-product-card">
+            <img class="formisle-product-card__thumb" src="../assets/avatars/avatar-b.svg" alt="" onerror="this.style.background='var(--cathi-surface-2)'">
+            <div class="formisle-product-card__body">
+              <h3 class="formisle-product-card__title">雾屿 · 治愈场景</h3>
+              <div class="formisle-product-card__author">
+                <span class="formisle-product-card__avatar">苏</span> 苏野
+              </div>
+              <div class="formisle-product-card__price-row">
+                <span class="formisle-price">¥99.00</span>
+                <span class="formisle-rating">4.8 分</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="formisle-product-card">
+            <img class="formisle-product-card__thumb" src="../assets/avatars/avatar-c.svg" alt="" onerror="this.style.background='var(--cathi-surface-2)'">
+            <div class="formisle-product-card__body">
+              <h3 class="formisle-product-card__title">钛核 · 机械角色</h3>
+              <div class="formisle-product-card__author">
+                <span class="formisle-product-card__avatar">阿</span> 阿May
+              </div>
+              <div class="formisle-product-card__price-row">
+                <span class="formisle-price">¥159.00</span>
+                <span class="formisle-rating">5.0 分</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 2. 订单行 -->
+      <section class="section">
+        <h2>订单行 OrderRow</h2>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div class="formisle-order-row">
+            <img class="formisle-order-row__thumb" src="../assets/avatars/avatar-a.svg" alt="" onerror="this.style.background='var(--cathi-surface-2)'">
+            <div class="formisle-order-row__info">
+              <p class="formisle-order-row__name">星云引擎 3D 资产包</p>
+              <div class="formisle-order-row__meta">订单号 FX20260312884 · 2026-03-12</div>
+            </div>
+            <div class="formisle-order-row__price">¥129.00</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 退款原因 + 进度时间线 -->
+      <section class="section">
+        <div class="row-2">
+          <div class="formisle-panel">
+            <label class="formisle-panel__label">退款原因</label>
+            <div class="formisle-pills">
+              <div class="formisle-pill formisle-pill--selected">7 天无理由退货</div>
+              <div class="formisle-pill">商品存在质量问题</div>
+              <div class="formisle-pill">与商品描述不符</div>
+              <div class="formisle-pill">其他</div>
+            </div>
+            <div class="formisle-field">
+              <textarea rows="3" placeholder="补充说明（选填）"></textarea>
+            </div>
+            <button class="cathi-btn">提交退款申请</button>
+          </div>
+
+          <div class="formisle-panel">
+            <label class="formisle-panel__label">处理进度</label>
+            <div class="formisle-timeline">
+              <div class="formisle-timeline__step">
+                <span class="formisle-timeline__dot formisle-timeline__dot--done"></span>
+                <div>
+                  <p class="formisle-timeline__title formisle-timeline__title--done">申请已提交</p>
+                  <p class="formisle-timeline__time">03-12 14:20</p>
+                </div>
+              </div>
+              <div class="formisle-timeline__step">
+                <span class="formisle-timeline__dot"></span>
+                <div>
+                  <p class="formisle-timeline__title">商家审核中</p>
+                  <p class="formisle-timeline__time">预计 1 个工作日内</p>
+                </div>
+              </div>
+              <div class="formisle-timeline__step">
+                <span class="formisle-timeline__dot"></span>
+                <div>
+                  <p class="formisle-timeline__title">退款处理</p>
+                </div>
+              </div>
+              <div class="formisle-timeline__step">
+                <span class="formisle-timeline__dot"></span>
+                <div>
+                  <p class="formisle-timeline__title">退款完成</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</body>
+</html>
