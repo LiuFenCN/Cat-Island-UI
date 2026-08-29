@@ -254,7 +254,7 @@ h6,
 }
 ::selection {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
 }
 *:focus-visible {
   outline: 3px solid var(--primary-color);
@@ -398,7 +398,7 @@ a:focus {
 .Header .Navigation-item.active,
 .Header .Navigation-item:hover {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
 }
 .Button-badge {
   background: var(--accent-color) !important;
@@ -521,7 +521,7 @@ textarea::placeholder {
 }
 .Checkbox.on .Checkbox-display {
   background: var(--primary-color) !important;
-  color: var(--heading-color) !important;
+  color: var(--on-primary-color) !important;
 }
 .DiscussionList-discussions > li,
 .DiscussionListItem {
@@ -536,6 +536,17 @@ textarea::placeholder {
   border-color: var(--heading-color);
   box-shadow: 4px 4px 0 var(--heading-color);
   transform: translate(-2px, -2px);
+}
+[data-theme^="dark"] .DiscussionListItem:hover,
+.dark .DiscussionListItem:hover,
+html.dark .DiscussionListItem:hover,
+body.dark .DiscussionListItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+@media (prefers-color-scheme: dark) {
+  .DiscussionListItem:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 .DiscussionListItem-content {
   padding: 14px 20px !important;
@@ -597,7 +608,13 @@ textarea::placeholder {
 .dark .DiscussionListItem--sticky,
 html.dark .DiscussionListItem--sticky,
 body.dark .DiscussionListItem--sticky {
-  background: linear-gradient(180deg, rgba(255, 250, 0, 0.18) 0%, var(--body-bg-light) 60%);
+  background: linear-gradient(180deg, rgba(255, 250, 0, 0.04) 0%, var(--body-bg-light) 45%);
+}
+[data-theme^="dark"] .DiscussionListItem--sticky:hover,
+.dark .DiscussionListItem--sticky:hover,
+html.dark .DiscussionListItem--sticky:hover,
+body.dark .DiscussionListItem--sticky:hover {
+  background: linear-gradient(180deg, rgba(255, 250, 0, 0.06) 0%, var(--body-bg-light) 50%);
 }
 [data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-count,
 .dark .DiscussionListItem--sticky .DiscussionListItem-count,
@@ -608,7 +625,10 @@ body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
 }
 @media (prefers-color-scheme: dark) {
   .DiscussionListItem--sticky {
-    background: linear-gradient(180deg, rgba(255, 250, 0, 0.18) 0%, var(--body-bg-light) 60%);
+    background: linear-gradient(180deg, rgba(255, 250, 0, 0.04) 0%, var(--body-bg-light) 45%);
+  }
+  .DiscussionListItem--sticky:hover {
+    background: linear-gradient(180deg, rgba(255, 250, 0, 0.06) 0%, var(--body-bg-light) 50%);
   }
   .DiscussionListItem--sticky .DiscussionListItem-count {
     background: var(--primary-color);
@@ -718,8 +738,8 @@ body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
 }
 .Post-body a:hover {
   background: var(--primary-color);
-  color: var(--heading-color);
-  text-decoration-color: var(--heading-color);
+  color: var(--on-primary-color);
+  text-decoration-color: var(--on-primary-color);
   border-radius: 0;
 }
 .Post-body blockquote {
@@ -868,7 +888,7 @@ body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
 }
 .Hero-close .Button {
   background: var(--primary-color) !important;
-  color: var(--heading-color) !important;
+  color: var(--on-primary-color) !important;
   border: 2px solid var(--primary-color) !important;
   box-shadow: none !important;
 }
@@ -1394,7 +1414,7 @@ body.dark .Endfield-slash__slash {
 .Endfield-tape {
   display: inline-block;
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   font-weight: 800;
   font-size: 14px;
   letter-spacing: 0.08em;
@@ -1446,7 +1466,7 @@ body.dark .Endfield-slash__slash {
   align-items: center;
   gap: 6px;
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   padding: 4px 10px;
   font-weight: 800;
   font-size: 11px;
@@ -1477,7 +1497,7 @@ body.dark .Endfield-slash__slash {
 }
 .Endfield-badge--yellow {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
 }
 .Endfield-badge--magenta {
   background: var(--accent-color);
@@ -1708,4 +1728,26 @@ header .Button--icon:hover {
 .Hero .Hero-close i.icon {
   color: #191919 !important;
   font-size: 16px !important;
+}
+.UsersOnline,
+.OnlineUsers,
+.OnlineUsersWidget,
+.Widget-online-users,
+[class*="online-users"],
+[class*="OnlineUsers"] {
+  color: var(--text-color);
+}
+.UsersOnline .username,
+.OnlineUsers .username,
+.OnlineUsersWidget .username,
+.UsersOnline a,
+.OnlineUsers a,
+.OnlineUsersWidget a {
+  color: var(--heading-color);
+}
+.UsersOnline a:hover,
+.OnlineUsers a:hover,
+.OnlineUsersWidget a:hover {
+  color: var(--on-primary-color);
+  background: var(--primary-color);
 }

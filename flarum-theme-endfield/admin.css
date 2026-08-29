@@ -1,14 +1,121 @@
+:root {
+  --ef-admin-bg: #fafafa;
+  --ef-admin-text: #191919;
+  --ef-admin-heading: #0c0c0c;
+  --ef-admin-muted: #4d4d4d;
+  --ef-admin-surface: #ffffff;
+  --ef-admin-surface-shaded: #f2f2f2;
+  --ef-admin-border: #e5e5e5;
+  --ef-admin-primary: #fffa00;
+  --ef-admin-on-primary: #191919;
+}
+[data-theme^="dark"] {
+  --ef-admin-bg: #0c0c0c;
+  --ef-admin-text: #ffffff;
+  --ef-admin-heading: #ffffff;
+  --ef-admin-muted: #cccccc;
+  --ef-admin-surface: #141414;
+  --ef-admin-surface-shaded: #1a1a1a;
+  --ef-admin-border: #2a2a2a;
+  --ef-admin-primary: #fffa00;
+  --ef-admin-on-primary: #191919;
+}
+.dark,
+html.dark,
+body.dark {
+  --ef-admin-bg: #0c0c0c;
+  --ef-admin-text: #ffffff;
+  --ef-admin-heading: #ffffff;
+  --ef-admin-muted: #cccccc;
+  --ef-admin-surface: #141414;
+  --ef-admin-surface-shaded: #1a1a1a;
+  --ef-admin-border: #2a2a2a;
+  --ef-admin-primary: #fffa00;
+  --ef-admin-on-primary: #191919;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ef-admin-bg: #0c0c0c;
+    --ef-admin-text: #ffffff;
+    --ef-admin-heading: #ffffff;
+    --ef-admin-muted: #cccccc;
+    --ef-admin-surface: #141414;
+    --ef-admin-surface-shaded: #1a1a1a;
+    --ef-admin-border: #2a2a2a;
+    --ef-admin-primary: #fffa00;
+    --ef-admin-on-primary: #191919;
+  }
+}
 body {
   font-family: "Roboto", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif !important;
   letter-spacing: 0.005em;
+  background: var(--ef-admin-bg) !important;
+  color: var(--ef-admin-text) !important;
+}
+.App,
+.App-content,
+.AdminPage,
+.AdminPage-body,
+.AdminPage-content,
+.Container,
+.container {
+  background: var(--ef-admin-bg) !important;
+  color: var(--ef-admin-text) !important;
+}
+.FormSection,
+.Form-group,
+fieldset,
+.AdminPage-header,
+.ExtensionsPage-list,
+.ExtensionListItem,
+.PermissionGrid,
+.SettingsPage,
+.MailPage,
+.UserListPage,
+.TagsPage,
+.AppearancePage,
+.DashboardPage,
+.AdminPage-nav {
+  background: var(--ef-admin-surface) !important;
+  color: var(--ef-admin-text) !important;
+  border-color: var(--ef-admin-border) !important;
+}
+.ExtensionListItem {
+  border: 2px solid var(--ef-admin-border) !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.Header-title,
+.FormSection-title,
+.ExtensionsPage-title,
+.AdminPage-title {
+  color: var(--ef-admin-heading) !important;
+}
+p,
+span,
+label,
+.help-text,
+.ExtensionListItem-description,
+.FormSection-description {
+  color: var(--ef-admin-text) !important;
+}
+.muted,
+.text-muted,
+.help-text,
+.ExtensionListItem-version {
+  color: var(--ef-admin-muted) !important;
 }
 .Button {
   border-radius: 0 !important;
   font-weight: 700 !important;
-  border: 2px solid var(--heading-color, #191919) !important;
-  background: #fff !important;
-  color: var(--heading-color, #191919) !important;
-  box-shadow: 3px 3px 0 var(--heading-color, #191919) !important;
+  border: 2px solid var(--ef-admin-heading) !important;
+  background: var(--ef-admin-surface) !important;
+  color: var(--ef-admin-text) !important;
+  box-shadow: 3px 3px 0 var(--ef-admin-heading) !important;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: 12px;
@@ -16,24 +123,24 @@ body {
   transition: transform 0.12s, box-shadow 0.12s;
 }
 .Button:hover:not(:disabled) {
-  background: var(--primary-color, #fffa00) !important;
-  color: var(--heading-color, #191919) !important;
+  background: var(--ef-admin-primary) !important;
+  color: var(--ef-admin-on-primary) !important;
   transform: translate(-1px, -1px) !important;
-  box-shadow: 4px 4px 0 var(--heading-color, #191919) !important;
+  box-shadow: 4px 4px 0 var(--ef-admin-heading) !important;
 }
 .Button:active:not(:disabled) {
   transform: translate(3px, 3px) !important;
-  box-shadow: 0 0 0 var(--heading-color, #191919) !important;
+  box-shadow: 0 0 0 var(--ef-admin-heading) !important;
 }
 .Button--primary {
-  background: var(--primary-color, #fffa00) !important;
-  color: var(--heading-color, #191919) !important;
+  background: var(--ef-admin-primary) !important;
+  color: var(--ef-admin-on-primary) !important;
   font-weight: 800 !important;
 }
 .Button--danger {
   background: #d92626 !important;
   color: #fff !important;
-  border-color: var(--heading-color, #191919) !important;
+  border-color: var(--ef-admin-heading) !important;
 }
 .Button--link,
 .Button--icon,
@@ -45,8 +152,8 @@ body {
 .Button--link:hover,
 .Button--icon:hover,
 .Button--flat:hover {
-  background: var(--primary-color, #fffa00) !important;
-  color: var(--heading-color, #191919) !important;
+  background: var(--ef-admin-primary) !important;
+  color: var(--ef-admin-on-primary) !important;
   box-shadow: none !important;
   transform: none !important;
 }
@@ -55,7 +162,9 @@ input,
 textarea,
 select {
   border-radius: 0 !important;
-  border: 2px solid #e5e5e5 !important;
+  border: 2px solid var(--ef-admin-border) !important;
+  background: var(--ef-admin-surface) !important;
+  color: var(--ef-admin-text) !important;
   font-family: inherit;
 }
 .FormControl:focus,
@@ -63,27 +172,46 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none !important;
-  border-color: var(--heading-color, #191919) !important;
-  box-shadow: 0 0 0 3px var(--primary-color, #fffa00) !important;
+  border-color: var(--ef-admin-heading) !important;
+  box-shadow: 0 0 0 3px var(--ef-admin-primary) !important;
+}
+.FormControl::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: var(--ef-admin-muted) !important;
 }
 .Checkbox-display,
 .Checkbox.Checkbox--switch .Checkbox-display {
   border-radius: 0 !important;
-  border: 2px solid var(--heading-color, #191919) !important;
+  border: 2px solid var(--ef-admin-heading) !important;
+  background: var(--ef-admin-surface) !important;
 }
 .Checkbox.on .Checkbox-display {
-  background: var(--primary-color, #fffa00) !important;
+  background: var(--ef-admin-primary) !important;
+  color: var(--ef-admin-on-primary) !important;
 }
 .Modal-content,
 .Dropdown-menu {
   border-radius: 0 !important;
-  border: 2px solid var(--heading-color, #191919) !important;
-  box-shadow: 6px 6px 0 var(--heading-color, #191919) !important;
+  border: 2px solid var(--ef-admin-border) !important;
+  background: var(--ef-admin-surface) !important;
+  color: var(--ef-admin-text) !important;
+  box-shadow: 6px 6px 0 var(--ef-admin-heading) !important;
+}
+.Dropdown-menu > li > a,
+.Dropdown-menu > li > button {
+  color: var(--ef-admin-text) !important;
+}
+.Dropdown-menu > li > a:hover,
+.Dropdown-menu > li > button:hover,
+.Dropdown-menu > li.active > a {
+  background: var(--ef-admin-primary) !important;
+  color: var(--ef-admin-on-primary) !important;
 }
 .App-header {
-  background: var(--heading-color, #191919) !important;
+  background: var(--ef-admin-heading) !important;
   color: #fff !important;
-  border-bottom: 2px solid var(--primary-color, #fffa00) !important;
+  border-bottom: 2px solid var(--ef-admin-primary) !important;
 }
 .Header-title,
 .Header-title a {
@@ -93,10 +221,50 @@ select:focus {
 }
 .Header-title a::before {
   content: "//";
-  color: var(--primary-color, #fffa00);
+  color: var(--ef-admin-primary);
   margin-right: 4px;
 }
+.AdminPage-nav .AdminNavButton {
+  color: var(--ef-admin-text) !important;
+}
+.AdminPage-nav .AdminNavButton.active,
+.AdminPage-nav .AdminNavButton:hover {
+  background: var(--ef-admin-primary) !important;
+  color: var(--ef-admin-on-primary) !important;
+}
+.NavigationsPage-nav .AdminNavButton,
+.AdminPage-nav .Dropdown-toggle {
+  color: var(--ef-admin-text) !important;
+}
+.AffixedSidebar {
+  background: var(--ef-admin-surface) !important;
+  border-color: var(--ef-admin-border) !important;
+}
+.Table {
+  color: var(--ef-admin-text) !important;
+}
+.Table th,
+.Table td {
+  border-color: var(--ef-admin-border) !important;
+}
+.Table th {
+  background: var(--ef-admin-surface-shaded) !important;
+  color: var(--ef-admin-heading) !important;
+}
+.Table tr:hover td {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
 ::selection {
-  background: var(--primary-color, #fffa00);
-  color: var(--heading-color, #191919);
+  background: var(--ef-admin-primary);
+  color: var(--ef-admin-on-primary);
+}
+a {
+  color: var(--ef-admin-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ef-admin-primary);
+}
+a:hover,
+a:focus {
+  background: var(--ef-admin-primary);
+  color: var(--ef-admin-on-primary);
 }
