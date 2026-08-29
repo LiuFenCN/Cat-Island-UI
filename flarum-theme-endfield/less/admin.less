@@ -1,0 +1,101 @@
+// ══════════════════════════════════════════════════════════════════════
+//  终末地主题 · 后台基础风格
+//  黑底黄字 + 工业感按钮 + 直角控件
+// ══════════════════════════════════════════════════════════════════════
+
+body {
+  font-family: "Roboto", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif !important;
+  letter-spacing: 0.005em;
+}
+
+.Button {
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  border: 2px solid var(--heading-color, #191919) !important;
+  background: #fff !important;
+  color: var(--heading-color, #191919) !important;
+  box-shadow: 3px 3px 0 var(--heading-color, #191919) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  padding: 7px 16px;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.Button:hover:not(:disabled) {
+  background: var(--primary-color, #fffa00) !important;
+  color: var(--heading-color, #191919) !important;
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 4px 4px 0 var(--heading-color, #191919) !important;
+}
+.Button:active:not(:disabled) {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 0 0 0 var(--heading-color, #191919) !important;
+}
+.Button--primary {
+  background: var(--primary-color, #fffa00) !important;
+  color: var(--heading-color, #191919) !important;
+  font-weight: 800 !important;
+}
+.Button--danger {
+  background: #d92626 !important;
+  color: #fff !important;
+  border-color: var(--heading-color, #191919) !important;
+}
+.Button--link, .Button--icon, .Button--flat {
+  background: transparent !important;
+  box-shadow: none !important;
+  text-transform: none;
+}
+.Button--link:hover, .Button--icon:hover, .Button--flat:hover {
+  background: var(--primary-color, #fffa00) !important;
+  color: var(--heading-color, #191919) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.FormControl,
+input, textarea, select {
+  border-radius: 0 !important;
+  border: 2px solid #e5e5e5 !important;
+  font-family: inherit;
+}
+.FormControl:focus, input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  border-color: var(--heading-color, #191919) !important;
+  box-shadow: 0 0 0 3px var(--primary-color, #fffa00) !important;
+}
+
+.Checkbox-display, .Checkbox.Checkbox--switch .Checkbox-display {
+  border-radius: 0 !important;
+  border: 2px solid var(--heading-color, #191919) !important;
+}
+.Checkbox.on .Checkbox-display {
+  background: var(--primary-color, #fffa00) !important;
+}
+
+.Modal-content, .Dropdown-menu {
+  border-radius: 0 !important;
+  border: 2px solid var(--heading-color, #191919) !important;
+  box-shadow: 6px 6px 0 var(--heading-color, #191919) !important;
+}
+
+.App-header {
+  background: var(--heading-color, #191919) !important;
+  color: #fff !important;
+  border-bottom: 2px solid var(--primary-color, #fffa00) !important;
+}
+.Header-title, .Header-title a {
+  color: #fff !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+.Header-title a::before {
+  content: "//";
+  color: var(--primary-color, #fffa00);
+  margin-right: 4px;
+}
+
+::selection {
+  background: var(--primary-color, #fffa00);
+  color: var(--heading-color, #191919);
+}

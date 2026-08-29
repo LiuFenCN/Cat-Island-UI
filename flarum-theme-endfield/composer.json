@@ -1,0 +1,28 @@
+{
+    "name": "cathi/flarum-theme-endfield",
+    "description": "终末地主题 - 复刻明日方舟：终末地官网设计语言的 Flarum 工业科幻风主题（黑白 + 霓虹黄 + 硬朗直角）",
+    "type": "flarum-extension",
+    "keywords": [
+        "theme",
+        "endfield",
+        "industrial",
+        "cathi-ui",
+        "hypergryph"
+    ],
+    "license": "MIT",
+    "require": {
+        "flarum/core": "^2.0.0"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "终末地主题",
+            "category": "theme",
+            "icon": {
+                "name": "fas fa-bolt",
+                "backgroundColor": "#fffa00",
+                "color": "#191919"
+            }
+        }
+    },
+    "autoload": {}
+}
