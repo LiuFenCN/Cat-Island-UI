@@ -62,6 +62,7 @@
   --button-color:            #191919;
   --button-primary-bg:       #fffa00;
   --button-primary-color:    #191919;
+  --on-primary-color:        #191919;
 
   // —— 头部（黑底 + 黄字） ——
   --header-bg:               #191919;
@@ -114,7 +115,7 @@
   --secondary-color:         #00ffa2;
   --body-bg:                 #0c0c0c;
   --body-bg-light:           #141414;
-  --body-bg-shaded:          #1a1a1a;
+  --body-bg-shaded:          #2a2a2a;
   --body-bg-faded:           rgba(12, 12, 12, 0.94);
   --body-bg-fade-70:         rgba(12, 12, 12, 0.7);
   --text-color:              #ffffff;
@@ -134,6 +135,7 @@
   --button-color:            #ffffff;
   --button-primary-bg:       #fffa00;
   --button-primary-color:    #191919;
+  --on-primary-color:        #191919;
   --header-bg:               #000000;
   --header-color:            #ffffff;
   --header-control-bg:       #1a1a1a;
@@ -196,8 +198,23 @@ h1, h2, h3, h4, h5, h6,
   border: 2px solid var(--body-bg);
 }
 ::-webkit-scrollbar-thumb:hover { background: #999; }
-[data-theme^="dark"] ::-webkit-scrollbar-thumb { background: #2a2a2a; border-color: var(--body-bg); }
-[data-theme^="dark"] ::-webkit-scrollbar-thumb:hover { background: #555; }
+[data-theme^="dark"] ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb,
+html.dark ::-webkit-scrollbar-thumb,
+body.dark ::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-color: var(--body-bg);
+}
+[data-theme^="dark"] ::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover,
+html.dark ::-webkit-scrollbar-thumb:hover,
+body.dark ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb { background: #2a2a2a; border-color: var(--body-bg); }
+  ::-webkit-scrollbar-thumb:hover { background: #555; }
+}
 
 // ══ 4. 链接 — 黄色下划线 ═════════════════════════════════════════════
 a {
@@ -211,10 +228,9 @@ a {
 a:hover, a:focus {
   text-decoration-color: currentColor;
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   border-radius: 2px;
 }
-[data-theme^="dark"] a:hover { color: var(--heading-color); }
 
 // ══ 5. 头部（黑底 + 黄字）══════════════════════════════════════════
 .App-header {
@@ -280,7 +296,7 @@ a:hover, a:focus {
 .Header-controls .Button:hover,
 .Header-secondary .Button:hover {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   border-color: var(--primary-color);
 }
 .Header .Search input,
@@ -346,7 +362,7 @@ a:hover, a:focus {
 }
 .Button:hover:not(:disabled) {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   border-color: var(--heading-color);
   box-shadow: 4px 4px 0 var(--heading-color);
   transform: translate(-1px, -1px);
@@ -363,7 +379,7 @@ a:hover, a:focus {
 }
 .Button--primary:hover:not(:disabled) {
   background: var(--button-primary-bg) !important;
-  color: var(--heading-color) !important;
+  color: var(--button-primary-color) !important;
   filter: brightness(1.05);
 }
 .Button--danger {
@@ -382,7 +398,7 @@ a:hover, a:focus {
 .Button--icon:hover:not(:disabled),
 .Button--flat:hover:not(:disabled) {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   border-color: transparent;
   box-shadow: none;
   transform: none;
@@ -483,7 +499,7 @@ input::placeholder, textarea::placeholder {
 }
 .DiscussionListItem--unread .DiscussionListItem-count {
   background: var(--primary-color) !important;
-  color: var(--heading-color) !important;
+  color: var(--on-primary-color) !important;
   box-shadow: 2px 2px 0 var(--heading-color);
 }
 .DiscussionListItem--sticky {
@@ -494,6 +510,28 @@ input::placeholder, textarea::placeholder {
 .DiscussionListItem--sticky .DiscussionListItem-count {
   background: var(--heading-color);
   color: var(--primary-color);
+}
+[data-theme^="dark"] .DiscussionListItem--sticky,
+.dark .DiscussionListItem--sticky,
+html.dark .DiscussionListItem--sticky,
+body.dark .DiscussionListItem--sticky {
+  background: linear-gradient(180deg, rgba(255, 250, 0, 0.18) 0%, var(--body-bg-light) 60%);
+}
+[data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-count,
+.dark .DiscussionListItem--sticky .DiscussionListItem-count,
+html.dark .DiscussionListItem--sticky .DiscussionListItem-count,
+body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
+  background: var(--primary-color);
+  color: var(--on-primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .DiscussionListItem--sticky {
+    background: linear-gradient(180deg, rgba(255, 250, 0, 0.18) 0%, var(--body-bg-light) 60%);
+  }
+  .DiscussionListItem--sticky .DiscussionListItem-count {
+    background: var(--primary-color);
+    color: var(--on-primary-color);
+  }
 }
 .DiscussionListItem.active,
 .DiscussionListItem--selected {
@@ -555,7 +593,7 @@ input::placeholder, textarea::placeholder {
   font-size: 15px;
   letter-spacing: -0.01em;
 }
-.PostUser h3 a:hover { background: var(--primary-color); color: var(--heading-color); }
+.PostUser h3 a:hover { background: var(--primary-color); color: var(--on-primary-color); }
 .Post-meta, .Post-header .item-meta, .PostMeta-time {
   color: var(--muted-color);
   font-weight: 600;
@@ -613,8 +651,8 @@ input::placeholder, textarea::placeholder {
   font-size: 0.9em;
   padding: 0.16em 0.42em;
   border-radius: 0;
-  background: var(--heading-color);
-  color: var(--primary-color);
+  background: var(--code-bg);
+  color: var(--code-color);
   border: 1px solid var(--heading-color);
   word-break: break-word;
 }
@@ -652,12 +690,13 @@ input::placeholder, textarea::placeholder {
   text-align: left;
 }
 .Post-body table th {
-  background: var(--heading-color);
-  color: var(--primary-color);
+  background: var(--code-bg);
+  color: var(--code-color);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: 12px;
+  border-color: var(--heading-color);
 }
 .Post-body table tbody tr:nth-child(2n) {
   background: var(--body-bg-shaded);
@@ -676,7 +715,7 @@ input::placeholder, textarea::placeholder {
 }
 .Post-body .UserMention, .Post-body .PostMention {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   border-radius: 0;
   padding: 0.1em 0.5em;
   font-weight: 700;
@@ -706,7 +745,7 @@ input::placeholder, textarea::placeholder {
 }
 .Post-footer .Button:hover, .Post-controls .Button:hover {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   border-color: var(--heading-color);
   transform: none;
 }
@@ -812,12 +851,26 @@ input::placeholder, textarea::placeholder {
   --tag-color: var(--tag-bg);
   background: var(--contrast-color, var(--body-bg)) !important;
 }
-// 非 colored 标签（无 --tag-bg）：黑底黄字（与 colored 风格一致）
+// 非 colored 标签（无 --tag-bg）：固定黑底黄字（与 colored 风格一致；
+// 若用 var(--heading-color)，深色模式下会变成白底黄字，对比度崩塌）
 .TagLabel:not(.colored) {
-  background: var(--heading-color) !important;  // #0c0c0c 黑底
-  color: var(--primary-color) !important;        // #fffa00 黄字
-  border: 2px solid var(--heading-color) !important;
+  background: #191919 !important;
+  color: var(--primary-color) !important;
+  border: 2px solid #191919 !important;
   box-shadow: none !important;
+}
+[data-theme^="dark"] .TagLabel:not(.colored),
+.dark .TagLabel:not(.colored),
+html.dark .TagLabel:not(.colored),
+body.dark .TagLabel:not(.colored) {
+  background: #000000 !important;
+  border-color: #000000 !important;
+}
+@media (prefers-color-scheme: dark) {
+  .TagLabel:not(.colored) {
+    background: #000000 !important;
+    border-color: #000000 !important;
+  }
 }
 .TagLabel-icon {
   margin-right: 4px !important;
@@ -826,6 +879,7 @@ input::placeholder, textarea::placeholder {
 .TagTile {
   border-radius: 0 !important;
   border: 2px solid var(--heading-color);
+  background: var(--body-bg-light);
   box-shadow: 4px 4px 0 var(--primary-color);
   transition: transform 0.12s, box-shadow 0.12s;
 }
@@ -871,8 +925,25 @@ input::placeholder, textarea::placeholder {
 [data-theme^="dark"] .Dropdown-menu,
 [data-theme^="dark"] .Popover-content,
 [data-theme^="dark"] .Modal-content,
-[data-theme^="dark"] .SearchResults {
+[data-theme^="dark"] .SearchResults,
+.dark .Dropdown-menu,
+.dark .Popover-content,
+.dark .Modal-content,
+.dark .SearchResults,
+html.dark .Dropdown-menu,
+html.dark .Popover-content,
+html.dark .Modal-content,
+html.dark .SearchResults,
+body.dark .Dropdown-menu,
+body.dark .Popover-content,
+body.dark .Modal-content,
+body.dark .SearchResults {
   box-shadow: 6px 6px 0 var(--primary-color) !important;
+}
+@media (prefers-color-scheme: dark) {
+  .Dropdown-menu, .Popover-content, .Modal-content, .SearchResults {
+    box-shadow: 6px 6px 0 var(--primary-color) !important;
+  }
 }
 .Dropdown-menu > li > a, .Dropdown-menu > li > button, .SearchResults li > a {
   font-weight: 700;
@@ -886,7 +957,7 @@ input::placeholder, textarea::placeholder {
 .SearchResults li > a:hover, .Dropdown-menu > li > a:focus,
 .Dropdown-menu > li.active > a {
   background: var(--primary-color) !important;
-  color: var(--heading-color) !important;
+  color: var(--on-primary-color) !important;
 }
 .Modal-header {
   border-bottom: 2px solid var(--heading-color) !important;
@@ -929,6 +1000,23 @@ input::placeholder, textarea::placeholder {
   padding: 6px 10px;
   border: 2px solid var(--primary-color);
 }
+[data-theme^="dark"] .Tooltip-inner,
+[data-theme^="dark"] .tooltip-inner,
+.dark .Tooltip-inner,
+.dark .tooltip-inner,
+html.dark .Tooltip-inner,
+html.dark .tooltip-inner,
+body.dark .Tooltip-inner,
+body.dark .tooltip-inner {
+  background: var(--code-bg) !important;
+  color: var(--code-color) !important;
+}
+@media (prefers-color-scheme: dark) {
+  .Tooltip-inner, .tooltip-inner {
+    background: var(--code-bg) !important;
+    color: var(--code-color) !important;
+  }
+}
 
 // ══ 15. 侧栏导航（黑底黄字）════════════════════════════════════════
 .IndexPage-nav .item-nav,
@@ -952,7 +1040,7 @@ input::placeholder, textarea::placeholder {
 .IndexPage-nav ul > li > a:hover,
 .item-nav .Dropdown-menu > li > a:hover {
   background: var(--primary-color);
-  color: var(--heading-color);
+  color: var(--on-primary-color);
   border-left-color: var(--heading-color);
 }
 .IndexPage-nav ul > li.active > a,
@@ -962,6 +1050,26 @@ input::placeholder, textarea::placeholder {
   border-left-color: var(--primary-color);
   font-weight: 900;
 }
+[data-theme^="dark"] .IndexPage-nav ul > li.active > a,
+[data-theme^="dark"] .item-nav .Dropdown-menu > li.active > a,
+.dark .IndexPage-nav ul > li.active > a,
+.dark .item-nav .Dropdown-menu > li.active > a,
+html.dark .IndexPage-nav ul > li.active > a,
+html.dark .item-nav .Dropdown-menu > li.active > a,
+body.dark .IndexPage-nav ul > li.active > a,
+body.dark .item-nav .Dropdown-menu > li.active > a {
+  background: var(--primary-color);
+  color: var(--on-primary-color);
+  border-left-color: var(--heading-color);
+}
+@media (prefers-color-scheme: dark) {
+  .IndexPage-nav ul > li.active > a,
+  .item-nav .Dropdown-menu > li.active > a {
+    background: var(--primary-color);
+    color: var(--on-primary-color);
+    border-left-color: var(--heading-color);
+  }
+}
 .IndexPage-newDiscussion .Button,
 .item-newDiscussion .Button {
   border-radius: 0 !important;
@@ -969,7 +1077,7 @@ input::placeholder, textarea::placeholder {
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
   background: var(--primary-color) !important;
-  color: var(--heading-color) !important;
+  color: var(--on-primary-color) !important;
   border: 2px solid var(--heading-color) !important;
   box-shadow: 4px 4px 0 var(--heading-color) !important;
 }
@@ -1005,6 +1113,37 @@ input::placeholder, textarea::placeholder {
 .IndexPage-nav ul > li.active > a i.icon,
 .IndexPage-nav ul > li.active > button i.icon {
   color: var(--heading-color) !important;
+}
+[data-theme^="dark"] .IndexPage-nav ul > li.active > a,
+[data-theme^="dark"] .IndexPage-nav ul > li.active > a .Button-label,
+[data-theme^="dark"] .IndexPage-nav ul > li.active > button,
+[data-theme^="dark"] .IndexPage-nav ul > li.active > a i.icon,
+[data-theme^="dark"] .IndexPage-nav ul > li.active > button i.icon,
+.dark .IndexPage-nav ul > li.active > a,
+.dark .IndexPage-nav ul > li.active > a .Button-label,
+.dark .IndexPage-nav ul > li.active > button,
+.dark .IndexPage-nav ul > li.active > a i.icon,
+.dark .IndexPage-nav ul > li.active > button i.icon,
+html.dark .IndexPage-nav ul > li.active > a,
+html.dark .IndexPage-nav ul > li.active > a .Button-label,
+html.dark .IndexPage-nav ul > li.active > button,
+html.dark .IndexPage-nav ul > li.active > a i.icon,
+html.dark .IndexPage-nav ul > li.active > button i.icon,
+body.dark .IndexPage-nav ul > li.active > a,
+body.dark .IndexPage-nav ul > li.active > a .Button-label,
+body.dark .IndexPage-nav ul > li.active > button,
+body.dark .IndexPage-nav ul > li.active > a i.icon,
+body.dark .IndexPage-nav ul > li.active > button i.icon {
+  color: var(--on-primary-color) !important;
+}
+@media (prefers-color-scheme: dark) {
+  .IndexPage-nav ul > li.active > a,
+  .IndexPage-nav ul > li.active > a .Button-label,
+  .IndexPage-nav ul > li.active > button,
+  .IndexPage-nav ul > li.active > a i.icon,
+  .IndexPage-nav ul > li.active > button i.icon {
+    color: var(--on-primary-color) !important;
+  }
 }
 // 标签子项（CG/游戏/资源...）也加深
 .IndexPage-nav .Dropdown-menu .item-tag > a,
@@ -1078,7 +1217,7 @@ input::placeholder, textarea::placeholder {
   background: var(--alert-bg);
   border-left-color: var(--primary-color);
 }
-.Notification.unread:hover { background: #fff5b3; }
+.Notification.unread:hover { background: var(--alert-bg); }
 .NotificationList-header, .NotificationGroup-header {
   background: var(--heading-color) !important;
   color: var(--primary-color) !important;
@@ -1119,9 +1258,23 @@ input::placeholder, textarea::placeholder {
   margin: 0;
   white-space: nowrap;
 }
-[data-theme^="dark"] .Endfield-slash { color: var(--primary-color); }
+[data-theme^="dark"] .Endfield-slash,
+.dark .Endfield-slash,
+html.dark .Endfield-slash,
+body.dark .Endfield-slash {
+  color: var(--primary-color);
+}
 .Endfield-slash__slash { color: var(--primary-color); margin-right: 0.04em; }
-[data-theme^="dark"] .Endfield-slash__slash { color: var(--heading-color); }
+[data-theme^="dark"] .Endfield-slash__slash,
+.dark .Endfield-slash__slash,
+html.dark .Endfield-slash__slash,
+body.dark .Endfield-slash__slash {
+  color: var(--heading-color);
+}
+@media (prefers-color-scheme: dark) {
+  .Endfield-slash { color: var(--primary-color); }
+  .Endfield-slash__slash { color: var(--heading-color); }
+}
 // —— 编号区块标题 ——
 .Endfield-section-num {
   display: flex;
