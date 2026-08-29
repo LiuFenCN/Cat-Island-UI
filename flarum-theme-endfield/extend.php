@@ -71,6 +71,9 @@ JS;
         }),
 
     // 后台基础风格（黄黑高对比按钮 + 工业感字体）
+    // 走预编译 CSS，避免触发服务器端 LESS 编译/权限问题
     (new Extend\Frontend('admin'))
-        ->css(__DIR__ . '/less/admin.less'),
+        ->content(function (Document $document) {
+            $document->head[] = '<link rel="stylesheet" href="/assets/endfield-admin.css?v=16">';
+        }),
 ];
