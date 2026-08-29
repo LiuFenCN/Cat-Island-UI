@@ -121,6 +121,110 @@
   --shadow-color: rgba(0, 0, 0, 0.6);
   --shadow-color-darken-5: rgba(0, 0, 0, 0.7);
 }
+.dark,
+html.dark,
+body.dark {
+  --primary-color: #fffa00;
+  --secondary-color: #00ffa2;
+  --body-bg: #0c0c0c;
+  --body-bg-light: #141414;
+  --body-bg-shaded: #1a1a1a;
+  --body-bg-faded: rgba(12, 12, 12, 0.94);
+  --body-bg-fade-70: rgba(12, 12, 12, 0.7);
+  --text-color: #ffffff;
+  --text-color-fade-70: rgba(255, 255, 255, 0.7);
+  --heading-color: #ffffff;
+  --muted-color: #cccccc;
+  --muted-color-light: #888888;
+  --link-color: #fffa00;
+  --discussion-title-color: #ffffff;
+  --control-bg: #1a1a1a;
+  --control-bg-light: #222222;
+  --control-bg-shaded: #141414;
+  --control-color: #ffffff;
+  --form-control-bg: #1a1a1a;
+  --form-control-color: #ffffff;
+  --button-bg: #1a1a1a;
+  --button-color: #ffffff;
+  --button-primary-bg: #fffa00;
+  --button-primary-color: #191919;
+  --header-bg: #000000;
+  --header-color: #ffffff;
+  --header-control-bg: #1a1a1a;
+  --header-control-color: #ffffff;
+  --hero-bg: #000000;
+  --hero-color: #ffffff;
+  --usercard-bg: #141414;
+  --code-bg: #000000;
+  --code-color: #fffa00;
+  --tag-bg: #fffa00;
+  --tag-color: #191919;
+  --pill-bg: #1a1a1a;
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --tooltip-bg: #fffa00;
+  --tooltip-color: #191919;
+  --alert-bg: #1a1a1a;
+  --alert-color: #ffffff;
+  --alert-success-bg: #0c2e2b;
+  --alert-success-color: #00ffa2;
+  --alert-error-bg: #2a0e12;
+  --alert-error-color: #ff6b80;
+  --discussion-list-item-bg-hover: #1a1a1a;
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --shadow-color-darken-5: rgba(0, 0, 0, 0.7);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #fffa00;
+    --secondary-color: #00ffa2;
+    --body-bg: #0c0c0c;
+    --body-bg-light: #141414;
+    --body-bg-shaded: #1a1a1a;
+    --body-bg-faded: rgba(12, 12, 12, 0.94);
+    --body-bg-fade-70: rgba(12, 12, 12, 0.7);
+    --text-color: #ffffff;
+    --text-color-fade-70: rgba(255, 255, 255, 0.7);
+    --heading-color: #ffffff;
+    --muted-color: #cccccc;
+    --muted-color-light: #888888;
+    --link-color: #fffa00;
+    --discussion-title-color: #ffffff;
+    --control-bg: #1a1a1a;
+    --control-bg-light: #222222;
+    --control-bg-shaded: #141414;
+    --control-color: #ffffff;
+    --form-control-bg: #1a1a1a;
+    --form-control-color: #ffffff;
+    --button-bg: #1a1a1a;
+    --button-color: #ffffff;
+    --button-primary-bg: #fffa00;
+    --button-primary-color: #191919;
+    --header-bg: #000000;
+    --header-color: #ffffff;
+    --header-control-bg: #1a1a1a;
+    --header-control-color: #ffffff;
+    --hero-bg: #000000;
+    --hero-color: #ffffff;
+    --usercard-bg: #141414;
+    --code-bg: #000000;
+    --code-color: #fffa00;
+    --tag-bg: #fffa00;
+    --tag-color: #191919;
+    --pill-bg: #1a1a1a;
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --tooltip-bg: #fffa00;
+    --tooltip-color: #191919;
+    --alert-bg: #1a1a1a;
+    --alert-color: #ffffff;
+    --alert-success-bg: #0c2e2b;
+    --alert-success-color: #00ffa2;
+    --alert-error-bg: #2a0e12;
+    --alert-error-color: #ff6b80;
+    --discussion-list-item-bg-hover: #1a1a1a;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --shadow-color-darken-5: rgba(0, 0, 0, 0.7);
+  }
+}
 body {
   font-family: "Roboto", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
   font-weight: 450;

@@ -105,7 +105,11 @@
 }
 
 // ══ 2. 暗色变量（深空黑底 + 霓虹高亮）═══════════════════════════════
-[data-theme^="dark"] {
+// 提取成 mixin，便于同时响应：
+//   • 旧版 data-theme="dark" 属性
+//   • Flarum 2.0 暗色类 .dark（加在 html/body 上）
+//   • 系统 prefers-color-scheme: dark
+.dark-palette() {
   --primary-color:           #fffa00;
   --secondary-color:         #00ffa2;
   --body-bg:                 #0c0c0c;
@@ -154,6 +158,11 @@
   --discussion-list-item-bg-hover: #1a1a1a;
   --shadow-color:            rgba(0, 0, 0, 0.6);
   --shadow-color-darken-5:   rgba(0, 0, 0, 0.7);
+}
+[data-theme^="dark"] { .dark-palette(); }
+.dark, html.dark, body.dark { .dark-palette(); }
+@media (prefers-color-scheme: dark) {
+  :root { .dark-palette(); }
 }
 
 // ══ 3. 基础排版 ═══════════════════════════════════════════════════════

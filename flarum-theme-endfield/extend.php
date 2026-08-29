@@ -10,7 +10,10 @@ return [
     // （cathi-linkage 同样方案：JS 动态注入避免被 forum.css 合并覆盖）
     (new Extend\Frontend('forum'))
         ->content(function (Document $document) {
-            $document->head[] = '<link rel="stylesheet" href="/assets/endfield.css?v=15">';
+            // 暗色模式桥接：Flarum 2.0 用 .dark 类 / 系统 prefers-color-scheme，
+            // 主题原生响应 data-theme="dark"，这里提前同步，避免闪烁。
+            $document->head[] = '<script>(function(){var h=document.documentElement;if(h.classList.contains("dark")||window.matchMedia("(prefers-color-scheme: dark)").matches)h.setAttribute("data-theme","dark");})();</script>';
+            $document->head[] = '<link rel="stylesheet" href="/assets/endfield.css?v=16">';
 
             // 动物森友会风格随机默认头像：
             // 当 .Avatar 是 span 且没有 src（即未上传头像的默认占位）时，
