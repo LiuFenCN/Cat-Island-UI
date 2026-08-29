@@ -10,7 +10,7 @@ return [
     // （cathi-linkage 同样方案：JS 动态注入避免被 forum.css 合并覆盖）
     (new Extend\Frontend('forum'))
         ->content(function (Document $document) {
-            $document->head[] = '<link rel="stylesheet" href="/assets/endfield.css?v=14">';
+            $document->head[] = '<link rel="stylesheet" href="/assets/endfield.css?v=15">';
 
             // 动物森友会风格随机默认头像：
             // 当 .Avatar 是 span 且没有 src（即未上传头像的默认占位）时，

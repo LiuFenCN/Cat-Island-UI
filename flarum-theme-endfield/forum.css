@@ -1291,18 +1291,32 @@ body > footer {
 }
 .DiscussionPage-actions,
 .DiscussionPage-toolbar,
+.DiscussionPage-nav > ul,
 .DiscussionControls,
 .PostStream-actions,
 .PostStream-toolbar,
 .DiscussionHero-actions {
   display: flex !important;
   gap: 8px !important;
+  flex-wrap: wrap;
+}
+.DiscussionPage-nav .ButtonGroup,
+.DiscussionPage-nav .App-primaryControl,
+.DiscussionPage-actions .ButtonGroup,
+.DiscussionHero-actions .ButtonGroup {
+  display: inline-flex !important;
+  gap: 4px !important;
 }
 .DiscussionPage-actions > .Button,
 .DiscussionPage-actions > .Dropdown,
 .DiscussionHero-actions > .Button,
-.DiscussionHero-actions > .Dropdown {
+.DiscussionHero-actions > .Dropdown,
+.DiscussionPage-nav .ButtonGroup .Button,
+.DiscussionPage-nav .ButtonGroup .Dropdown,
+.DiscussionPage-nav .App-primaryControl .Button,
+.DiscussionPage-nav .App-primaryControl .Dropdown-toggle {
   margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 .Composer {
   padding-left: 6px !important;

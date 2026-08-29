@@ -1253,20 +1253,35 @@ input::placeholder, textarea::placeholder {
 // 修复：给操作按钮容器统一加 flex + gap，确保按钮之间留出 8px 空隙。
 .DiscussionPage-actions,
 .DiscussionPage-toolbar,
+.DiscussionPage-nav > ul,
 .DiscussionControls,
 .PostStream-actions,
 .PostStream-toolbar,
 .DiscussionHero-actions {
   display: flex !important;
   gap: 8px !important;
+  flex-wrap: wrap;
+}
+// 侧栏按钮组（SplitDropdown 的主按钮与下拉三角）也需要拆出间隙，避免贴死。
+.DiscussionPage-nav .ButtonGroup,
+.DiscussionPage-nav .App-primaryControl,
+.DiscussionPage-actions .ButtonGroup,
+.DiscussionHero-actions .ButtonGroup {
+  display: inline-flex !important;
+  gap: 4px !important;
 }
 // 容器内的按钮本身不要再带额外的右外边距，避免和 gap 叠加；
-// 但最后一个按钮保留原本样式。
+// ButtonGroup 原有的 -1px 重叠边框也清除。
 .DiscussionPage-actions > .Button,
 .DiscussionPage-actions > .Dropdown,
 .DiscussionHero-actions > .Button,
-.DiscussionHero-actions > .Dropdown {
+.DiscussionHero-actions > .Dropdown,
+.DiscussionPage-nav .ButtonGroup .Button,
+.DiscussionPage-nav .ButtonGroup .Dropdown,
+.DiscussionPage-nav .App-primaryControl .Button,
+.DiscussionPage-nav .App-primaryControl .Dropdown-toggle {
   margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 // ══ 26. Composer 回复框头像左边框遮挡补丁 ═══════════════════════════
