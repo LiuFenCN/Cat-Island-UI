@@ -608,13 +608,32 @@ body.dark .DiscussionListItem:hover {
 .dark .DiscussionListItem--sticky,
 html.dark .DiscussionListItem--sticky,
 body.dark .DiscussionListItem--sticky {
-  background: linear-gradient(180deg, rgba(255, 250, 0, 0.04) 0%, var(--body-bg-light) 45%);
+  background: var(--body-bg-light);
+  border-left: 6px solid var(--primary-color);
 }
 [data-theme^="dark"] .DiscussionListItem--sticky:hover,
 .dark .DiscussionListItem--sticky:hover,
 html.dark .DiscussionListItem--sticky:hover,
 body.dark .DiscussionListItem--sticky:hover {
-  background: linear-gradient(180deg, rgba(255, 250, 0, 0.06) 0%, var(--body-bg-light) 50%);
+  background: var(--body-bg-shaded);
+}
+[data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-title,
+.dark .DiscussionListItem--sticky .DiscussionListItem-title,
+html.dark .DiscussionListItem--sticky .DiscussionListItem-title,
+body.dark .DiscussionListItem--sticky .DiscussionListItem-title,
+[data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-info,
+.dark .DiscussionListItem--sticky .DiscussionListItem-info,
+html.dark .DiscussionListItem--sticky .DiscussionListItem-info,
+body.dark .DiscussionListItem--sticky .DiscussionListItem-info,
+[data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-info .username,
+.dark .DiscussionListItem--sticky .DiscussionListItem-info .username,
+html.dark .DiscussionListItem--sticky .DiscussionListItem-info .username,
+body.dark .DiscussionListItem--sticky .DiscussionListItem-info .username,
+[data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-count,
+.dark .DiscussionListItem--sticky .DiscussionListItem-count,
+html.dark .DiscussionListItem--sticky .DiscussionListItem-count,
+body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
+  color: var(--on-primary-color) !important;
 }
 [data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-count,
 .dark .DiscussionListItem--sticky .DiscussionListItem-count,
@@ -625,10 +644,17 @@ body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
 }
 @media (prefers-color-scheme: dark) {
   .DiscussionListItem--sticky {
-    background: linear-gradient(180deg, rgba(255, 250, 0, 0.04) 0%, var(--body-bg-light) 45%);
+    background: var(--body-bg-light);
+    border-left: 6px solid var(--primary-color);
   }
   .DiscussionListItem--sticky:hover {
-    background: linear-gradient(180deg, rgba(255, 250, 0, 0.06) 0%, var(--body-bg-light) 50%);
+    background: var(--body-bg-shaded);
+  }
+  .DiscussionListItem--sticky .DiscussionListItem-title,
+  .DiscussionListItem--sticky .DiscussionListItem-info,
+  .DiscussionListItem--sticky .DiscussionListItem-info .username,
+  .DiscussionListItem--sticky .DiscussionListItem-count {
+    color: var(--on-primary-color) !important;
   }
   .DiscussionListItem--sticky .DiscussionListItem-count {
     background: var(--primary-color);
@@ -1185,6 +1211,12 @@ body.dark .item-nav .Dropdown-menu > li.active > a {
   color: var(--on-primary-color) !important;
   border: 2px solid var(--heading-color) !important;
   box-shadow: 4px 4px 0 var(--heading-color) !important;
+}
+.IndexPage-newDiscussion .Button .Button-label,
+.item-newDiscussion .Button .Button-label,
+.IndexPage-newDiscussion .Button .Button-icon,
+.item-newDiscussion .Button .Button-icon {
+  color: var(--on-primary-color) !important;
 }
 .IndexPage-newDiscussion .Button:hover,
 .item-newDiscussion .Button:hover {
