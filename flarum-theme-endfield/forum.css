@@ -10,9 +10,9 @@
   --secondary-color: #00ffa2;
   --accent-color: #ff1aac;
   --danger-color: #d92626;
-  --body-bg: #fafafa;
+  --body-bg: #f4f4f4;
   --body-bg-light: #ffffff;
-  --body-bg-shaded: #f2f2f2;
+  --body-bg-shaded: #ededed;
   --body-bg-faded: rgba(250, 250, 250, 0.94);
   --body-bg-fade-70: rgba(250, 250, 250, 0.7);
   --text-color: #191919;
@@ -75,11 +75,11 @@
 [data-theme^="dark"] {
   --primary-color: #fffa00;
   --secondary-color: #00ffa2;
-  --body-bg: #0c0c0c;
-  --body-bg-light: #141414;
-  --body-bg-shaded: #2a2a2a;
-  --body-bg-faded: rgba(12, 12, 12, 0.94);
-  --body-bg-fade-70: rgba(12, 12, 12, 0.7);
+  --body-bg: #151515;
+  --body-bg-light: #1e1e1e;
+  --body-bg-shaded: #2c2c2c;
+  --body-bg-faded: rgba(21, 21, 21, 0.94);
+  --body-bg-fade-70: rgba(21, 21, 21, 0.7);
   --text-color: #ffffff;
   --text-color-fade-70: rgba(255, 255, 255, 0.7);
   --heading-color: #ffffff;
@@ -128,11 +128,11 @@ html.dark,
 body.dark {
   --primary-color: #fffa00;
   --secondary-color: #00ffa2;
-  --body-bg: #0c0c0c;
-  --body-bg-light: #141414;
-  --body-bg-shaded: #2a2a2a;
-  --body-bg-faded: rgba(12, 12, 12, 0.94);
-  --body-bg-fade-70: rgba(12, 12, 12, 0.7);
+  --body-bg: #151515;
+  --body-bg-light: #1e1e1e;
+  --body-bg-shaded: #2c2c2c;
+  --body-bg-faded: rgba(21, 21, 21, 0.94);
+  --body-bg-fade-70: rgba(21, 21, 21, 0.7);
   --text-color: #ffffff;
   --text-color-fade-70: rgba(255, 255, 255, 0.7);
   --heading-color: #ffffff;
@@ -180,11 +180,11 @@ body.dark {
   :root {
     --primary-color: #fffa00;
     --secondary-color: #00ffa2;
-    --body-bg: #0c0c0c;
-    --body-bg-light: #141414;
-    --body-bg-shaded: #2a2a2a;
-    --body-bg-faded: rgba(12, 12, 12, 0.94);
-    --body-bg-fade-70: rgba(12, 12, 12, 0.7);
+    --body-bg: #151515;
+    --body-bg-light: #1e1e1e;
+    --body-bg-shaded: #2c2c2c;
+    --body-bg-faded: rgba(21, 21, 21, 0.94);
+    --body-bg-fade-70: rgba(21, 21, 21, 0.7);
     --text-color: #ffffff;
     --text-color-fade-70: rgba(255, 255, 255, 0.7);
     --heading-color: #ffffff;
@@ -236,7 +236,13 @@ body {
   letter-spacing: 0.005em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--body-bg);
+  background-color: var(--body-bg) !important;
+}
+[data-theme^="dark"] body,
+.dark body,
+html.dark body,
+body.dark {
+  background-color: var(--body-bg) !important;
 }
 h1,
 h2,
@@ -541,17 +547,35 @@ textarea::placeholder {
 .dark .DiscussionListItem:hover,
 html.dark .DiscussionListItem:hover,
 body.dark .DiscussionListItem:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--body-bg-shaded) !important;
+  border-color: var(--muted-color-light) !important;
+}
+[data-theme^="dark"] .DiscussionListItem:hover .DiscussionListItem-title,
+.dark .DiscussionListItem:hover .DiscussionListItem-title,
+html.dark .DiscussionListItem:hover .DiscussionListItem-title,
+body.dark .DiscussionListItem:hover .DiscussionListItem-title {
+  color: var(--text-color) !important;
 }
 @media (prefers-color-scheme: dark) {
   .DiscussionListItem:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--body-bg-shaded) !important;
+    border-color: var(--muted-color-light) !important;
+  }
+  .DiscussionListItem:hover .DiscussionListItem-title {
+    color: var(--text-color) !important;
   }
 }
 .DiscussionListItem-content {
   padding: 14px 20px !important;
   gap: 16px !important;
   align-items: center !important;
+}
+.DiscussionListItem-main,
+.DiscussionListItem-main:hover,
+.DiscussionListItem-main:focus {
+  background: transparent !important;
+  color: inherit !important;
+  text-decoration: none !important;
 }
 .DiscussionListItem-title {
   font-weight: 800 !important;
@@ -608,57 +632,64 @@ body.dark .DiscussionListItem:hover {
 .dark .DiscussionListItem--sticky,
 html.dark .DiscussionListItem--sticky,
 body.dark .DiscussionListItem--sticky {
-  background: var(--body-bg-light);
-  border-left: 6px solid var(--primary-color);
+  background: var(--body-bg-light) !important;
+  border-color: var(--body-bg-shaded) !important;
+  border-left: 6px solid var(--primary-color) !important;
 }
 [data-theme^="dark"] .DiscussionListItem--sticky:hover,
 .dark .DiscussionListItem--sticky:hover,
 html.dark .DiscussionListItem--sticky:hover,
 body.dark .DiscussionListItem--sticky:hover {
-  background: var(--body-bg-shaded);
+  background: var(--body-bg-shaded) !important;
+  border-color: var(--muted-color-light) !important;
 }
 [data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-title,
 .dark .DiscussionListItem--sticky .DiscussionListItem-title,
 html.dark .DiscussionListItem--sticky .DiscussionListItem-title,
-body.dark .DiscussionListItem--sticky .DiscussionListItem-title,
+body.dark .DiscussionListItem--sticky .DiscussionListItem-title {
+  color: var(--text-color) !important;
+}
 [data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-info,
 .dark .DiscussionListItem--sticky .DiscussionListItem-info,
 html.dark .DiscussionListItem--sticky .DiscussionListItem-info,
-body.dark .DiscussionListItem--sticky .DiscussionListItem-info,
+body.dark .DiscussionListItem--sticky .DiscussionListItem-info {
+  color: var(--muted-color) !important;
+}
 [data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-info .username,
 .dark .DiscussionListItem--sticky .DiscussionListItem-info .username,
 html.dark .DiscussionListItem--sticky .DiscussionListItem-info .username,
-body.dark .DiscussionListItem--sticky .DiscussionListItem-info .username,
-[data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-count,
-.dark .DiscussionListItem--sticky .DiscussionListItem-count,
-html.dark .DiscussionListItem--sticky .DiscussionListItem-count,
-body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
-  color: var(--on-primary-color) !important;
+body.dark .DiscussionListItem--sticky .DiscussionListItem-info .username {
+  color: var(--text-color) !important;
 }
 [data-theme^="dark"] .DiscussionListItem--sticky .DiscussionListItem-count,
 .dark .DiscussionListItem--sticky .DiscussionListItem-count,
 html.dark .DiscussionListItem--sticky .DiscussionListItem-count,
 body.dark .DiscussionListItem--sticky .DiscussionListItem-count {
-  background: var(--primary-color);
-  color: var(--on-primary-color);
+  background: var(--primary-color) !important;
+  color: var(--on-primary-color) !important;
 }
 @media (prefers-color-scheme: dark) {
   .DiscussionListItem--sticky {
-    background: var(--body-bg-light);
-    border-left: 6px solid var(--primary-color);
+    background: var(--body-bg-light) !important;
+    border-color: var(--body-bg-shaded) !important;
+    border-left: 6px solid var(--primary-color) !important;
   }
   .DiscussionListItem--sticky:hover {
-    background: var(--body-bg-shaded);
+    background: var(--body-bg-shaded) !important;
+    border-color: var(--muted-color-light) !important;
   }
-  .DiscussionListItem--sticky .DiscussionListItem-title,
-  .DiscussionListItem--sticky .DiscussionListItem-info,
-  .DiscussionListItem--sticky .DiscussionListItem-info .username,
+  .DiscussionListItem--sticky .DiscussionListItem-title {
+    color: var(--text-color) !important;
+  }
+  .DiscussionListItem--sticky .DiscussionListItem-info {
+    color: var(--muted-color) !important;
+  }
+  .DiscussionListItem--sticky .DiscussionListItem-info .username {
+    color: var(--text-color) !important;
+  }
   .DiscussionListItem--sticky .DiscussionListItem-count {
+    background: var(--primary-color) !important;
     color: var(--on-primary-color) !important;
-  }
-  .DiscussionListItem--sticky .DiscussionListItem-count {
-    background: var(--primary-color);
-    color: var(--on-primary-color);
   }
 }
 .DiscussionListItem.active,
@@ -1035,6 +1066,24 @@ body.dark .TagLabel:not(.colored) {
   background: var(--control-bg-shaded, #f2f2f2) !important;
   color: var(--text-color, #191919) !important;
   height: 24px !important;
+}
+[data-theme^="dark"] .DiscussionListItem-count,
+.dark .DiscussionListItem-count,
+html.dark .DiscussionListItem-count,
+body.dark .DiscussionListItem-count,
+[data-theme^="dark"] .DiscussionListItem-stats-item,
+.dark .DiscussionListItem-stats-item,
+html.dark .DiscussionListItem-stats-item,
+body.dark .DiscussionListItem-stats-item {
+  background: var(--body-bg-shaded) !important;
+  color: var(--text-color) !important;
+}
+@media (prefers-color-scheme: dark) {
+  .DiscussionListItem-count,
+  .DiscussionListItem-stats-item {
+    background: var(--body-bg-shaded) !important;
+    color: var(--text-color) !important;
+  }
 }
 .Dropdown-menu,
 .Popover-content,
