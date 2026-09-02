@@ -1,5 +1,44 @@
 # Changelog
 
+## v4.2 — 2026-09-03
+
+按用户反馈对终末地 / 液态玻璃两套主题做「全量重做」，从「仅覆盖 token」升级为「token + 组件几何 + 材质 + 动效 + 专属字体」的完整设计系统。
+
+### 终末地（Endfield）完整重做
+
+- 参考依据：基于真实资料确认的核心视觉——黑白灰工业机能底 + 柠檬黄 Pantone 107C（非荧光）点缀；三角/六边形几何符号；半透明全息悬浮面板；扁平信息化、大面积留白、金属色细描边；按压回弹；HUD 式等宽读数。
+- 字体：新增本地托管 `Cathi Endfield`（Chakra Petch，工业机械感）+ `Cathi Mono EF`（Share Tech Mono，数据读数）。
+- 圆角：从动森系的 `1.5rem` 改为 `0.25rem` 基调，卡片/按钮/输入/徽章全部锐利化。
+- 描边/投影：重写 `--cathi-border` / `--cathi-shadow-*` 为金属冷灰细描边 + 纯黑硬投影，移除治愈系彩色 offset 软阴影。
+- 标志性 HUD 直角：在 `.cathi-card` / `.cathi-dialog` / `.cathi-sheet` / `.cathi-dropdown__menu` 四角叠加柠檬黄 L 形几何符号，并在 body 背景加入淡工业网格 + 能源辉光渐变。
+- 按钮：主按钮柠檬黄 + 黑字，点击时 `translateY(2px) scale(.99)` 模拟按压回弹。
+- 表单/输入/开关/滑块/进度：统一工业材质；进度条增加柠檬黄辉光；滑块从圆点改为方钮。
+- 标签/徽章/键盘：改为大写、加字距、等宽数字；表格表头也走等宽。
+- 侧栏/标签/Toast/列表/窗口/时间/角色卡/数字键盘等全部接入金属描边 + 锐利方角。
+
+### 液态玻璃（Liquid Glass）完整重做
+
+- 参考依据：Apple iOS 26 Liquid Glass 材质四要素——半透明（regular glass 24px 模糊 + 1.8× 饱和度）、折射、顶部镜面高光、自适应着色；胶囊控件；SF 风字体、内容优先留白。
+- 字体：新增本地托管 `Cathi Glass`（Inter，SF Pro 替代）。
+- 圆角：改为 `1.125rem` 基调（18px），按钮/开关/标签/搜索栏走 `999px` 胶囊。
+- 玻璃材质：卡片/弹窗/抽屉/下拉/手风琴/Toast/窗口/滚动区等统一用 `hsl(var(--cathi-card) / .62)` + `backdrop-filter: blur(22px) saturate(1.8)` + 顶部镜面高光 `inset 0 1px 0 rgba(255,255,255,.75)`。
+- 按钮 sheen 动效：悬停时一道高光从左上扫到右下，模拟玻璃 specular highlight；启用 `prefers-reduced-motion` 降级。
+- 表单/开关/滑块：浅色半透明玻璃表面，滑块 thumb 从方形/点改为带投影的圆钮。
+- 背景：调为更克制的浅渐变（#eaf3ff / #f1ecff / #e9fff4），让玻璃材质有内容可透。
+
+### 字体本地托管
+
+- 在 `assets/fonts/` 新增 9 个 woff2 文件（Chakra Petch 400/500/600/700、Share Tech Mono 400、Inter 400/500/600/700），通过 `@font-face` 直接写入各自主题 CSS，不依赖任何 CDN。
+- 中文仍按字体栈回退到 `PingFang SC` / `Microsoft YaHei` / `system-ui`，保证中文可读性。
+- React 子工程构建验证通过：Vite 正确把新增字体打包进 `react/dist/assets/`，并输出含主题选择器的 `index-C_glyizL.css`（90KB）。
+
+### 文档与演示
+
+- `index.html` 无需改动，切换器继续使用 `data-theme="endfield|liquidglass"`；刷新后即可看到新效果。
+- 新增本地校验截图脚本 `tools/_preview_themes.mjs`（开发用，不进仓库），可一键生成三主题整页预览。
+
+---
+
 ## v4.1 — 2026-09-03
 
 补齐 v4 的「多主题」与「React 适配」两块拼图：cathi-ui 现在是单仓库三主题预设 + 一套可复制的 shadcn 风格 React 组件。

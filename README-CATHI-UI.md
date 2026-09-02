@@ -40,8 +40,8 @@ cathi-ui 内置 **3 套主题预设**，机制与 shadcn 的 `:root` 变量覆�
 | 预设 | 文件 | 风格 | 激活 |
 |------|------|------|------|
 | 动森 Cozy（默认） | `themes/cozy.css` | 奶油底 + 薄荷绿，治愈圆润 | `data-theme="cozy"` / `.cathi-theme-cozy` |
-| 终末地 Endfield | `themes/endfield.css` | 黑底 `24 20% 9%` + 终末地黄 `45 100% 58%`，工业冷峻 | `data-theme="endfield"` / `.cathi-theme-endfield` |
-| 液态玻璃 Liquid Glass | `themes/liquidglass.css` | 浅渐变底 + 半透明毛玻璃 | `data-theme="liquidglass"` / `.cathi-theme-liquidglass` |
+| 终末地 Endfield | `themes/endfield.css` | v4.2 全量重做：Chakra Petch 工业字体 + 金属细描边 + HUD 四角黄标 + 按压回弹 + 等宽读数 | `data-theme="endfield"` / `.cathi-theme-endfield` |
+| 液态玻璃 Liquid Glass | `themes/liquidglass.css` | v4.2 全量重做：Inter 字体 + real glass（22px blur + saturate 1.8 + 顶部镜面高光）+ 胶囊控件 + sheen 动效 | `data-theme="liquidglass"` / `.cathi-theme-liquidglass` |
 
 ```html
 <link rel="stylesheet" href="cathi-ui.css">

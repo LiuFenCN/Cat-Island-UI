@@ -1,36 +1,44 @@
 /*!
  * cathi-ui v4 — 主题预设：终末地（Endfield）
  * 作用域：[data-theme="endfield"] / .cathi-theme-endfield
- * 风格：黑底 + 终末地黄（#E8B23A 一类）主色，工业冷峻质感。
- *       重写阴影为纯黑投影，按压/强调色全部跟随主色。
+ * 参考：游戏《明日方舟：终末地》官方 / 游戏内 UI —— 黑白灰工业机能底 + 柠檬黄(Pantone 107C)点缀，
+ *       三角/六边形几何符号、半透明全息面板、扁平信息化、金属色细描边、按钮按压回弹、HUD 式等宽读数。
  *       必须放在 cathi-ui.css 之后引入。
  */
 
+/* ===== 专属字体（本地托管，不依赖 CDN）===== */
+@font-face { font-family: "Cathi Endfield"; src: url(../assets/fonts/cathi-chakra-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Cathi Endfield"; src: url(../assets/fonts/cathi-chakra-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cathi Endfield"; src: url(../assets/fonts/cathi-chakra-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cathi Endfield"; src: url(../assets/fonts/cathi-chakra-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Cathi Mono EF"; src: url(../assets/fonts/cathi-mono-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+
 [data-theme="endfield"],
 .cathi-theme-endfield {
+  /* —— 语义色（柠檬黄调，非荧光）—— */
   --cathi-background:           24 20% 9%;
   --cathi-foreground:           46 100% 86%;
 
   --cathi-card:                 26 22% 13%;
   --cathi-card-foreground:      46 100% 86%;
 
-  --cathi-popover:              26 22% 15%;
+  --cathi-popover:              27 24% 15%;
   --cathi-popover-foreground:   46 100% 86%;
 
-  --cathi-primary:              45 100% 58%;
-  --cathi-primary-active:       45 100% 46%;
+  --cathi-primary:              45 100% 60%;    /* 柠檬黄 */
+  --cathi-primary-active:       45 100% 47%;
   --cathi-primary-foreground:   26 30% 8%;
 
   --cathi-secondary:            26 20% 18%;
   --cathi-secondary-foreground: 46 100% 86%;
 
-  --cathi-muted:                26 20% 18%;
-  --cathi-muted-foreground:     38 16% 64%;
+  --cathi-muted:                26 20% 17%;
+  --cathi-muted-foreground:     40 14% 64%;
 
-  --cathi-accent:               45 60% 22%;
-  --cathi-accent-foreground:    46 100% 72%;
+  --cathi-accent:               45 55% 20%;
+  --cathi-accent-foreground:    46 100% 74%;
 
-  --cathi-destructive:          0 70% 56%;
+  --cathi-destructive:          0 72% 56%;
   --cathi-destructive-foreground: 0 0% 98%;
 
   --cathi-success:              145 45% 50%;
@@ -42,23 +50,326 @@
   --cathi-info:                 199 75% 62%;
   --cathi-info-foreground:      205 60% 10%;
 
-  --cathi-border:               30 16% 26%;
-  --cathi-input:                30 18% 32%;
+  /* —— 工业金属描边 / 几何符号色 —— */
+  --cathi-border:               214 13% 30%;
+  --cathi-input:                214 14% 34%;
   --cathi-ring:                 45 100% 60%;
+  --cathi-line:                 214 13% 34%;     /* 金属细描边 */
+  --cathi-accent-line:         45 100% 62%;     /* HUD 直角/三角符号（柠檬黄）*/
 
+  /* —— 锐利圆角（脱离治愈系大圆角）—— */
+  --cathi-radius: .25rem;
+  --cathi-r-xs:   .15rem;
+  --cathi-r-sm:   .25rem;
+  --cathi-r-md:   .35rem;
+  --cathi-r-lg:   .5rem;
+  --cathi-r-xl:   .75rem;
+
+  /* —— 去塑料感的硬投影 —— */
   --cathi-shadow-color: 0 0% 0%;
-  --cathi-shadow-sm:    0 2px 0 hsl(0 0% 0% / .5);
-  --cathi-shadow-md:    0 4px 0 hsl(0 0% 0% / .55), 0 8px 16px hsl(0 0% 0% / .45);
-  --cathi-shadow-lg:    0 6px 0 hsl(0 0% 0% / .55), 0 14px 28px hsl(0 0% 0% / .5);
-  --cathi-shadow-inset: inset 0 2px 4px hsl(0 0% 0% / .45);
+  --cathi-shadow-sm:    0 1px 2px hsl(0 0% 0% / .5);
+  --cathi-shadow-md:    0 6px 20px hsl(0 0% 0% / .55), 0 0 0 1px hsl(0 0% 0% / .35);
+  --cathi-shadow-lg:    0 12px 36px hsl(0 0% 0% / .62);
+  --cathi-shadow-inset: inset 0 1px 0 hsl(0 0% 100% / .06);
 
-  --cathi-ring-alpha:   .7;
+  /* —— 字体（工业机械感 + 等宽读数）—— */
+  --cathi-font: "Cathi Endfield", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cathi-font-mono: "Cathi Mono EF", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --cathi-ring-alpha:   .75;
   --cathi-surface-alpha: 1;
   --cathi-glass-blur:    0px;
 }
 
-/* 终末地：深色页面背景带极轻暖调，避免纯黑死板 */
+/* 终末地：深色工业底 + 淡网格 + 能源辉光 */
 [data-theme="endfield"] .cathi-root,
 .cathi-theme-endfield.cathi-root {
-  background: hsl(24 20% 9%);
+  background:
+    linear-gradient(hsl(214 13% 34% / .045) 1px, transparent 1px) 0 0 / 30px 30px,
+    linear-gradient(90deg, hsl(214 13% 34% / .045) 1px, transparent 1px) 0 0 / 30px 30px,
+    radial-gradient(1100px 560px at 82% -12%, hsl(45 60% 22% / .20), transparent 60%),
+    radial-gradient(900px 520px at -8% 112%, hsl(210 30% 20% / .28), transparent 55%),
+    hsl(24 20% 9%);
+  color: hsl(var(--cathi-foreground));
+}
+
+/* ===================== 组件级覆盖 ===================== */
+
+/* 卡片 / 弹窗 / 抽屉 / 下拉：金属细描边 + 硬投影 + HUD 直角符号 */
+[data-theme="endfield"] .cathi-card,
+[data-theme="endfield"] .cathi-dialog,
+[data-theme="endfield"] .cathi-sheet,
+[data-theme="endfield"] .cathi-dropdown__menu {
+  position: relative;
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(var(--cathi-line));
+  background: hsl(var(--cathi-card) / .94);
+  box-shadow: 0 0 0 1px hsl(0 0% 0% / .4), 0 8px 24px hsl(0 0% 0% / .55), inset 0 1px 0 hsl(0 0% 100% / .05);
+  backdrop-filter: none;
+}
+/* 四角直角 HUD 框（柠檬黄，标志性几何符号）*/
+[data-theme="endfield"] .cathi-card::before,
+[data-theme="endfield"] .cathi-dialog::before,
+[data-theme="endfield"] .cathi-sheet::before,
+[data-theme="endfield"] .cathi-dropdown__menu::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  background:
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) left top / 16px 2px no-repeat,
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) left top / 2px 16px no-repeat,
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) right top / 16px 2px no-repeat,
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) right top / 2px 16px no-repeat,
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) left bottom / 16px 2px no-repeat,
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) left bottom / 2px 16px no-repeat,
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) right bottom / 16px 2px no-repeat,
+    linear-gradient(hsl(var(--cathi-accent-line)), hsl(var(--cathi-accent-line))) right bottom / 2px 16px no-repeat;
+  opacity: .45;
+}
+
+/* 按钮：锐利 + 按压回弹 + 柠檬黄主色 */
+[data-theme="endfield"] .cathi-btn {
+  border-radius: var(--cathi-r-sm);
+  letter-spacing: .02em;
+  box-shadow: 0 0 0 1px hsl(0 0% 0% / .35), 0 2px 0 hsl(0 0% 0% / .45);
+  transition: transform .12s cubic-bezier(.34, 1.56, .64, 1), box-shadow .14s ease, filter .15s ease, background-color .15s ease;
+}
+[data-theme="endfield"] .cathi-btn:active {
+  transform: translateY(2px) scale(.99);
+  box-shadow: 0 0 0 1px hsl(0 0% 0% / .35), 0 0 0 hsl(0 0% 0% / .45);
+}
+[data-theme="endfield"] .cathi-btn--primary { background: hsl(var(--cathi-primary)); color: hsl(var(--cathi-primary-foreground)); }
+[data-theme="endfield"] .cathi-btn--primary:hover { filter: brightness(1.08); }
+[data-theme="endfield"] .cathi-btn--secondary { background: hsl(var(--cathi-secondary)); color: hsl(var(--cathi-secondary-foreground)); }
+[data-theme="endfield"] .cathi-btn--outline { background: transparent; border-color: hsl(var(--cathi-line)); color: hsl(var(--cathi-foreground)); }
+[data-theme="endfield"] .cathi-btn--ghost { background: transparent; color: hsl(var(--cathi-foreground)); }
+[data-theme="endfield"] .cathi-btn--ghost:hover { background: hsl(var(--cathi-muted)); }
+[data-theme="endfield"] .cathi-btn--destructive { background: hsl(var(--cathi-destructive)); color: hsl(var(--cathi-destructive-foreground)); }
+[data-theme="endfield"] .cathi-btn--link { background: transparent; color: hsl(var(--cathi-primary)); box-shadow: none; }
+
+/* 表单：暗色半透明 + 金属描边 + 聚焦柠檬黄辉光 */
+[data-theme="endfield"] .cathi-input,
+[data-theme="endfield"] .cathi-textarea,
+[data-theme="endfield"] .cathi-select {
+  border-radius: var(--cathi-r-sm);
+  border: 1px solid hsl(var(--cathi-input));
+  background: hsl(26 22% 11% / .85);
+  color: hsl(var(--cathi-foreground));
+  box-shadow: inset 0 1px 2px hsl(0 0% 0% / .4);
+}
+[data-theme="endfield"] .cathi-input:focus,
+[data-theme="endfield"] .cathi-textarea:focus,
+[data-theme="endfield"] .cathi-select:focus {
+  border-color: hsl(var(--cathi-primary));
+  box-shadow: 0 0 0 3px hsl(var(--cathi-primary) / .28), inset 0 1px 2px hsl(0 0% 0% / .4);
+}
+[data-theme="endfield"] .cathi-input[aria-invalid="true"],
+[data-theme="endfield"] .cathi-textarea[aria-invalid="true"] {
+  border-color: hsl(var(--cathi-destructive));
+  box-shadow: 0 0 0 3px hsl(var(--cathi-destructive) / .3);
+}
+
+/* 复选 / 单选：方角金属框 */
+[data-theme="endfield"] .cathi-checkbox,
+[data-theme="endfield"] .cathi-radio {
+  border: 1.5px solid hsl(var(--cathi-input));
+  background: hsl(26 22% 11% / .85);
+}
+[data-theme="endfield"] .cathi-checkbox:checked,
+[data-theme="endfield"] .cathi-radio:checked {
+  border-color: hsl(var(--cathi-primary));
+  background: hsl(var(--cathi-primary));
+}
+[data-theme="endfield"] .cathi-radio { border-radius: 50%; }
+
+/* 开关：方形轨道 + 柠檬黄激活 */
+[data-theme="endfield"] .cathi-switch__track {
+  border-radius: 3px;
+  background: hsl(26 18% 22%);
+  border: 1px solid hsl(var(--cathi-input));
+}
+[data-theme="endfield"] .cathi-switch__thumb { border-radius: 2px; }
+[data-theme="endfield"] .cathi-switch__input:checked + .cathi-switch__track { background: hsl(var(--cathi-primary)); }
+
+/* 滑块：工业细轨 + 柠檬黄 */
+[data-theme="endfield"] .cathi-slider { height: 4px; border-radius: 2px; background: hsl(26 18% 24%); }
+[data-theme="endfield"] .cathi-slider::-webkit-slider-thumb {
+  width: 16px; height: 16px; border-radius: 3px;
+  background: hsl(var(--cathi-primary)); border: 2px solid hsl(26 22% 13%);
+}
+[data-theme="endfield"] .cathi-slider::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 3px;
+  background: hsl(var(--cathi-primary)); border: 2px solid hsl(26 22% 13%);
+}
+
+/* 进度：能源条（柠檬黄渐变 + 辉光）*/
+[data-theme="endfield"] .cathi-progress {
+  background: hsl(26 18% 20%);
+  border-radius: 3px;
+  border: 1px solid hsl(var(--cathi-input));
+}
+[data-theme="endfield"] .cathi-progress__fill {
+  background: linear-gradient(90deg, hsl(var(--cathi-primary-active)), hsl(var(--cathi-primary)));
+  box-shadow: 0 0 10px hsl(var(--cathi-primary) / .5);
+}
+
+/* 警告条：工业左侧粗标识 + 方角 */
+[data-theme="endfield"] .cathi-alert {
+  border-radius: var(--cathi-r-sm);
+  border: 1px solid hsl(var(--cathi-line));
+  border-left: 3px solid hsl(var(--cathi-primary));
+  background: hsl(26 22% 13% / .92);
+}
+[data-theme="endfield"] .cathi-alert[data-variant="success"] { border-left-color: hsl(var(--cathi-success)); }
+[data-theme="endfield"] .cathi-alert[data-variant="warning"] { border-left-color: hsl(var(--cathi-warning)); }
+[data-theme="endfield"] .cathi-alert[data-variant="destructive"] { border-left-color: hsl(var(--cathi-destructive)); }
+[data-theme="endfield"] .cathi-alert[data-variant="info"] { border-left-color: hsl(var(--cathi-info)); }
+
+/* 标签 / 徽章：大写 + 字距 + 等宽数字 */
+[data-theme="endfield"] .cathi-tag { border-radius: var(--cathi-r-xs); letter-spacing: .04em; text-transform: uppercase; }
+[data-theme="endfield"] .cathi-badge { border-radius: var(--cathi-r-xs); font-family: var(--cathi-font-mono); letter-spacing: .03em; }
+[data-theme="endfield"] .cathi-badge--primary { background: hsl(var(--cathi-primary)); color: hsl(var(--cathi-primary-foreground)); }
+[data-theme="endfield"] .cathi-kbd {
+  border-radius: var(--cathi-r-xs);
+  font-family: var(--cathi-font-mono);
+  border: 1px solid hsl(var(--cathi-line));
+  background: hsl(26 22% 12%);
+  box-shadow: 0 2px 0 hsl(0 0% 0% / .5);
+}
+
+/* 分隔线：金属细线 */
+[data-theme="endfield"] .cathi-separator { background: hsl(var(--cathi-line)); }
+
+/* 骨架：冷灰 */
+[data-theme="endfield"] .cathi-skeleton { background: hsl(26 16% 24%); }
+
+/* 下拉菜单：HUD 框（已含 ::before 直角）*/
+[data-theme="endfield"] .cathi-dropdown__menu { border-radius: var(--cathi-r-sm); }
+[data-theme="endfield"] .cathi-dropdown__item:hover { background: hsl(var(--cathi-muted)); }
+
+/* 抽屉 */
+[data-theme="endfield"] .cathi-sheet { border-radius: var(--cathi-r-md); }
+
+/* 手风琴 */
+[data-theme="endfield"] .cathi-accordion {
+  border: 1px solid hsl(var(--cathi-line));
+  border-radius: var(--cathi-r-sm);
+  background: hsl(var(--cathi-card) / .9);
+}
+
+/* 面包屑 / 空态 */
+[data-theme="endfield"] .cathi-breadcrumb { font-family: var(--cathi-font-mono); letter-spacing: .03em; }
+[data-theme="endfield"] .cathi-empty { border: 1px dashed hsl(var(--cathi-line)); border-radius: var(--cathi-r-md); }
+
+/* 切换组 / 切换按钮：方角 + 柠檬黄激活 */
+[data-theme="endfield"] .cathi-toggle-group {
+  border: 1px solid hsl(var(--cathi-line));
+  border-radius: var(--cathi-r-sm);
+  background: hsl(26 22% 11% / .7);
+}
+[data-theme="endfield"] .cathi-toggle { border-radius: var(--cathi-r-xs); letter-spacing: .03em; }
+[data-theme="endfield"] .cathi-toggle[aria-pressed="true"] {
+  background: hsl(var(--cathi-primary));
+  color: hsl(var(--cathi-primary-foreground));
+}
+
+/* 表格：冷灰分隔 + 表头微底 */
+[data-theme="endfield"] .cathi-table th {
+  border-bottom: 1px solid hsl(var(--cathi-line));
+  background: hsl(26 22% 15% / .6);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-family: var(--cathi-font-mono);
+  font-size: 12px;
+}
+[data-theme="endfield"] .cathi-table td { border-bottom: 1px solid hsl(214 13% 24% / .6); }
+[data-theme="endfield"] .cathi-table tbody tr:hover { background: hsl(var(--cathi-muted) / .6); }
+
+/* 头像：方角金属框 */
+[data-theme="endfield"] .cathi-avatar { border-radius: var(--cathi-r-xs); border: 2px solid hsl(var(--cathi-line)); }
+
+/* 侧栏导航 / 标签栏：工业风 */
+[data-theme="endfield"] .cathi-sidebar-nav {
+  border: 1px solid hsl(var(--cathi-line));
+  border-radius: var(--cathi-r-md);
+  background: hsl(26 22% 11% / .7);
+}
+[data-theme="endfield"] .cathi-nav-item { border-radius: var(--cathi-r-sm); letter-spacing: .02em; }
+[data-theme="endfield"] .cathi-nav-item:hover { background: hsl(var(--cathi-muted)); }
+[data-theme="endfield"] .cathi-nav-item[aria-current="page"],
+[data-theme="endfield"] .cathi-nav-item.is-active {
+  background: hsl(var(--cathi-primary) / .16);
+  color: hsl(var(--cathi-primary));
+  box-shadow: inset 2px 0 0 hsl(var(--cathi-primary));
+}
+[data-theme="endfield"] .cathi-tabs { border-bottom: 1px solid hsl(var(--cathi-line)); }
+[data-theme="endfield"] .cathi-tab { letter-spacing: .03em; }
+[data-theme="endfield"] .cathi-tab[aria-selected="true"] {
+  color: hsl(var(--cathi-primary));
+  border-bottom: 2px solid hsl(var(--cathi-primary));
+}
+
+/* Toast：工业左侧标识 */
+[data-theme="endfield"] .cathi-toast {
+  border-radius: var(--cathi-r-sm);
+  border: 1px solid hsl(var(--cathi-line));
+  border-left: 3px solid hsl(var(--cathi-primary));
+  background: hsl(26 22% 13% / .96);
+  box-shadow: var(--cathi-shadow-md);
+}
+
+/* 列表项 */
+[data-theme="endfield"] .cathi-list { border-radius: var(--cathi-r-md); border: 1px solid hsl(var(--cathi-line)); }
+[data-theme="endfield"] .cathi-list__item { border-bottom: 1px solid hsl(214 13% 24% / .6); }
+
+/* 操作按钮 */
+[data-theme="endfield"] .cathi-action-btn { border-radius: var(--cathi-r-sm); border: 1px solid hsl(var(--cathi-line)); }
+[data-theme="endfield"] .cathi-action-btn--primary { color: hsl(var(--cathi-primary)); border-color: hsl(var(--cathi-primary) / .6); }
+
+/* 数字键盘：工业方块 */
+[data-theme="endfield"] .cathi-key {
+  border-radius: var(--cathi-r-xs);
+  border: 1px solid hsl(var(--cathi-line));
+  font-family: var(--cathi-font-mono);
+  background: hsl(26 22% 14%);
+  box-shadow: 0 2px 0 hsl(0 0% 0% / .5);
+}
+[data-theme="endfield"] .cathi-key:active { transform: translateY(2px); box-shadow: none; }
+
+/* 搜索栏 */
+[data-theme="endfield"] .cathi-search-bar {
+  border-radius: var(--cathi-r-sm);
+  border: 1px solid hsl(var(--cathi-input));
+  background: hsl(26 22% 11% / .85);
+}
+
+/* 窗口框架：工业标题栏 */
+[data-theme="endfield"] .cathi-window {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(var(--cathi-line));
+  background: hsl(var(--cathi-card) / .96);
+}
+[data-theme="endfield"] .cathi-window__bar { border-bottom: 1px solid hsl(var(--cathi-line)); background: hsl(26 22% 15%); }
+
+/* 时间显示：等宽读数 */
+[data-theme="endfield"] .cathi-time-display { font-family: var(--cathi-font-mono); letter-spacing: .05em; }
+
+/* 角色卡：方角 + 柠檬黄强调 */
+[data-theme="endfield"] .cathi-char-card { border-radius: var(--cathi-r-md); border: 1px solid hsl(var(--cathi-line)); }
+[data-theme="endfield"] .cathi-char-card__name { font-family: var(--cathi-font-mono); letter-spacing: .04em; }
+
+/* 雷达图描边 */
+[data-theme="endfield"] .cathi-radar { --radar-stroke: hsl(var(--cathi-primary) / .5); }
+
+/* 标签页面板 */
+[data-theme="endfield"] .cathi-tab-panel { border: 1px solid hsl(var(--cathi-line)); border-top: none; }
+
+/* 滚动区 */
+[data-theme="endfield"] .cathi-scroll-area { border: 1px solid hsl(var(--cathi-line)); border-radius: var(--cathi-r-md); }
+
+/* 偏好减少动效时关闭按压回弹位移 */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="endfield"] .cathi-btn:active { transform: none; }
+  [data-theme="endfield"] .cathi-key:active { transform: none; }
 }

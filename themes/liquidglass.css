@@ -1,13 +1,20 @@
 /*!
  * cathi-ui v4 — 主题预设：液态玻璃（Liquid Glass）
  * 作用域：[data-theme="liquidglass"] / .cathi-theme-liquidglass
- * 风格：苹果风毛玻璃——半透明表面 + backdrop-filter 模糊，浅色渐变底。
- *       通过 --cathi-surface-alpha(<1) + --cathi-glass-blur 实现，其余主题不受影响。
+ * 参考：Apple iOS 26 Liquid Glass 材质语言 —— 半透明玻璃（折射/高光/自适应着色）、胶囊控件、
+ *       顶部镜面高光、内容优先、留白克制、SF 风中性字体（Inter 替代）。
  *       必须放在 cathi-ui.css 之后引入。
  */
 
+/* ===== 专属字体（本地托管，不依赖 CDN）===== */
+@font-face { font-family: "Cathi Glass"; src: url(../assets/fonts/cathi-inter-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Cathi Glass"; src: url(../assets/fonts/cathi-inter-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cathi Glass"; src: url(../assets/fonts/cathi-inter-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Cathi Glass"; src: url(../assets/fonts/cathi-inter-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+
 [data-theme="liquidglass"],
 .cathi-theme-liquidglass {
+  /* —— 语义色（清爽天蓝 + 浅色表面）—— */
   --cathi-background:           210 40% 96%;
   --cathi-foreground:           220 30% 22%;
 
@@ -42,23 +49,358 @@
   --cathi-info:                 205 85% 55%;
   --cathi-info-foreground:      0 0% 100%;
 
-  --cathi-border:               210 30% 85%;
-  --cathi-input:                210 30% 82%;
+  /* —— 玻璃边缘 / 高光色 —— */
+  --cathi-border:               215 40% 80%;
+  --cathi-input:                215 45% 82%;
   --cathi-ring:                 205 90% 55%;
+  --cathi-glass-edge:          255 255% 100%;   /* 镜面高光（白）*/
+  --cathi-tint:                 210 60% 96%;      /* 自适应着色（冷调）*/
 
+  /* —— 精致圆角（苹果风，非治愈系超大圆角）—— */
+  --cathi-radius: 1.125rem;
+  --cathi-r-xs:   .5rem;
+  --cathi-r-sm:   .75rem;
+  --cathi-r-md:   1rem;
+  --cathi-r-lg:   1.25rem;
+  --cathi-r-xl:   1.5rem;
+
+  /* —— 浅色柔和层叠投影 —— */
   --cathi-shadow-color: 220 30% 60%;
-  --cathi-shadow-sm:    0 2px 8px hsl(220 30% 50% / .18);
-  --cathi-shadow-md:    0 8px 24px hsl(220 30% 50% / .22);
-  --cathi-shadow-lg:    0 16px 40px hsl(220 30% 50% / .28);
-  --cathi-shadow-inset: inset 0 1px 2px hsl(0 0% 100% / .6);
+  --cathi-shadow-sm:    0 2px 8px hsl(220 30% 50% / .16);
+  --cathi-shadow-md:    0 8px 24px hsl(220 30% 50% / .20);
+  --cathi-shadow-lg:    0 16px 40px hsl(220 30% 50% / .26);
+  --cathi-shadow-inset: inset 0 1px 2px hsl(0 0% 100% / .65);
 
-  --cathi-ring-alpha:    .6;
-  --cathi-surface-alpha: .62;   /* 半透明表面 */
-  --cathi-glass-blur:    18px;  /* 毛玻璃模糊 */
+  /* —— 字体（SF 风中性，Inter 替代）—— */
+  --cathi-font: "Cathi Glass", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cathi-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --cathi-ring-alpha:   .55;
+  --cathi-surface-alpha: .62;   /* 半透明表面（regular 玻璃权重）*/
+  --cathi-glass-blur:    22px;  /* 毛玻璃模糊（含 saturate，见组件覆盖）*/
 }
 
-/* 液态玻璃：彩色渐变底，让毛玻璃的模糊有内容可透 */
+/* 液态玻璃：彩色渐变底，让玻璃有内容可透 */
 [data-theme="liquidglass"] .cathi-root,
 .cathi-theme-liquidglass.cathi-root {
-  background: linear-gradient(135deg, #e9f4ff 0%, #f3ecff 50%, #e9fff6 100%);
+  background: linear-gradient(135deg, #eaf3ff 0%, #f1ecff 48%, #e9fff4 100%);
+  color: hsl(var(--cathi-foreground));
+}
+
+/* ===================== 组件级覆盖 ===================== */
+
+/* —— 玻璃材质 mixin（卡片/弹窗/抽屉/下拉）—— */
+[data-theme="liquidglass"] .cathi-card,
+[data-theme="liquidglass"] .cathi-dialog,
+[data-theme="liquidglass"] .cathi-sheet,
+[data-theme="liquidglass"] .cathi-dropdown__menu {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .55);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.8);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 hsl(var(--cathi-glass-edge) / .75),
+    inset 0 0 0 1px hsl(var(--cathi-glass-edge) / .25),
+    0 10px 30px hsl(220 40% 50% / .16),
+    0 2px 8px hsl(220 40% 50% / .10);
+}
+
+/* 按钮：胶囊 + 玻璃镜面 + hover 高光扫过 */
+[data-theme="liquidglass"] .cathi-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  letter-spacing: .01em;
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(var(--cathi-card) / .7);
+  -webkit-backdrop-filter: blur(12px) saturate(1.6);
+  backdrop-filter: blur(12px) saturate(1.6);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .7), 0 4px 14px hsl(220 40% 50% / .14);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease, background-color .15s ease;
+}
+[data-theme="liquidglass"] .cathi-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 32%, hsl(var(--cathi-glass-edge) / .5) 50%, transparent 68%);
+  transform: translateX(-130%);
+  transition: transform .6s ease;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="liquidglass"] .cathi-btn:hover::after { transform: translateX(130%); }
+}
+[data-theme="liquidglass"] .cathi-btn:hover { transform: translateY(-1px); }
+[data-theme="liquidglass"] .cathi-btn:active { transform: translateY(0) scale(.985); }
+[data-theme="liquidglass"] .cathi-btn--primary {
+  background: hsl(var(--cathi-primary));
+  color: hsl(var(--cathi-primary-foreground));
+  border-color: transparent;
+}
+[data-theme="liquidglass"] .cathi-btn--primary:hover { filter: brightness(1.05); }
+[data-theme="liquidglass"] .cathi-btn--secondary { background: hsl(var(--cathi-secondary) / .8); color: hsl(var(--cathi-secondary-foreground)); }
+[data-theme="liquidglass"] .cathi-btn--outline { background: transparent; border-color: hsl(var(--cathi-border)); color: hsl(var(--cathi-foreground)); }
+[data-theme="liquidglass"] .cathi-btn--ghost { background: transparent; border-color: transparent; color: hsl(var(--cathi-foreground)); }
+[data-theme="liquidglass"] .cathi-btn--ghost:hover { background: hsl(var(--cathi-muted) / .8); }
+[data-theme="liquidglass"] .cathi-btn--destructive { background: hsl(var(--cathi-destructive)); color: hsl(var(--cathi-destructive-foreground)); border-color: transparent; }
+[data-theme="liquidglass"] .cathi-btn--link { background: transparent; border-color: transparent; color: hsl(var(--cathi-primary)); box-shadow: none; }
+
+/* 表单：浅色玻璃输入 */
+[data-theme="liquidglass"] .cathi-input,
+[data-theme="liquidglass"] .cathi-textarea,
+[data-theme="liquidglass"] .cathi-select {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(215 45% 82% / .9);
+  background: hsl(0 0% 100% / .55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: hsl(var(--cathi-foreground));
+  box-shadow: inset 0 1px 2px hsl(220 40% 60% / .08);
+}
+[data-theme="liquidglass"] .cathi-input:focus,
+[data-theme="liquidglass"] .cathi-textarea:focus,
+[data-theme="liquidglass"] .cathi-select:focus {
+  border-color: hsl(var(--cathi-primary));
+  box-shadow: 0 0 0 3px hsl(var(--cathi-primary) / .25), inset 0 1px 2px hsl(220 40% 60% / .08);
+}
+[data-theme="liquidglass"] .cathi-input[aria-invalid="true"],
+[data-theme="liquidglass"] .cathi-textarea[aria-invalid="true"] {
+  border-color: hsl(var(--cathi-destructive));
+  box-shadow: 0 0 0 3px hsl(var(--cathi-destructive) / .25);
+}
+
+/* 复选 / 单选：玻璃描边 */
+[data-theme="liquidglass"] .cathi-checkbox,
+[data-theme="liquidglass"] .cathi-radio {
+  border: 1.5px solid hsl(215 45% 80%);
+  background: hsl(0 0% 100% / .6);
+}
+[data-theme="liquidglass"] .cathi-checkbox:checked,
+[data-theme="liquidglass"] .cathi-radio:checked {
+  border-color: hsl(var(--cathi-primary));
+  background: hsl(var(--cathi-primary));
+}
+[data-theme="liquidglass"] .cathi-radio { border-radius: 50%; }
+
+/* 开关：玻璃轨道 */
+[data-theme="liquidglass"] .cathi-switch__track {
+  border-radius: 999px;
+  background: hsl(215 40% 85% / .9);
+  border: 1px solid hsl(215 45% 82%);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+[data-theme="liquidglass"] .cathi-switch__thumb {
+  border-radius: 50%;
+  background: hsl(0 0% 100%);
+  box-shadow: 0 2px 6px hsl(220 40% 50% / .3);
+}
+[data-theme="liquidglass"] .cathi-switch__input:checked + .cathi-switch__track { background: hsl(var(--cathi-primary)); }
+
+/* 滑块：玻璃细轨 */
+[data-theme="liquidglass"] .cathi-slider { height: 6px; border-radius: 999px; background: hsl(215 40% 86% / .9); }
+[data-theme="liquidglass"] .cathi-slider::-webkit-slider-thumb {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: hsl(0 0% 100%);
+  border: 2px solid hsl(var(--cathi-primary));
+  box-shadow: 0 2px 8px hsl(220 40% 50% / .3);
+}
+[data-theme="liquidglass"] .cathi-slider::-moz-range-thumb {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: hsl(0 0% 100%);
+  border: 2px solid hsl(var(--cathi-primary));
+  box-shadow: 0 2px 8px hsl(220 40% 50% / .3);
+}
+
+/* 进度：天蓝渐变玻璃 */
+[data-theme="liquidglass"] .cathi-progress {
+  background: hsl(215 40% 88% / .9);
+  border-radius: 999px;
+}
+[data-theme="liquidglass"] .cathi-progress__fill {
+  background: linear-gradient(90deg, hsl(var(--cathi-primary-active)), hsl(var(--cathi-primary)));
+  border-radius: 999px;
+}
+
+/* 警告条：玻璃卡 + 左侧色标 */
+[data-theme="liquidglass"] .cathi-alert {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .6), 0 6px 18px hsl(220 40% 50% / .14);
+  border-left: 3px solid hsl(var(--cathi-primary));
+}
+[data-theme="liquidglass"] .cathi-alert[data-variant="success"] { border-left-color: hsl(var(--cathi-success)); }
+[data-theme="liquidglass"] .cathi-alert[data-variant="warning"] { border-left-color: hsl(var(--cathi-warning)); }
+[data-theme="liquidglass"] .cathi-alert[data-variant="destructive"] { border-left-color: hsl(var(--cathi-destructive)); }
+[data-theme="liquidglass"] .cathi-alert[data-variant="info"] { border-left-color: hsl(var(--cathi-info)); }
+
+/* 标签 / 徽章：玻璃药丸 */
+[data-theme="liquidglass"] .cathi-tag { border-radius: 999px; }
+[data-theme="liquidglass"] .cathi-badge { border-radius: 999px; }
+[data-theme="liquidglass"] .cathi-badge--primary { background: hsl(var(--cathi-primary)); color: hsl(var(--cathi-primary-foreground)); }
+[data-theme="liquidglass"] .cathi-kbd {
+  border-radius: var(--cathi-r-xs);
+  border: 1px solid hsl(215 45% 82%);
+  background: hsl(0 0% 100% / .7);
+  box-shadow: inset 0 -1px 0 hsl(220 40% 50% / .2);
+}
+
+/* 分隔线 / 骨架：淡 */
+[data-theme="liquidglass"] .cathi-separator { background: hsl(215 40% 82% / .8); }
+[data-theme="liquidglass"] .cathi-skeleton {
+  background: hsl(215 40% 88% / .9);
+  border-radius: var(--cathi-r-sm);
+}
+
+/* 下拉菜单（玻璃，已含 mixin）*/
+[data-theme="liquidglass"] .cathi-dropdown__menu { border-radius: var(--cathi-r-md); }
+[data-theme="liquidglass"] .cathi-dropdown__item:hover { background: hsl(var(--cathi-muted) / .8); }
+
+/* 抽屉 */
+[data-theme="liquidglass"] .cathi-sheet { border-radius: var(--cathi-r-xl); }
+
+/* 手风琴 */
+[data-theme="liquidglass"] .cathi-accordion {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+}
+
+/* 面包屑 / 空态 */
+[data-theme="liquidglass"] .cathi-empty {
+  border: 1px dashed hsl(215 40% 82% / .9);
+  border-radius: var(--cathi-r-lg);
+  background: hsl(0 0% 100% / .4);
+}
+
+/* 切换组 / 切换按钮：玻璃 */
+[data-theme="liquidglass"] .cathi-toggle-group {
+  border-radius: 999px;
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(0 0% 100% / .55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+[data-theme="liquidglass"] .cathi-toggle { border-radius: 999px; }
+[data-theme="liquidglass"] .cathi-toggle[aria-pressed="true"] {
+  background: hsl(var(--cathi-primary));
+  color: hsl(var(--cathi-primary-foreground));
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .6);
+}
+
+/* 表格：浅色玻璃表头 */
+[data-theme="liquidglass"] .cathi-table th {
+  border-bottom: 1px solid hsl(215 40% 82% / .8);
+  background: hsl(0 0% 100% / .5);
+  font-weight: 600;
+}
+[data-theme="liquidglass"] .cathi-table td { border-bottom: 1px solid hsl(215 40% 86% / .7); }
+[data-theme="liquidglass"] .cathi-table tbody tr:hover { background: hsl(var(--cathi-muted) / .7); }
+
+/* 头像：玻璃描边 */
+[data-theme="liquidglass"] .cathi-avatar { border: 2px solid hsl(var(--cathi-glass-edge) / .7); }
+
+/* 侧栏导航 / 标签栏：玻璃 */
+[data-theme="liquidglass"] .cathi-sidebar-nav {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(0 0% 100% / .5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.6);
+}
+[data-theme="liquidglass"] .cathi-nav-item { border-radius: var(--cathi-r-md); }
+[data-theme="liquidglass"] .cathi-nav-item:hover { background: hsl(var(--cathi-muted) / .8); }
+[data-theme="liquidglass"] .cathi-nav-item[aria-current="page"],
+[data-theme="liquidglass"] .cathi-nav-item.is-active {
+  background: hsl(var(--cathi-primary) / .16);
+  color: hsl(var(--cathi-primary-active));
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .5);
+}
+[data-theme="liquidglass"] .cathi-tabs { border-bottom: 1px solid hsl(215 40% 82% / .8); }
+[data-theme="liquidglass"] .cathi-tab[aria-selected="true"] {
+  color: hsl(var(--cathi-primary-active));
+  border-bottom: 2px solid hsl(var(--cathi-primary));
+}
+
+/* Toast：玻璃卡 */
+[data-theme="liquidglass"] .cathi-toast {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  border-left: 3px solid hsl(var(--cathi-primary));
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .6), 0 10px 30px hsl(220 40% 50% / .16);
+}
+
+/* 列表 / 操作按钮 / 搜索栏：玻璃 */
+[data-theme="liquidglass"] .cathi-list {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(0 0% 100% / .5);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+[data-theme="liquidglass"] .cathi-list__item { border-bottom: 1px solid hsl(215 40% 86% / .7); }
+[data-theme="liquidglass"] .cathi-action-btn {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(215 45% 82%);
+  background: hsl(0 0% 100% / .6);
+}
+[data-theme="liquidglass"] .cathi-action-btn--primary { color: hsl(var(--cathi-primary-active)); border-color: hsl(var(--cathi-primary) / .6); }
+[data-theme="liquidglass"] .cathi-search-bar {
+  border-radius: 999px;
+  border: 1px solid hsl(215 45% 82% / .9);
+  background: hsl(0 0% 100% / .55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* 窗口框架：玻璃 */
+[data-theme="liquidglass"] .cathi-window {
+  border-radius: var(--cathi-r-xl);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .55);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.7);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.7);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .7), 0 16px 40px hsl(220 40% 50% / .22);
+}
+[data-theme="liquidglass"] .cathi-window__bar {
+  border-bottom: 1px solid hsl(215 40% 82% / .7);
+  background: hsl(0 0% 100% / .4);
+}
+
+/* 时间显示 */
+[data-theme="liquidglass"] .cathi-time-display { font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+
+/* 角色卡：玻璃 */
+[data-theme="liquidglass"] .cathi-char-card {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+}
+
+/* 标签页面板 */
+[data-theme="liquidglass"] .cathi-tab-panel {
+  border: 1px solid hsl(215 40% 82% / .8);
+  border-top: none;
+  border-radius: 0 0 var(--cathi-r-md) var(--cathi-r-md);
+}
+
+/* 滚动区 */
+[data-theme="liquidglass"] .cathi-scroll-area {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .5);
+  background: hsl(0 0% 100% / .45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
