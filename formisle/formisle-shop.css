@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
   background: var(--cathi-bg-alt);
-  border: 1px solid var(--cathi-border);
+  border: 1px solid hsl(var(--cathi-border));
   border-radius: var(--cathi-r-lg);
   overflow: hidden;
   transition: transform var(--cathi-dur) var(--cathi-ease),
@@ -79,7 +79,7 @@
   height: 28px;
   border-radius: 50%;
   background: var(--formisle-mint-bg);
-  border: 1px solid var(--cathi-border);
+  border: 1px solid hsl(var(--cathi-border));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,7 +112,7 @@
   gap: var(--cathi-sp-4);
   padding: var(--cathi-sp-4);
   background: var(--cathi-bg-alt);
-  border: 1px solid var(--cathi-border);
+  border: 1px solid hsl(var(--cathi-border));
   border-radius: var(--cathi-r-md);
 }
 .formisle-order-row__thumb {
@@ -158,7 +158,7 @@
   padding: 12px 16px;
   border-radius: var(--cathi-r-sm);
   background: var(--cathi-bg-alt);
-  border: 1px solid var(--cathi-border);
+  border: 1px solid hsl(var(--cathi-border));
   font-size: 14px;
   color: var(--cathi-text);
   cursor: pointer;
@@ -167,7 +167,7 @@
 }
 .formisle-pill--selected {
   background: var(--formisle-mint-bg);
-  border: 1.5px solid var(--cathi-primary);
+  border: 1.5px solid hsl(var(--cathi-primary));
   font-weight: 800;
   color: var(--cathi-primary-dark);
 }
@@ -193,7 +193,7 @@
   background: var(--cathi-border-strong);   /* 未完成 */
 }
 .formisle-timeline__dot--done {
-  background: var(--cathi-primary);          /* 完成 / 当前 */
+  background: hsl(var(--cathi-primary));          /* 完成 / 当前 */
 }
 .formisle-timeline__title {
   font-size: 14px;
@@ -215,7 +215,7 @@
  * ======================================================= */
 .formisle-panel {
   background: var(--cathi-bg-alt);
-  border: 1px solid var(--cathi-border);
+  border: 1px solid hsl(var(--cathi-border));
   border-radius: var(--cathi-r-lg);
   padding: var(--cathi-sp-5);
   display: flex;
@@ -235,7 +235,7 @@
   font-size: 14px;
   color: var(--cathi-text);
   background: var(--cathi-surface);
-  border: 1px solid var(--cathi-border);
+  border: 1px solid hsl(var(--cathi-border));
   border-radius: var(--cathi-r-sm);
   padding: 12px 14px;
   resize: vertical;
@@ -243,7 +243,7 @@
 .formisle-field input:focus,
 .formisle-field textarea:focus {
   outline: none;
-  border-color: var(--cathi-primary);
+  border-color: hsl(var(--cathi-primary));
 }
 
 /* =========================================================
