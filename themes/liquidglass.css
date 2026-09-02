@@ -169,6 +169,52 @@
     0 10px 30px hsl(220 40% 6% / .45),
     0 2px 8px hsl(220 40% 6% / .3);
 }
+
+/* 深色玻璃按钮：显式文字色 + 更实背景 + 更亮边框，避免看不清 */
+[data-theme="liquidglass"][data-dark] .cathi-btn {
+  color: hsl(var(--cathi-foreground));
+  border: 1px solid hsl(var(--cathi-glass-edge) / .55);
+  background: hsl(var(--cathi-card) / .85);
+  -webkit-backdrop-filter: blur(14px) saturate(1.7);
+  backdrop-filter: blur(14px) saturate(1.7);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .75), 0 4px 14px hsl(220 40% 6% / .35);
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--primary {
+  background: hsl(var(--cathi-primary));
+  color: hsl(var(--cathi-primary-foreground));
+  border-color: transparent;
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .6), 0 4px 14px hsl(var(--cathi-primary) / .22);
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--secondary {
+  background: hsl(var(--cathi-secondary) / .9);
+  color: hsl(var(--cathi-secondary-foreground));
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--outline {
+  background: transparent;
+  border-color: hsl(var(--cathi-glass-edge) / .65);
+  color: hsl(var(--cathi-foreground));
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--outline:hover {
+  background: hsl(var(--cathi-muted) / .85);
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--ghost {
+  background: transparent;
+  color: hsl(var(--cathi-foreground));
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--ghost:hover {
+  background: hsl(var(--cathi-muted) / .85);
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--destructive {
+  background: hsl(var(--cathi-destructive));
+  color: hsl(var(--cathi-destructive-foreground));
+  border-color: transparent;
+}
+[data-theme="liquidglass"][data-dark] .cathi-btn--link {
+  background: transparent;
+  color: hsl(var(--cathi-primary));
+  box-shadow: none;
+}
+
 [data-theme="liquidglass"][data-dark] .cathi-input,
 [data-theme="liquidglass"][data-dark] .cathi-textarea,
 [data-theme="liquidglass"][data-dark] .cathi-select {
@@ -385,7 +431,8 @@
   border-radius: 999px;
   letter-spacing: .01em;
   border: 1px solid hsl(var(--cathi-glass-edge) / .5);
-  background: hsl(var(--cathi-card) / .7);
+  background: hsl(var(--cathi-card) / .78);
+  color: hsl(var(--cathi-foreground));
   -webkit-backdrop-filter: blur(12px) saturate(1.6);
   backdrop-filter: blur(12px) saturate(1.6);
   box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .7), 0 4px 14px hsl(220 40% 50% / .14);
