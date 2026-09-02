@@ -4,21 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cathi-ui v4 · 治愈系设计系统</title>
-  <link rel="stylesheet" href="assets/fonts/nunito.css">
-  <link rel="stylesheet" href="cathi-ui.css">
+  <link rel="stylesheet" href="assets/fonts/nunito.css?v=4.3.1">
+  <link rel="stylesheet" href="cathi-ui.css?v=4.3.1">
   <!-- 三套主题预设：必须放在 cathi-ui.css 之后 -->
-  <link rel="stylesheet" href="themes/cozy.css">
-  <link rel="stylesheet" href="themes/endfield.css">
-  <link rel="stylesheet" href="themes/liquidglass.css">
+  <link rel="stylesheet" href="themes/cozy.css?v=4.3.1">
+  <link rel="stylesheet" href="themes/endfield.css?v=4.3.1">
+  <link rel="stylesheet" href="themes/liquidglass.css?v=4.3.1">
   <style>
     body { margin: 0; background: var(--cathi-bg); }
     .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
     .hero {
-      text-align: center; padding: 48px 24px; border-radius: 32px;
-      background: linear-gradient(160deg, var(--cathi-primary-soft), var(--cathi-amber-soft));
+      text-align: center; padding: 48px 24px; border-radius: var(--cathi-r-xl);
+      background: hsl(var(--cathi-card));
+      border: 1px solid hsl(var(--cathi-border));
       box-shadow: var(--cathi-shadow-lg);
       margin-bottom: 40px;
     }
+    .hero h1,
+    .hero p { color: hsl(var(--cathi-card-foreground)); }
     .hero h1 { font-size: 42px; margin: 0 0 8px; font-weight: 900; }
     .hero p { margin: 0; color: var(--cathi-text-soft); font-weight: 700; }
     .section { margin-top: 48px; }
@@ -106,7 +109,7 @@
     }
   </style>
 </head>
-<body class="cathi-root">
+<body class="cathi-root" data-theme="endfield">
   <div class="wrap">
 
     <!-- ═══ Hero ═══ -->
@@ -123,10 +126,10 @@
       <div class="cathi-row cathi-center" style="justify-content:center;margin-top:18px;gap:10px">
         <span class="cathi-muted" style="font-size:13px;font-weight:800">主题</span>
         <div class="cathi-theme-switch" role="group" aria-label="主题切换">
-          <button type="button" data-theme-value="cozy" class="is-active">🏝️ 动森</button>
-          <button type="button" data-theme-value="endfield">🛰️ 终末地</button>
-          <button type="button" data-theme-value="liquidglass">🫧 液态玻璃</button>
-          <button type="button" data-theme-value="cozy" data-dark="1">🌙 暗色</button>
+          <button type="button" data-theme-value="cozy">✦ 动森</button>
+          <button type="button" data-theme-value="endfield" class="is-active">▲ 终末地</button>
+          <button type="button" data-theme-value="liquidglass">◇ 液态玻璃</button>
+          <button type="button" data-theme-value="cozy" data-dark="1">◐ 暗色</button>
         </div>
       </div>
     </div>
