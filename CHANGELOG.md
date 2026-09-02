@@ -1,5 +1,26 @@
 # Changelog
 
+## v4.3 — 2026-09-03
+
+按终末地官网截图二次校准，并补齐三套主题的背景样式。
+
+### 终末地（Endfield）二次校准（对照官网）
+- 主色：由暖柠檬黄 `45 100% 60%` 改为黄绿 chartreuse `68 100% 48%`（官网加载条 / GAMEPLAY 标签 / 竖条均为黄绿）；HUD 符号色、聚焦环、进度条、选中态同步变。
+- 背景：由冷蓝黑 `220 12% 9%` 压成中性近黑炭黑 `220 5% 8%`（不再发蓝）；文字提亮到接近纯白 `0 0% 95%`。
+- 背景图案：新增 `assets/patterns/endfield-contour.svg` 地形等高线（Python 生成的多峰同心波纹 + 科技感栅格），叠加工业网格 + 黄绿能源辉光，`background-attachment: fixed` 全页铺展。
+- 按钮：改为官网风——主按钮黄绿实色 + 左侧深色色块（inset 4px）+ 45° 斜纹底 + 右侧三角 `▸`；去掉 shadcn 式按压回弹（仅 `translateY(1px)` 轻压）。
+- 几何符号：卡片标题加 `//` 前缀、区块 ribbon 加 `[ ]` 括号容器、头像改虚线圆环框；侧栏选中态改为浅灰底白字 + 左侧黄绿竖条（与官网一致，不再黄字）。
+- 字体沿用 v4.2 本地托管的 Chakra Petch / Share Tech Mono。
+
+### 动森（Cozy）背景
+- 新增 `.cathi-root` 柔和点阵（`radial-gradient` 1.4px 波点）+ 双色暖辉光（薄荷绿 / 樱粉），治愈系有机质感。
+
+### 液态玻璃（Liquid Glass）背景增强
+- `.cathi-root` 在浅渐变之上叠加三层彩色 mesh 光晕（蓝 / 紫 / 绿）+ 点阵纹理，让玻璃有更多内容可透、科技感更强。
+
+### 资源
+- 新增 `assets/patterns/endfield-contour.svg`（34KB，自包含、无外部依赖，Flarum 可直接复用）。
+
 ## v4.2 — 2026-09-03
 
 按用户反馈对终末地 / 液态玻璃两套主题做「全量重做」，从「仅覆盖 token」升级为「token + 组件几何 + 材质 + 动效 + 专属字体」的完整设计系统。
@@ -47,7 +68,7 @@
 
 - 新增 `themes/` 目录，内置 **3 套主题预设**，机制同 shadcn 的 `:root` 变量覆盖——放在 `cathi-ui.css` 之后引入，重写同一组语义 token 即整站换肤：
   - `themes/cozy.css` — 动森（Cozy，默认）：奶油底 + 薄荷绿，治愈圆润
-  - `themes/endfield.css` — 终末地（Endfield）：黑底 `24 20% 9%` + 终末地黄 `45 100% 58%`，工业冷峻
+  - `themes/endfield.css` — 终末地（Endfield）：中性炭黑 `220 5% 8%` + 黄绿 chartreuse `68 100% 48%`，工业冷峻 + 地形等高线背景
   - `themes/liquidglass.css` — 液态玻璃（Liquid Glass）：浅渐变底 + 半透明毛玻璃
 - 激活方式：`data-theme="cozy|endfield|liquidglass"` 或 `.cathi-theme-X`（作用域同时支持属性与 class 两种写法）
 - 主题预设与「暗色模式」正交：主题决定配色气质，暗色决定明暗，可叠加使用

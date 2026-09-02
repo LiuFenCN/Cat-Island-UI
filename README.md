@@ -32,7 +32,7 @@ cathi-ui 不只一套皮肤。仓库内置 **3 套主题预设**，都只是「�
 | 预设 | 文件 | 风格 | 激活方式 |
 |------|------|------|----------|
 | 动森 Cozy（默认） | `themes/cozy.css` | 奶油底 + 薄荷绿，治愈圆润 | `data-theme="cozy"` / `.cathi-theme-cozy` |
-| 终末地 Endfield | `themes/endfield.css` | v4.2 全量重做：Chakra Petch 工业字体 + 金属细描边 + HUD 四角黄标 + 按压回弹 + 等宽读数 | `data-theme="endfield"` / `.cathi-theme-endfield` |
+| 终末地 Endfield | `themes/endfield.css` | v4.3：黄绿 chartreuse 主色 + 地形等高线背景 + 斜纹按钮(左侧色块+三角) + `//`/`[]`/虚线头像符号 + 金属细描边 + 等宽读数（字体本地托管） | `data-theme="endfield"` / `.cathi-theme-endfield` |
 | 液态玻璃 Liquid Glass | `themes/liquidglass.css` | v4.2 全量重做：Inter 字体 + real glass（22px blur + saturate 1.8 + 顶部镜面高光）+ 胶囊控件 + sheen 动效 | `data-theme="liquidglass"` / `.cathi-theme-liquidglass` |
 
 ```html

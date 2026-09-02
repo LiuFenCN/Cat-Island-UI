@@ -80,10 +80,19 @@
   --cathi-glass-blur:    22px;  /* 毛玻璃模糊（含 saturate，见组件覆盖）*/
 }
 
-/* 液态玻璃：彩色渐变底，让玻璃有内容可透 */
+/* 液态玻璃：彩色 mesh 光晕 + 点阵纹理（让玻璃有更多内容可透）*/
 [data-theme="liquidglass"] .cathi-root,
 .cathi-theme-liquidglass.cathi-root {
-  background: linear-gradient(135deg, #eaf3ff 0%, #f1ecff 48%, #e9fff4 100%);
+  background-color: #eaf3ff;
+  background-image:
+    radial-gradient(circle at 1px 1px, hsl(220 40% 70% / .10) 1px, transparent 1.6px),
+    radial-gradient(620px 620px at 12% 16%, hsl(205 100% 72% / .40), transparent 60%),
+    radial-gradient(540px 540px at 88% 22%, hsl(280 100% 82% / .34), transparent 60%),
+    radial-gradient(640px 640px at 72% 90%, hsl(150 80% 76% / .34), transparent 60%),
+    linear-gradient(135deg, #eaf3ff 0%, #f1ecff 48%, #e9fff4 100%);
+  background-size: 22px 22px, auto, auto, auto, auto;
+  background-position: 0 0, center, center, center, center;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   color: hsl(var(--cathi-foreground));
 }
 

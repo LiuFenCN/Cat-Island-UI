@@ -55,3 +55,17 @@
   --cathi-surface-alpha: 1;
   --cathi-glass-blur:    0px;
 }
+
+/* 动森：柔和波点 + 双色暖辉光（治愈系有机背景）*/
+[data-theme="cozy"] .cathi-root,
+.cathi-theme-cozy.cathi-root {
+  background-color: hsl(40 33% 92%);
+  background-image:
+    radial-gradient(circle at 1px 1px, hsl(34 36% 80% / .9) 1.4px, transparent 1.6px),
+    radial-gradient(1100px 620px at 86% -12%, hsl(150 45% 88% / .9), transparent 60%),
+    radial-gradient(900px 560px at -6% 112%, hsl(350 100% 95% / .9), transparent 55%);
+  background-size: 26px 26px, auto, auto;
+  background-position: 0 0, center, center;
+  background-repeat: repeat, no-repeat, no-repeat;
+  color: hsl(var(--cathi-foreground));
+}
