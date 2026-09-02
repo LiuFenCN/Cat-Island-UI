@@ -72,6 +72,24 @@ import { Button, Card, CardHeader, CardTitle, CardContent } from './components';
 
 组件清单（24 个原语）：Button / Card / Input / Textarea / Select / Label / Field / Checkbox / Radio / Option / Switch / Slider / Separator / Badge / Tag / Spinner / Kbd / Skeleton / Alert / Progress / Avatar / AvatarGroup / Empty / Breadcrumb / Tooltip / Table / Toggle / ToggleGroup / Dropdown / Dialog / Sheet / Accordion / Tabs。详见 `react/src/components/`。
 
+## Flarum 主题桥接（endfield / liquidglass）
+
+cathi-ui 的 token 是框架无关的纯 CSS。Flarum 主题的 DOM 由 Mithril 渲染、无法加 `.cathi-*` class，因此用「**token 桥**」把 cathi-ui 的 `--cathi-*` 编译成 Flarum 原生变量（`--primary-color` / `--body-bg` / `--button-primary-bg` …），由主题扩展的 `extend.php` 在 `forum.css` 之后注入，**不改动线上 `forum.css`**。
+
+```bash
+# 1) 改色只动单一来源 src/tokens.css 的 endfield 浅/深两块，然后重跑生成器：
+python tools/gen_flarum_tokens.py
+# 2) 生成物 flarum-theme-endfield/tokens-bridge.css 复制到论坛 public/assets/
+cp flarum-theme-endfield/tokens-bridge.css \
+   <flarum>/public/assets/endfield-tokens.css
+# 3) extend.php 在 endfield.css 之后注入桥（独立 <link>，须晚于 forum.css 才能覆盖）：
+#     $document->head[] = '<link rel="stylesheet" href="/assets/endfield.css?v=22">';
+#     $document->head[] = '<link rel="stylesheet" href="/assets/endfield-tokens.css?v=1">';
+# 4) 改色后重新 cp + 把 ?v=1 改成 ?v=2 破缓存即可。
+```
+
+桥的作用域是 Flarum 原生选择器 `:root`（浅）+ `[data-theme^="dark"]`（深）——终末地扩展只给 `<html>` 设 `data-theme="dark"`，不设 `data-theme="endfield"`，故桥不能用 `[data-theme="endfield"]` 作用域。生成器见 `tools/gen_flarum_tokens.py`，映射表（Flarum 变量 ← cathi token）集中在该文件顶部 `MAP`，需要微调（如 secondary 色）改 `MAP` 重跑即可。
+
 ## v4 新版重点
 
 - **shadcn 风格 Token 架构**（HSL 通道值 + 透明度修饰符 + 单一圆角基准）

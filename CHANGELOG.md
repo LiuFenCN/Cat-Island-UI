@@ -1,5 +1,20 @@
 # Changelog
 
+## v4.5 — 2026-09-03
+
+Design Token 单一来源化 + 新增 Flarum 终末地 token 桥。
+
+### 架构
+- 所有 `--cathi-*` 从 `cathi-ui.css` / `themes/*.css` 内联定义**抽取到 `src/tokens.css`（单一事实来源）**；`cathi-ui.css` 与三套主题预设均 `@import "./src/tokens.css"`，改色只动一处。
+- 新增 `tools/gen_flarum_tokens.py`：解析 `src/tokens.css` 的 endfield 浅/深两块，把 `--cathi-*` 编译为 63 项 Flarum 原生变量（`--primary-color` / `--body-bg` / `--button-primary-bg` / `--header-bg` / `--tag-bg` …）覆盖，输出 `flarum-theme-endfield/tokens-bridge.css`。
+
+### Flarum 桥
+- 根治线上 `forum.css` 死写的 `--primary-color: #fffa00`（柠檬黄）与 cathi-ui chartreuse 的**漂移**：桥浅色 `--primary-color = hsl(68 95% 36%)`、深色 `hsl(68 100% 48%)`。
+- 桥作用域 `:root` + `[data-theme^="dark"]`，由 `extend.php` 在 `endfield.css` 之后注入独立 `<link>` 生效，**不改动线上 `forum.css`**。已用 puppeteer + Edge 实测渲染，关键变量计算值正确、控制台 0 错误。
+
+### 资源
+- 新增 `flarum-theme-endfield/tokens-bridge.css`、`tools/gen_flarum_tokens.py`、`tools/extract_tokens.py`（抽取脚本）。
+
 ## v4.4 — 2026-09-03
 
 每个主题都支持「浅色 / 深色」两套（之前只有终末地写死深色、动森/液态玻璃无深色，且 demo 只有一个不完整的「暗色」按钮）。
