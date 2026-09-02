@@ -1,60 +1,5 @@
-/*!
- * cathi-ui v4 — 主题预设：动森（Cozy，默认）
- * 作用域：[data-theme="cozy"] / .cathi-theme-cozy
- * 说明：与 cathi-ui.css 的 :root 默认值一致，写成显式主题以便一键切回。
- *       必须放在 cathi-ui.css 之后引入。
- */
+/* tokens → src/tokens.css */
 
-[data-theme="cozy"],
-.cathi-theme-cozy {
-  --cathi-background:            var(--cathi-cream-100);
-  --cathi-foreground:            var(--cathi-cocoa-700);
-
-  --cathi-card:                  0 0% 100%;
-  --cathi-card-foreground:       var(--cathi-cocoa-700);
-
-  --cathi-popover:               0 0% 100%;
-  --cathi-popover-foreground:    var(--cathi-cocoa-700);
-
-  --cathi-primary:               var(--cathi-mint-500);
-  --cathi-primary-active:        var(--cathi-mint-700);
-  --cathi-primary-foreground:    0 0% 100%;
-
-  --cathi-secondary:             var(--cathi-cream-200);
-  --cathi-secondary-foreground:  var(--cathi-cocoa-700);
-
-  --cathi-muted:                 var(--cathi-cream-200);
-  --cathi-muted-foreground:      var(--cathi-cocoa-500);
-
-  --cathi-accent:                var(--cathi-mint-50);
-  --cathi-accent-foreground:     var(--cathi-mint-700);
-
-  --cathi-destructive:           var(--cathi-danger-500);
-  --cathi-destructive-foreground: 0 0% 100%;
-
-  --cathi-success:               var(--cathi-leaf-500);
-  --cathi-success-foreground:    0 0% 100%;
-
-  --cathi-warning:               var(--cathi-amber-500);
-  --cathi-warning-foreground:    var(--cathi-cocoa-900);
-
-  --cathi-info:                  var(--cathi-sky-500);
-  --cathi-info-foreground:       var(--cathi-cocoa-900);
-
-  --cathi-border:                var(--cathi-cream-300);
-  --cathi-input:                 var(--cathi-cream-400);
-  --cathi-ring:                  var(--cathi-mint-500);
-
-  --cathi-shadow-color: 31 29% 26%;
-  --cathi-shadow-sm:    0 2px 0 hsl(31 29% 26% / .10);
-  --cathi-shadow-md:    0 4px 0 hsl(31 29% 26% / .14), 0 8px 16px hsl(31 29% 26% / .12);
-  --cathi-shadow-lg:    0 6px 0 hsl(31 29% 26% / .14), 0 14px 28px hsl(31 29% 26% / .16);
-  --cathi-shadow-inset: inset 0 2px 4px hsl(31 29% 26% / .12);
-
-  --cathi-ring-alpha:    .55;
-  --cathi-surface-alpha: 1;
-  --cathi-glass-blur:    0px;
-}
 
 /* 动森：柔和波点 + 双色暖辉光（治愈系有机背景）*/
 [data-theme="cozy"].cathi-root,
@@ -70,42 +15,8 @@
   background-repeat: repeat, no-repeat, no-repeat;
   color: hsl(var(--cathi-foreground));
 }
+/* tokens → src/tokens.css */
 
-/* ===================== 深色变体（[data-dark]：夜色治愈）===================== */
-[data-theme="cozy"][data-dark],
-.cathi-theme-cozy.cathi-dark {
-  --cathi-background:           30 18% 12%;
-  --cathi-foreground:           40 30% 90%;
-  --cathi-card:                 30 16% 16%;
-  --cathi-card-foreground:      40 30% 90%;
-  --cathi-popover:              30 16% 18%;
-  --cathi-popover-foreground:   40 30% 90%;
-  --cathi-primary:              var(--cathi-mint-400);
-  --cathi-primary-active:       var(--cathi-mint-500);
-  --cathi-primary-foreground:   30 30% 10%;
-  --cathi-secondary:            30 16% 22%;
-  --cathi-secondary-foreground: 40 30% 90%;
-  --cathi-muted:                30 16% 20%;
-  --cathi-muted-foreground:     34 20% 72%;
-  --cathi-accent:               30 20% 24%;
-  --cathi-accent-foreground:    var(--cathi-mint-300);
-  --cathi-destructive:          var(--cathi-danger-400);
-  --cathi-destructive-foreground: 0 0% 100%;
-  --cathi-success:              var(--cathi-leaf-400);
-  --cathi-success-foreground:   30 30% 10%;
-  --cathi-warning:              var(--cathi-amber-400);
-  --cathi-warning-foreground:   30 30% 10%;
-  --cathi-info:                 var(--cathi-sky-400);
-  --cathi-info-foreground:      30 30% 10%;
-  --cathi-border:               30 14% 26%;
-  --cathi-input:                30 14% 30%;
-  --cathi-ring:                 var(--cathi-mint-400);
-  --cathi-shadow-color: 30 20% 6%;
-  --cathi-shadow-sm:    0 2px 0 hsl(30 20% 6% / .25);
-  --cathi-shadow-md:    0 4px 0 hsl(30 20% 6% / .30), 0 8px 16px hsl(30 20% 6% / .30);
-  --cathi-shadow-lg:    0 6px 0 hsl(30 20% 6% / .30), 0 14px 28px hsl(30 20% 6% / .34);
-  --cathi-shadow-inset: inset 0 2px 4px hsl(30 20% 6% / .30);
-}
 
 /* 动森深色：暗夜波点 + 暖色微辉 */
 [data-theme="cozy"][data-dark].cathi-root,

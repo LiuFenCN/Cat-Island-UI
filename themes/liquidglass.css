@@ -11,74 +11,8 @@
 @font-face { font-family: "Cathi Glass"; src: url(../assets/fonts/cathi-inter-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
 @font-face { font-family: "Cathi Glass"; src: url(../assets/fonts/cathi-inter-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
 @font-face { font-family: "Cathi Glass"; src: url(../assets/fonts/cathi-inter-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+/* tokens → src/tokens.css */
 
-[data-theme="liquidglass"],
-.cathi-theme-liquidglass {
-  /* —— 语义色（清爽天蓝 + 浅色表面）—— */
-  --cathi-background:           210 40% 96%;
-  --cathi-foreground:           220 30% 22%;
-
-  --cathi-card:                 0 0% 100%;
-  --cathi-card-foreground:      220 30% 22%;
-
-  --cathi-popover:              0 0% 100%;
-  --cathi-popover-foreground:   220 30% 22%;
-
-  --cathi-primary:              205 90% 52%;
-  --cathi-primary-active:       205 90% 40%;
-  --cathi-primary-foreground:   0 0% 100%;
-
-  --cathi-secondary:            210 40% 90%;
-  --cathi-secondary-foreground: 220 30% 22%;
-
-  --cathi-muted:                210 40% 92%;
-  --cathi-muted-foreground:     220 12% 45%;
-
-  --cathi-accent:               205 90% 92%;
-  --cathi-accent-foreground:    205 90% 40%;
-
-  --cathi-destructive:          0 80% 60%;
-  --cathi-destructive-foreground: 0 0% 100%;
-
-  --cathi-success:              150 60% 42%;
-  --cathi-success-foreground:   0 0% 100%;
-
-  --cathi-warning:              38 95% 56%;
-  --cathi-warning-foreground:   30 40% 12%;
-
-  --cathi-info:                 205 85% 55%;
-  --cathi-info-foreground:      0 0% 100%;
-
-  /* —— 玻璃边缘 / 高光色 —— */
-  --cathi-border:               215 40% 80%;
-  --cathi-input:                215 45% 82%;
-  --cathi-ring:                 205 90% 55%;
-  --cathi-glass-edge:          255 255% 100%;   /* 镜面高光（白）*/
-  --cathi-tint:                 210 60% 96%;      /* 自适应着色（冷调）*/
-
-  /* —— 精致圆角（苹果风，非治愈系超大圆角）—— */
-  --cathi-radius: 1.125rem;
-  --cathi-r-xs:   .5rem;
-  --cathi-r-sm:   .75rem;
-  --cathi-r-md:   1rem;
-  --cathi-r-lg:   1.25rem;
-  --cathi-r-xl:   1.5rem;
-
-  /* —— 浅色柔和层叠投影 —— */
-  --cathi-shadow-color: 220 30% 60%;
-  --cathi-shadow-sm:    0 2px 8px hsl(220 30% 50% / .16);
-  --cathi-shadow-md:    0 8px 24px hsl(220 30% 50% / .20);
-  --cathi-shadow-lg:    0 16px 40px hsl(220 30% 50% / .26);
-  --cathi-shadow-inset: inset 0 1px 2px hsl(0 0% 100% / .65);
-
-  /* —— 字体（SF 风中性，Inter 替代）—— */
-  --cathi-font: "Cathi Glass", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-  --cathi-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-
-  --cathi-ring-alpha:   .55;
-  --cathi-surface-alpha: .62;   /* 半透明表面（regular 玻璃权重）*/
-  --cathi-glass-blur:    22px;  /* 毛玻璃模糊（含 saturate，见组件覆盖）*/
-}
 
 /* 液态玻璃：彩色 mesh 光晕 + 点阵纹理（让玻璃有更多内容可透）*/
 [data-theme="liquidglass"].cathi-root,
@@ -96,46 +30,8 @@
   background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   color: hsl(var(--cathi-foreground));
 }
+/* tokens → src/tokens.css */
 
-/* ===================== 深色变体（[data-dark]：暗色玻璃）===================== */
-[data-theme="liquidglass"][data-dark],
-.cathi-theme-liquidglass.cathi-dark {
-  --cathi-background:           220 30% 10%;
-  --cathi-foreground:           220 20% 92%;
-  --cathi-card:                 220 25% 16%;
-  --cathi-card-foreground:      220 20% 92%;
-  --cathi-popover:              220 25% 18%;
-  --cathi-popover-foreground:   220 20% 92%;
-  --cathi-primary:              205 90% 62%;
-  --cathi-primary-active:       205 90% 50%;
-  --cathi-primary-foreground:   220 40% 10%;
-  --cathi-secondary:            220 22% 24%;
-  --cathi-secondary-foreground: 220 20% 92%;
-  --cathi-muted:                220 22% 22%;
-  --cathi-muted-foreground:     220 14% 70%;
-  --cathi-accent:               205 60% 26%;
-  --cathi-accent-foreground:    205 90% 80%;
-  --cathi-destructive:          0 80% 66%;
-  --cathi-destructive-foreground: 0 0% 100%;
-  --cathi-success:              150 60% 52%;
-  --cathi-success-foreground:   220 40% 10%;
-  --cathi-warning:              38 95% 62%;
-  --cathi-warning-foreground:   30 40% 12%;
-  --cathi-info:                 205 85% 65%;
-  --cathi-info-foreground:      220 40% 10%;
-  --cathi-border:               215 25% 38%;
-  --cathi-input:                215 25% 42%;
-  --cathi-ring:                 205 90% 62%;
-  --cathi-glass-edge:          220 40% 88%;   /* 暗底用更亮的镜面高光 */
-  --cathi-tint:                 220 40% 30%;
-  --cathi-shadow-color: 220 40% 6%;
-  --cathi-shadow-sm:    0 2px 8px hsl(220 40% 6% / .4);
-  --cathi-shadow-md:    0 8px 24px hsl(220 40% 6% / .5);
-  --cathi-shadow-lg:    0 16px 40px hsl(220 40% 6% / .55);
-  --cathi-shadow-inset: inset 0 1px 2px hsl(220 40% 90% / .12);
-  --cathi-surface-alpha: .55;
-  --cathi-glass-blur:    22px;
-}
 
 /* 液态玻璃深色：深色 mesh 光晕（玻璃在暗底上更通透）*/
 [data-theme="liquidglass"][data-dark].cathi-root,

@@ -1,0 +1,545 @@
+/*!
+ * cathi-ui v4 — 设计 Token 单一来源（SINGLE SOURCE OF TRUTH）
+ * 所有 --cathi-* 变量集中定义于此。cathi-ui.css 与 themes/*.css 均 @import 本文件。
+ * 改主题色 / 圆角 / 阴影只改这里；Flarum 桥由 tools/gen_flarum_tokens.py 从本文件生成。
+ * 禁止在 cathi-ui.css 或 themes/*.css 内联重复定义 --cathi-*。
+ */
+
+@layer cathi.tokens, cathi.base, cathi.components, cathi.utilities;
+
+@layer cathi.tokens {
+:root,
+.cathi-root {
+  /* ─────────── 1.1 原始色板（HSL 通道值，不含 hsl()） ─────────── */
+
+  /* 薄荷 mint（主色） */
+  --cathi-mint-50:  172 60% 95%;
+  --cathi-mint-100: 172 60% 90%;
+  --cathi-mint-300: 174 55% 70%;
+  --cathi-mint-400: 175 60% 60%;
+  --cathi-mint-500: 175 58% 43%;
+  --cathi-mint-600: 175 60% 36%;
+  --cathi-mint-700: 175 84% 33%;
+
+  /* 奶油 cream（表面 / 描边） */
+  --cathi-cream-50:  44 70% 98%;
+  --cathi-cream-100: 46 54% 92%;
+  --cathi-cream-200: 44 70% 95%;
+  --cathi-cream-300: 41 53% 84%;
+  --cathi-cream-400: 42 45% 73%;
+
+  /* 可可 cocoa（文字） */
+  --cathi-cocoa-300: 39 24% 62%;
+  --cathi-cocoa-500: 36 22% 45%;
+  --cathi-cocoa-700: 31 29% 26%;
+  --cathi-cocoa-900: 28 32% 16%;
+
+  /* 强调色 */
+  --cathi-amber-300: 40 100% 84%;
+  --cathi-amber-500: 34 100% 66%;
+  --cathi-amber-600: 33 74% 53%;
+  --cathi-rose-300:  341 100% 91%;
+  --cathi-rose-500:  345 100% 84%;
+  --cathi-rose-600:  344 72% 66%;
+  --cathi-sky-300:   207 100% 93%;
+  --cathi-sky-500:   199 80% 68%;
+  --cathi-sky-600:   199 70% 46%;
+  --cathi-grape-300: 262 100% 95%;
+  --cathi-grape-500: 260 89% 76%;
+  --cathi-grape-600: 260 60% 58%;
+
+  /* 状态色 */
+  --cathi-leaf-500:   145 55% 42%;
+  --cathi-leaf-600:   145 55% 34%;
+  --cathi-danger-300: 0 80% 90%;
+  --cathi-danger-500: 0 72% 58%;
+  --cathi-danger-600: 0 65% 48%;
+
+  /* ─────────── 1.2 语义 token（shadcn 命名：名 / 名-foreground） ───────────
+     背景类变量用 hsl(var(--x))，文字/描边同理；
+     需要半透明时直接写 hsl(var(--x) / .14)。
+     ⚠️ v4 起 --cathi-primary / --cathi-border 是「通道值」不是颜色，
+        旧代码 var(--cathi-border) 请改为 hsl(var(--cathi-border))。 */
+
+  --cathi-background:            var(--cathi-cream-100);
+  --cathi-foreground:            var(--cathi-cocoa-700);
+
+  --cathi-card:                  0 0% 100%;
+  --cathi-card-foreground:       var(--cathi-cocoa-700);
+
+  --cathi-popover:               0 0% 100%;
+  --cathi-popover-foreground:    var(--cathi-cocoa-700);
+
+  --cathi-primary:               var(--cathi-mint-500);
+  --cathi-primary-active:        var(--cathi-mint-700);  /* 按压/深一档主色，随主题变 */
+  --cathi-primary-foreground:    0 0% 100%;
+
+  --cathi-secondary:             var(--cathi-cream-200);
+  --cathi-secondary-foreground:  var(--cathi-cocoa-700);
+
+  --cathi-muted:                 var(--cathi-cream-200);
+  --cathi-muted-foreground:      var(--cathi-cocoa-500);
+
+  --cathi-accent:                var(--cathi-mint-50);
+  --cathi-accent-foreground:     var(--cathi-primary-active);
+
+  --cathi-destructive:           var(--cathi-danger-500);
+  --cathi-destructive-foreground: 0 0% 100%;
+
+  --cathi-success:               var(--cathi-leaf-500);
+  --cathi-success-foreground:    0 0% 100%;
+
+  --cathi-warning:               var(--cathi-amber-500);
+  --cathi-warning-foreground:    var(--cathi-cocoa-900);
+
+  --cathi-info:                  var(--cathi-sky-500);
+  --cathi-info-foreground:       var(--cathi-cocoa-900);
+
+  --cathi-border:                var(--cathi-cream-300);
+  --cathi-input:                 var(--cathi-cream-400);
+  --cathi-ring:                  var(--cathi-mint-500);
+  --cathi-surface-alpha:         1;    /* 玻璃主题设为 <1 实现半透明表面 */
+  --cathi-glass-blur:            0px;  /* 玻璃主题设为 e.g. 18px 开启毛玻璃 */
+
+  /* ─────────── 1.3 v3 兼容别名（已解析的颜色值，旧 HTML 无需改动） ─────────── */
+  --cathi-bg:             hsl(var(--cathi-background));
+  --cathi-bg-alt:         hsl(var(--cathi-cream-50));
+  --cathi-surface:        hsl(var(--cathi-card));
+  --cathi-surface-2:      hsl(var(--cathi-muted));
+  --cathi-text:           hsl(var(--cathi-foreground));
+  --cathi-text-soft:      hsl(var(--cathi-muted-foreground));
+  --cathi-text-faint:     hsl(var(--cathi-muted-foreground) / .68);
+  --cathi-text-invert:    hsl(var(--cathi-primary-foreground));
+
+  --cathi-border-strong:  hsl(var(--cathi-input));
+  --cathi-primary-dark:   hsl(var(--cathi-primary-active));
+  --cathi-primary-soft:   hsl(var(--cathi-primary) / .14);
+  --cathi-primary-soft-2: hsl(var(--cathi-primary) / .28);
+
+  --cathi-amber:          hsl(var(--cathi-amber-500));
+  --cathi-amber-dark:     hsl(var(--cathi-amber-600));
+  --cathi-amber-soft:     hsl(var(--cathi-amber-500) / .16);
+  --cathi-pink:           hsl(var(--cathi-rose-500));
+  --cathi-pink-dark:      hsl(var(--cathi-rose-600));
+  --cathi-pink-soft:      hsl(var(--cathi-rose-500) / .16);
+  --cathi-sky:            hsl(var(--cathi-sky-500));
+  --cathi-sky-soft:       hsl(var(--cathi-sky-500) / .16);
+  --cathi-grape:          hsl(var(--cathi-grape-500));
+  --cathi-grape-soft:     hsl(var(--cathi-grape-500) / .16);
+  --cathi-leaf:           hsl(var(--cathi-leaf-500));
+  --cathi-danger:         hsl(var(--cathi-danger-500));
+
+  /* ─────────── 1.4 圆角（单一基准 + calc 派生，改一处全局生效） ─────────── */
+  --cathi-radius: 1.5rem;
+  --cathi-r-xs:   calc(var(--cathi-radius) - 1rem);      /* .5rem   */
+  --cathi-r-sm:   calc(var(--cathi-radius) - .75rem);    /* .75rem  */
+  --cathi-r-md:   calc(var(--cathi-radius) - .375rem);   /* 1.125rem*/
+  --cathi-r-lg:   var(--cathi-radius);                   /* 1.5rem  */
+  --cathi-r-xl:   calc(var(--cathi-radius) + .5rem);     /* 2rem    */
+  --cathi-r-pill: 999px;
+
+  /* ─────────── 1.5 间距标尺 ─────────── */
+  --cathi-sp-0: 0px;
+  --cathi-sp-1: 4px;
+  --cathi-sp-2: 8px;
+  --cathi-sp-3: 12px;
+  --cathi-sp-4: 16px;
+  --cathi-sp-5: 24px;
+  --cathi-sp-6: 32px;
+  --cathi-sp-7: 48px;
+
+  /* ─────────── 1.6 阴影（3D 按压感，靠 shadow-color 换深浅） ─────────── */
+  --cathi-shadow-color: 31 29% 26%;
+  --cathi-press-depth:  4px;
+  --cathi-shadow-sm:    0 2px 0 hsl(var(--cathi-shadow-color) / .10);
+  --cathi-shadow-md:    0 var(--cathi-press-depth) 0 hsl(var(--cathi-shadow-color) / .14),
+                        0 8px 16px hsl(var(--cathi-shadow-color) / .12);
+  --cathi-shadow-lg:    0 6px 0 hsl(var(--cathi-shadow-color) / .14),
+                        0 14px 28px hsl(var(--cathi-shadow-color) / .16);
+  --cathi-shadow-inset: inset 0 2px 4px hsl(var(--cathi-shadow-color) / .12);
+
+  /* ─────────── 1.7 焦点环（shadcn ring 概念） ─────────── */
+  --cathi-ring-width:  3px;
+  --cathi-ring-offset: 2px;
+  --cathi-ring-alpha:  .55;
+
+  /* ─────────── 1.8 动效 ─────────── */
+  --cathi-dur-fast: .12s;
+  --cathi-dur:      .18s;
+  --cathi-dur-slow: .30s;
+  --cathi-ease:      cubic-bezier(.34, 1.56, .64, 1);  /* 轻微回弹 */
+  --cathi-ease-out:  cubic-bezier(.16, 1, .3, 1);
+  --cathi-ease-in-out: cubic-bezier(.4, 0, .2, 1);
+
+  /* ─────────── 1.9 字体 / 层级 ─────────── */
+  --cathi-font: "Nunito", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
+  --cathi-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --cathi-z-dropdown: 50;
+  --cathi-z-tooltip:  60;
+  --cathi-z-dialog:   80;
+  --cathi-z-toast:    100;
+}
+
+/* ─────────── 1.10 暗色主题 ───────────
+   class 策略（同 shadcn）：在 .cathi-root 或任意祖先加 .cathi-dark /
+   .cathi-theme-dark / data-theme="dark" 即可，不随系统自动切换。 */
+:is(.cathi-dark, .cathi-theme-dark, [data-theme="dark"], [data-theme^="dark"]),
+:is(.cathi-dark, .cathi-theme-dark, [data-theme="dark"], [data-theme^="dark"]) .cathi-root {
+  --cathi-background:             33 15% 15%;
+  --cathi-foreground:             38 53% 90%;
+
+  --cathi-card:                   32 15% 20%;
+  --cathi-card-foreground:        38 53% 90%;
+
+  --cathi-popover:                32 15% 23%;
+  --cathi-popover-foreground:     38 53% 90%;
+
+  --cathi-primary:                175 60% 52%;
+  --cathi-primary-foreground:     175 65% 11%;
+
+  --cathi-secondary:              32 14% 26%;
+  --cathi-secondary-foreground:   38 53% 90%;
+
+  --cathi-muted:                  32 14% 26%;
+  --cathi-muted-foreground:       37 17% 66%;
+
+  --cathi-accent:                 172 38% 25%;
+  --cathi-accent-foreground:      172 70% 80%;
+
+  --cathi-destructive:            0 62% 55%;
+  --cathi-destructive-foreground: 0 0% 98%;
+
+  --cathi-success:                145 45% 47%;
+  --cathi-success-foreground:     145 60% 10%;
+
+  --cathi-warning:                34 90% 62%;
+  --cathi-warning-foreground:     30 40% 12%;
+
+  --cathi-info:                   199 70% 62%;
+  --cathi-info-foreground:        205 60% 10%;
+
+  --cathi-border:                 32 16% 29%;
+  --cathi-input:                  32 18% 36%;
+  --cathi-ring:                   175 60% 55%;
+
+  --cathi-shadow-color: 0 0% 0%;
+  --cathi-shadow-sm:    0 2px 0 hsl(0 0% 0% / .45);
+  --cathi-shadow-md:    0 4px 0 hsl(0 0% 0% / .5), 0 8px 16px hsl(0 0% 0% / .4);
+  --cathi-shadow-lg:    0 6px 0 hsl(0 0% 0% / .5), 0 14px 28px hsl(0 0% 0% / .55);
+  --cathi-shadow-inset: inset 0 2px 4px hsl(0 0% 0% / .45);
+  --cathi-ring-alpha:   .75;
+}
+/*!
+ * cathi-ui v4 — 主题预设：动森（Cozy，默认）
+ * 作用域：[data-theme="cozy"] / .cathi-theme-cozy
+ * 说明：与 cathi-ui.css 的 :root 默认值一致，写成显式主题以便一键切回。
+ *       必须放在 cathi-ui.css 之后引入。
+ */
+
+[data-theme="cozy"],
+.cathi-theme-cozy {
+  --cathi-background:            var(--cathi-cream-100);
+  --cathi-foreground:            var(--cathi-cocoa-700);
+
+  --cathi-card:                  0 0% 100%;
+  --cathi-card-foreground:       var(--cathi-cocoa-700);
+
+  --cathi-popover:               0 0% 100%;
+  --cathi-popover-foreground:    var(--cathi-cocoa-700);
+
+  --cathi-primary:               var(--cathi-mint-500);
+  --cathi-primary-active:        var(--cathi-mint-700);
+  --cathi-primary-foreground:    0 0% 100%;
+
+  --cathi-secondary:             var(--cathi-cream-200);
+  --cathi-secondary-foreground:  var(--cathi-cocoa-700);
+
+  --cathi-muted:                 var(--cathi-cream-200);
+  --cathi-muted-foreground:      var(--cathi-cocoa-500);
+
+  --cathi-accent:                var(--cathi-mint-50);
+  --cathi-accent-foreground:     var(--cathi-mint-700);
+
+  --cathi-destructive:           var(--cathi-danger-500);
+  --cathi-destructive-foreground: 0 0% 100%;
+
+  --cathi-success:               var(--cathi-leaf-500);
+  --cathi-success-foreground:    0 0% 100%;
+
+  --cathi-warning:               var(--cathi-amber-500);
+  --cathi-warning-foreground:    var(--cathi-cocoa-900);
+
+  --cathi-info:                  var(--cathi-sky-500);
+  --cathi-info-foreground:       var(--cathi-cocoa-900);
+
+  --cathi-border:                var(--cathi-cream-300);
+  --cathi-input:                 var(--cathi-cream-400);
+  --cathi-ring:                  var(--cathi-mint-500);
+
+  --cathi-shadow-color: 31 29% 26%;
+  --cathi-shadow-sm:    0 2px 0 hsl(31 29% 26% / .10);
+  --cathi-shadow-md:    0 4px 0 hsl(31 29% 26% / .14), 0 8px 16px hsl(31 29% 26% / .12);
+  --cathi-shadow-lg:    0 6px 0 hsl(31 29% 26% / .14), 0 14px 28px hsl(31 29% 26% / .16);
+  --cathi-shadow-inset: inset 0 2px 4px hsl(31 29% 26% / .12);
+
+  --cathi-ring-alpha:    .55;
+  --cathi-surface-alpha: 1;
+  --cathi-glass-blur:    0px;
+}
+/* ===================== 深色变体（[data-dark]：夜色治愈）===================== */
+[data-theme="cozy"][data-dark],
+.cathi-theme-cozy.cathi-dark {
+  --cathi-background:           30 18% 12%;
+  --cathi-foreground:           40 30% 90%;
+  --cathi-card:                 30 16% 16%;
+  --cathi-card-foreground:      40 30% 90%;
+  --cathi-popover:              30 16% 18%;
+  --cathi-popover-foreground:   40 30% 90%;
+  --cathi-primary:              var(--cathi-mint-400);
+  --cathi-primary-active:       var(--cathi-mint-500);
+  --cathi-primary-foreground:   30 30% 10%;
+  --cathi-secondary:            30 16% 22%;
+  --cathi-secondary-foreground: 40 30% 90%;
+  --cathi-muted:                30 16% 20%;
+  --cathi-muted-foreground:     34 20% 72%;
+  --cathi-accent:               30 20% 24%;
+  --cathi-accent-foreground:    var(--cathi-mint-300);
+  --cathi-destructive:          var(--cathi-danger-400);
+  --cathi-destructive-foreground: 0 0% 100%;
+  --cathi-success:              var(--cathi-leaf-400);
+  --cathi-success-foreground:   30 30% 10%;
+  --cathi-warning:              var(--cathi-amber-400);
+  --cathi-warning-foreground:   30 30% 10%;
+  --cathi-info:                 var(--cathi-sky-400);
+  --cathi-info-foreground:      30 30% 10%;
+  --cathi-border:               30 14% 26%;
+  --cathi-input:                30 14% 30%;
+  --cathi-ring:                 var(--cathi-mint-400);
+  --cathi-shadow-color: 30 20% 6%;
+  --cathi-shadow-sm:    0 2px 0 hsl(30 20% 6% / .25);
+  --cathi-shadow-md:    0 4px 0 hsl(30 20% 6% / .30), 0 8px 16px hsl(30 20% 6% / .30);
+  --cathi-shadow-lg:    0 6px 0 hsl(30 20% 6% / .30), 0 14px 28px hsl(30 20% 6% / .34);
+  --cathi-shadow-inset: inset 0 2px 4px hsl(30 20% 6% / .30);
+}
+/* ===================== 浅色工业基（默认）===================== */
+[data-theme="endfield"],
+.cathi-theme-endfield {
+  /* —— 语义色（黄绿 / chartreuse，非荧光）—— */
+  --cathi-background:           220 14% 94%;    /* 浅冷灰底 */
+  --cathi-foreground:           220 22% 12%;
+
+  --cathi-card:                 0 0% 100%;
+  --cathi-card-foreground:      220 22% 12%;
+
+  --cathi-popover:              0 0% 100%;
+  --cathi-popover-foreground:   220 22% 12%;
+
+  --cathi-primary:              68 95% 36%;     /* 黄绿（浅底用深一档保证对比）*/
+  --cathi-primary-active:       68 95% 28%;
+  --cathi-primary-foreground:   0 0% 100%;
+
+  --cathi-secondary:            220 16% 89%;
+  --cathi-secondary-foreground: 220 22% 12%;
+
+  --cathi-muted:                220 16% 91%;
+  --cathi-muted-foreground:     220 12% 42%;
+
+  --cathi-accent:               68 55% 90%;
+  --cathi-accent-foreground:    68 85% 22%;
+
+  --cathi-destructive:          0 72% 50%;
+  --cathi-destructive-foreground: 0 0% 100%;
+
+  --cathi-success:              145 45% 38%;
+  --cathi-success-foreground:   0 0% 100%;
+
+  --cathi-warning:              38 95% 46%;
+  --cathi-warning-foreground:   30 45% 10%;
+
+  --cathi-info:                 199 75% 45%;
+  --cathi-info-foreground:      0 0% 100%;
+
+  /* —— 工业金属描边 / 几何符号色（浅色档）—— */
+  --cathi-border:               220 14% 76%;
+  --cathi-input:                220 16% 80%;
+  --cathi-ring:                 68 95% 40%;
+  --cathi-line:                 220 16% 78%;      /* 金属细描边（浅）*/
+  --cathi-accent-line:         68 90% 36%;      /* HUD 直角/三角符号（黄绿，浅）*/
+
+  /* —— 控件表面（随明暗翻转的灰）—— */
+  --cathi-field:                220 16% 96%;     /* 输入框 / 控件表面 */
+  --cathi-field-2:             220 16% 85%;     /* 轨道 / 强表面 */
+  --cathi-on-field:            220 22% 12%;
+
+  /* —— 锐利圆角（脱离治愈系大圆角）—— */
+  --cathi-radius: .25rem;
+  --cathi-r-xs:   .15rem;
+  --cathi-r-sm:   .25rem;
+  --cathi-r-md:   .35rem;
+  --cathi-r-lg:   .5rem;
+  --cathi-r-xl:   .75rem;
+
+  /* —— 去塑料感的硬投影（浅色档，较弱）—— */
+  --cathi-shadow-color: 220 20% 20%;
+  --cathi-shadow-sm:    0 1px 2px hsl(220 20% 20% / .18);
+  --cathi-shadow-md:    0 6px 20px hsl(220 20% 20% / .20), 0 0 0 1px hsl(220 20% 20% / .06);
+  --cathi-shadow-lg:    0 12px 36px hsl(220 20% 20% / .24);
+  --cathi-shadow-inset: inset 0 1px 0 hsl(0 0% 100% / .6);
+
+  /* —— 字体（工业机械感 + 等宽读数）—— */
+  --cathi-font: "Cathi Endfield", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cathi-font-mono: "Cathi Mono EF", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --cathi-ring-alpha:   .75;
+  --cathi-surface-alpha: 1;
+  --cathi-glass-blur:    0px;
+}
+/* 雷达图描边 */
+[data-theme="endfield"] .cathi-radar { --radar-stroke: hsl(var(--cathi-primary) / .5); }
+/* ===================== 深色变体（[data-dark]）===================== */
+[data-theme="endfield"][data-dark],
+.cathi-theme-endfield.cathi-dark {
+  --cathi-background:           220 5% 8%;      /* 中性近黑（炭黑）*/
+  --cathi-foreground:           0 0% 95%;
+  --cathi-card:                 220 6% 12%;
+  --cathi-card-foreground:      0 0% 95%;
+  --cathi-popover:              220 6% 14%;
+  --cathi-popover-foreground:   0 0% 95%;
+  --cathi-primary:              68 100% 48%;    /* 黄绿（暗底提亮）*/
+  --cathi-primary-active:       68 100% 38%;
+  --cathi-primary-foreground:   26 35% 8%;
+  --cathi-secondary:            220 6% 16%;
+  --cathi-secondary-foreground: 0 0% 95%;
+  --cathi-muted:                220 6% 15%;
+  --cathi-muted-foreground:     214 8% 66%;
+  --cathi-accent:               68 55% 17%;
+  --cathi-accent-foreground:    0 0% 90%;
+  --cathi-destructive:          0 72% 56%;
+  --cathi-destructive-foreground: 0 0% 98%;
+  --cathi-success:              145 45% 50%;
+  --cathi-success-foreground:   145 60% 10%;
+  --cathi-warning:              38 95% 60%;
+  --cathi-warning-foreground:   30 40% 12%;
+  --cathi-info:                 199 75% 62%;
+  --cathi-info-foreground:      205 60% 10%;
+  --cathi-border:               214 12% 28%;
+  --cathi-input:                214 12% 30%;
+  --cathi-ring:                 68 100% 48%;
+  --cathi-line:                 214 12% 30%;
+  --cathi-accent-line:         68 100% 55%;
+  --cathi-field:                220 12% 11%;
+  --cathi-field-2:             220 12% 20%;
+  --cathi-on-field:            0 0% 92%;
+  --cathi-shadow-color: 0 0% 0%;
+  --cathi-shadow-sm:    0 1px 2px hsl(0 0% 0% / .5);
+  --cathi-shadow-md:    0 6px 20px hsl(0 0% 0% / .55), 0 0 0 1px hsl(0 0% 0% / .35);
+  --cathi-shadow-lg:    0 12px 36px hsl(0 0% 0% / .62);
+  --cathi-shadow-inset: inset 0 1px 0 hsl(0 0% 100% / .06);
+}
+[data-theme="liquidglass"],
+.cathi-theme-liquidglass {
+  /* —— 语义色（清爽天蓝 + 浅色表面）—— */
+  --cathi-background:           210 40% 96%;
+  --cathi-foreground:           220 30% 22%;
+
+  --cathi-card:                 0 0% 100%;
+  --cathi-card-foreground:      220 30% 22%;
+
+  --cathi-popover:              0 0% 100%;
+  --cathi-popover-foreground:   220 30% 22%;
+
+  --cathi-primary:              205 90% 52%;
+  --cathi-primary-active:       205 90% 40%;
+  --cathi-primary-foreground:   0 0% 100%;
+
+  --cathi-secondary:            210 40% 90%;
+  --cathi-secondary-foreground: 220 30% 22%;
+
+  --cathi-muted:                210 40% 92%;
+  --cathi-muted-foreground:     220 12% 45%;
+
+  --cathi-accent:               205 90% 92%;
+  --cathi-accent-foreground:    205 90% 40%;
+
+  --cathi-destructive:          0 80% 60%;
+  --cathi-destructive-foreground: 0 0% 100%;
+
+  --cathi-success:              150 60% 42%;
+  --cathi-success-foreground:   0 0% 100%;
+
+  --cathi-warning:              38 95% 56%;
+  --cathi-warning-foreground:   30 40% 12%;
+
+  --cathi-info:                 205 85% 55%;
+  --cathi-info-foreground:      0 0% 100%;
+
+  /* —— 玻璃边缘 / 高光色 —— */
+  --cathi-border:               215 40% 80%;
+  --cathi-input:                215 45% 82%;
+  --cathi-ring:                 205 90% 55%;
+  --cathi-glass-edge:          255 255% 100%;   /* 镜面高光（白）*/
+  --cathi-tint:                 210 60% 96%;      /* 自适应着色（冷调）*/
+
+  /* —— 精致圆角（苹果风，非治愈系超大圆角）—— */
+  --cathi-radius: 1.125rem;
+  --cathi-r-xs:   .5rem;
+  --cathi-r-sm:   .75rem;
+  --cathi-r-md:   1rem;
+  --cathi-r-lg:   1.25rem;
+  --cathi-r-xl:   1.5rem;
+
+  /* —— 浅色柔和层叠投影 —— */
+  --cathi-shadow-color: 220 30% 60%;
+  --cathi-shadow-sm:    0 2px 8px hsl(220 30% 50% / .16);
+  --cathi-shadow-md:    0 8px 24px hsl(220 30% 50% / .20);
+  --cathi-shadow-lg:    0 16px 40px hsl(220 30% 50% / .26);
+  --cathi-shadow-inset: inset 0 1px 2px hsl(0 0% 100% / .65);
+
+  /* —— 字体（SF 风中性，Inter 替代）—— */
+  --cathi-font: "Cathi Glass", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cathi-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --cathi-ring-alpha:   .55;
+  --cathi-surface-alpha: .62;   /* 半透明表面（regular 玻璃权重）*/
+  --cathi-glass-blur:    22px;  /* 毛玻璃模糊（含 saturate，见组件覆盖）*/
+}
+/* ===================== 深色变体（[data-dark]：暗色玻璃）===================== */
+[data-theme="liquidglass"][data-dark],
+.cathi-theme-liquidglass.cathi-dark {
+  --cathi-background:           220 30% 10%;
+  --cathi-foreground:           220 20% 92%;
+  --cathi-card:                 220 25% 16%;
+  --cathi-card-foreground:      220 20% 92%;
+  --cathi-popover:              220 25% 18%;
+  --cathi-popover-foreground:   220 20% 92%;
+  --cathi-primary:              205 90% 62%;
+  --cathi-primary-active:       205 90% 50%;
+  --cathi-primary-foreground:   220 40% 10%;
+  --cathi-secondary:            220 22% 24%;
+  --cathi-secondary-foreground: 220 20% 92%;
+  --cathi-muted:                220 22% 22%;
+  --cathi-muted-foreground:     220 14% 70%;
+  --cathi-accent:               205 60% 26%;
+  --cathi-accent-foreground:    205 90% 80%;
+  --cathi-destructive:          0 80% 66%;
+  --cathi-destructive-foreground: 0 0% 100%;
+  --cathi-success:              150 60% 52%;
+  --cathi-success-foreground:   220 40% 10%;
+  --cathi-warning:              38 95% 62%;
+  --cathi-warning-foreground:   30 40% 12%;
+  --cathi-info:                 205 85% 65%;
+  --cathi-info-foreground:      220 40% 10%;
+  --cathi-border:               215 25% 38%;
+  --cathi-input:                215 25% 42%;
+  --cathi-ring:                 205 90% 62%;
+  --cathi-glass-edge:          220 40% 88%;   /* 暗底用更亮的镜面高光 */
+  --cathi-tint:                 220 40% 30%;
+  --cathi-shadow-color: 220 40% 6%;
+  --cathi-shadow-sm:    0 2px 8px hsl(220 40% 6% / .4);
+  --cathi-shadow-md:    0 8px 24px hsl(220 40% 6% / .5);
+  --cathi-shadow-lg:    0 16px 40px hsl(220 40% 6% / .55);
+  --cathi-shadow-inset: inset 0 1px 2px hsl(220 40% 90% / .12);
+  --cathi-surface-alpha: .55;
+  --cathi-glass-blur:    22px;
+}
+}
