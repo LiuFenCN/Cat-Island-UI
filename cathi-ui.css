@@ -88,6 +88,7 @@
   --cathi-popover-foreground:    var(--cathi-cocoa-700);
 
   --cathi-primary:               var(--cathi-mint-500);
+  --cathi-primary-active:        var(--cathi-mint-700);  /* 按压/深一档主色，随主题变 */
   --cathi-primary-foreground:    0 0% 100%;
 
   --cathi-secondary:             var(--cathi-cream-200);
@@ -97,7 +98,7 @@
   --cathi-muted-foreground:      var(--cathi-cocoa-500);
 
   --cathi-accent:                var(--cathi-mint-50);
-  --cathi-accent-foreground:     var(--cathi-mint-700);
+  --cathi-accent-foreground:     var(--cathi-primary-active);
 
   --cathi-destructive:           var(--cathi-danger-500);
   --cathi-destructive-foreground: 0 0% 100%;
@@ -114,6 +115,8 @@
   --cathi-border:                var(--cathi-cream-300);
   --cathi-input:                 var(--cathi-cream-400);
   --cathi-ring:                  var(--cathi-mint-500);
+  --cathi-surface-alpha:         1;    /* 玻璃主题设为 <1 实现半透明表面 */
+  --cathi-glass-blur:            0px;  /* 玻璃主题设为 e.g. 18px 开启毛玻璃 */
 
   /* ─────────── 1.3 v3 兼容别名（已解析的颜色值，旧 HTML 无需改动） ─────────── */
   --cathi-bg:             hsl(var(--cathi-background));
@@ -126,7 +129,7 @@
   --cathi-text-invert:    hsl(var(--cathi-primary-foreground));
 
   --cathi-border-strong:  hsl(var(--cathi-input));
-  --cathi-primary-dark:   hsl(var(--cathi-mint-700));
+  --cathi-primary-dark:   hsl(var(--cathi-primary-active));
   --cathi-primary-soft:   hsl(var(--cathi-primary) / .14);
   --cathi-primary-soft-2: hsl(var(--cathi-primary) / .28);
 
@@ -324,7 +327,7 @@
  * ───────────────────────────────────────────── */
 .cathi-btn {
   --_bg:       hsl(var(--cathi-primary));
-  --_bg-press: hsl(var(--cathi-mint-700));
+  --_bg-press: hsl(var(--cathi-primary-active));
   --_fg:       hsl(var(--cathi-primary-foreground));
   --_depth:    var(--cathi-press-depth);
 
@@ -419,12 +422,14 @@
  *  attr : data-variant=default|flat|soft|pop|dotted
  * ───────────────────────────────────────────── */
 .cathi-card {
-  background: hsl(var(--cathi-card));
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha, 1));
   color: hsl(var(--cathi-card-foreground));
   border: 2px solid hsl(var(--cathi-border));
   border-radius: var(--cathi-r-lg);
   padding: var(--cathi-sp-5);
   box-shadow: var(--cathi-shadow-md);
+  backdrop-filter: blur(var(--cathi-glass-blur, 0px));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur, 0px));
   transition: transform var(--cathi-dur) var(--cathi-ease), box-shadow var(--cathi-dur);
 }
 .cathi-card--flat,
@@ -466,7 +471,7 @@
   left: 0; bottom: -10px;
   border-width: 10px 0 0 10px;
   border-style: solid;
-  border-color: hsl(var(--cathi-mint-700)) transparent transparent transparent;
+  border-color: hsl(var(--cathi-primary-active)) transparent transparent transparent;
 }
 .cathi-ribbon--amber { background: var(--cathi-amber); color: hsl(var(--cathi-cocoa-900)); }
 .cathi-ribbon--amber::after { border-color: var(--cathi-amber-dark) transparent transparent transparent; }
@@ -489,7 +494,7 @@
   font-weight: 900;
   line-height: 1.5;
   background: hsl(var(--cathi-primary) / .14);
-  color: hsl(var(--cathi-mint-700));
+  color: hsl(var(--cathi-primary-active));
   border: 1.5px solid transparent;
 }
 .cathi-tag[data-variant="secondary"] { background: hsl(var(--cathi-secondary)); color: hsl(var(--cathi-secondary-foreground)); }
@@ -710,8 +715,8 @@
 .cathi-progress__fill {
   height: 100%;
   border-radius: var(--cathi-r-pill);
-  background-color: hsl(var(--cathi-mint-500));
-  background-image: linear-gradient(180deg, hsl(var(--cathi-mint-400)), hsl(var(--cathi-mint-600)));
+  background-color: hsl(var(--cathi-primary));
+  background-image: linear-gradient(180deg, hsl(var(--cathi-primary) / .92), hsl(var(--cathi-primary-active)));
   transition: width .5s var(--cathi-ease);
 }
 .cathi-progress__fill--amber {
@@ -740,7 +745,7 @@
   font-size: 13px;
   font-weight: 700;
 }
-.cathi-progress__pct { font-weight: 900; color: hsl(var(--cathi-mint-700)); font-size: 16px; }
+.cathi-progress__pct { font-weight: 900; color: hsl(var(--cathi-primary-active)); font-size: 16px; }
 .cathi-progress__pct--amber { color: var(--cathi-amber-dark); }
 
 /* ─────────────────────────────────────────────
@@ -832,7 +837,7 @@
  * ───────────────────────────────────────────── */
 .cathi-alert {
   --_tint:   var(--cathi-primary);
-  --_on:     var(--cathi-mint-700);
+  --_on:     var(--cathi-primary-active);
   display: flex;
   gap: var(--cathi-sp-3);
   padding: var(--cathi-sp-4);
@@ -971,11 +976,13 @@
   min-width: 200px;
   margin-top: var(--cathi-sp-2);
   padding: var(--cathi-sp-1);
-  background: hsl(var(--cathi-popover));
+  background: hsl(var(--cathi-popover) / var(--cathi-surface-alpha, 1));
   color: hsl(var(--cathi-popover-foreground));
   border: 2px solid hsl(var(--cathi-border));
   border-radius: var(--cathi-r-md);
   box-shadow: var(--cathi-shadow-lg);
+  backdrop-filter: blur(var(--cathi-glass-blur, 0px));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur, 0px));
   animation: cathi-zoom-in var(--cathi-dur-fast) var(--cathi-ease-out);
 }
 .cathi-dropdown[data-align="end"]  .cathi-dropdown__menu { left: auto; right: 0; }
@@ -1020,9 +1027,11 @@
   padding: 0;
   border: 2px solid hsl(var(--cathi-border));
   border-radius: var(--cathi-r-lg);
-  background: hsl(var(--cathi-card));
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha, 1));
   color: hsl(var(--cathi-card-foreground));
   box-shadow: var(--cathi-shadow-lg);
+  backdrop-filter: blur(var(--cathi-glass-blur, 0px));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur, 0px));
 }
 .cathi-dialog::backdrop {
   background: hsl(var(--cathi-shadow-color) / .45);
@@ -1063,6 +1072,10 @@
   border-radius: 0;
   border: none;
   border-left: 2px solid hsl(var(--cathi-border));
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha, 1));
+  color: hsl(var(--cathi-card-foreground));
+  backdrop-filter: blur(var(--cathi-glass-blur, 0px));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur, 0px));
 }
 .cathi-sheet[data-side="left"]  { margin: 0 auto 0 0; border-left: none; border-right: 2px solid hsl(var(--cathi-border)); }
 .cathi-sheet[data-side="right"] { margin: 0 0 0 auto; }
@@ -1266,7 +1279,7 @@
 .cathi-time-display__dow {
   font-size: 11px;
   font-weight: 900;
-  color: hsl(var(--cathi-mint-700));
+  color: hsl(var(--cathi-primary-active));
   text-transform: uppercase;
   letter-spacing: .5px;
 }
@@ -1414,7 +1427,7 @@
   position: relative;
   padding: 4px 20px;
   background: var(--char-color, hsl(var(--cathi-primary)));
-  color: var(--char-dark, hsl(var(--cathi-mint-700)));
+  color: var(--char-dark, hsl(var(--cathi-primary-active)));
   font-weight: 900;
   font-size: 14px;
   border-radius: var(--cathi-r-pill);
@@ -1563,7 +1576,7 @@
   border-radius: 50%;
   background: hsl(var(--cathi-primary) / .14);
   border: 2px solid hsl(var(--cathi-primary));
-  color: hsl(var(--cathi-mint-700));
+  color: hsl(var(--cathi-primary-active));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1676,7 +1689,7 @@
 .cathi-action-btn:hover  { transform: translateY(-2px); }
 .cathi-action-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 hsl(var(--cathi-input)); }
 .cathi-action-btn--danger  { border-color: hsl(var(--cathi-destructive) / .5); color: hsl(var(--cathi-danger-600)); }
-.cathi-action-btn--primary { border-color: hsl(var(--cathi-primary)); color: hsl(var(--cathi-mint-700)); }
+.cathi-action-btn--primary { border-color: hsl(var(--cathi-primary)); color: hsl(var(--cathi-primary-active)); }
 
 /* ─────────────────────────────────────────────
  * 3.39 关系进度条 .cathi-relation-bar
@@ -1834,7 +1847,7 @@
 
 .cathi-muted { color: hsl(var(--cathi-muted-foreground)); }
 .cathi-faint { color: hsl(var(--cathi-muted-foreground) / .7); }
-.cathi-accent-text { color: hsl(var(--cathi-mint-700)); }
+.cathi-accent-text { color: hsl(var(--cathi-primary-active)); }
 .cathi-danger-text { color: hsl(var(--cathi-destructive)); }
 .cathi-nowrap { white-space: nowrap; }
 .cathi-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

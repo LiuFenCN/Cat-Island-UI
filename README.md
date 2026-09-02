@@ -25,6 +25,53 @@
 <body class="cathi-root" data-theme="dark"> ... </body>
 ```
 
+## 三套主题预设
+
+cathi-ui 不只一套皮肤。仓库内置 **3 套主题预设**，都只是「重写同一组语义 token」的 CSS 文件，放在 `cathi-ui.css` **之后**引入即可换肤：
+
+| 预设 | 文件 | 风格 | 激活方式 |
+|------|------|------|----------|
+| 动森 Cozy（默认） | `themes/cozy.css` | 奶油底 + 薄荷绿，治愈圆润 | `data-theme="cozy"` / `.cathi-theme-cozy` |
+| 终末地 Endfield | `themes/endfield.css` | 黑底 + 终末地黄，工业冷峻 | `data-theme="endfield"` / `.cathi-theme-endfield` |
+| 液态玻璃 Liquid Glass | `themes/liquidglass.css` | 浅渐变底 + 半透明毛玻璃 | `data-theme="liquidglass"` / `.cathi-theme-liquidglass` |
+
+```html
+<link rel="stylesheet" href="cathi-ui.css">
+<link rel="stylesheet" href="themes/cozy.css">
+<link rel="stylesheet" href="themes/endfield.css">
+<link rel="stylesheet" href="themes/liquidglass.css">
+
+<!-- 切到终末地：给任意祖先节点加 data-theme / class 即可 -->
+<body class="cathi-root" data-theme="endfield"> ... </body>
+```
+
+- 主题预设与「暗色模式」是正交的两套机制：主题决定配色气质，暗色决定明暗。可叠加使用。
+- 液态玻璃通过两个专属 token 实现毛玻璃且不影响其它主题：`--cathi-surface-alpha`（表面不透明度 <.62）+ `--cathi-glass-blur`（18px 背景模糊）。
+- 三者均经过 puppeteer + Edge 实测：关键 `getComputedStyle` 正确、控制台 0 错误。
+
+## React 适配（shadcn 风格）
+
+`react/` 是完整 shadcn 式 React 组件子工程（Vite + React 18 + TS）。核心组件写成**可复制的 `.tsx`**，沿用 cathi-ui 的 `cathi-*` class 与语义 token 驱动，零运行时依赖、零 JS 浮层（`<details>` 下拉/手风琴、原生 `<dialog>` 弹窗）。
+
+```bash
+cd react
+npm install
+npm run dev      # 本地预览（含三主题切换 demo）
+npm run build    # tsc -b && vite build → dist/
+```
+
+```tsx
+import { Button, Card, CardHeader, CardTitle, CardContent } from './components';
+
+<Button data-variant="primary" data-size="lg">动森主按钮</Button>
+<div data-theme="liquidglass">  {/* 局部切主题 */}
+  <Card><CardHeader><CardTitle>毛玻璃卡片</CardTitle></CardHeader>
+    <CardContent>...</CardContent></Card>
+</div>
+```
+
+组件清单（24 个原语）：Button / Card / Input / Textarea / Select / Label / Field / Checkbox / Radio / Option / Switch / Slider / Separator / Badge / Tag / Spinner / Kbd / Skeleton / Alert / Progress / Avatar / AvatarGroup / Empty / Breadcrumb / Tooltip / Table / Toggle / ToggleGroup / Dropdown / Dialog / Sheet / Accordion / Tabs。详见 `react/src/components/`。
+
 ## v4 新版重点
 
 - **shadcn 风格 Token 架构**（HSL 通道值 + 透明度修饰符 + 单一圆角基准）
@@ -80,7 +127,8 @@
 | 布局 | `.cathi-settings-panel` | 设置面板分组 |
 | 布局 | `.cathi-action-group` | 操作按钮组 |
 | 布局 | `.cathi-list` | iOS 风格设置列表项 |
-| 主题 | `.cathi-dark` / `.cathi-theme-dark` / `data-theme="dark"` | 暗色主题（任选其一） |
+| 主题预设 | `data-theme="cozy\|endfield\|liquidglass"` / `.cathi-theme-X` | 三套主题：动森(默认) / 终末地 / 液态玻璃 |
+| 暗色 | `.cathi-dark` / `.cathi-theme-dark` / `data-theme="dark"` | 全局暗色（任选其一，独立于主题预设） |
 
 ## Design Token
 

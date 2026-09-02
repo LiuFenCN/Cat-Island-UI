@@ -1,0 +1,64 @@
+/*!
+ * cathi-ui v4 — 主题预设：终末地（Endfield）
+ * 作用域：[data-theme="endfield"] / .cathi-theme-endfield
+ * 风格：黑底 + 终末地黄（#E8B23A 一类）主色，工业冷峻质感。
+ *       重写阴影为纯黑投影，按压/强调色全部跟随主色。
+ *       必须放在 cathi-ui.css 之后引入。
+ */
+
+[data-theme="endfield"],
+.cathi-theme-endfield {
+  --cathi-background:           24 20% 9%;
+  --cathi-foreground:           46 100% 86%;
+
+  --cathi-card:                 26 22% 13%;
+  --cathi-card-foreground:      46 100% 86%;
+
+  --cathi-popover:              26 22% 15%;
+  --cathi-popover-foreground:   46 100% 86%;
+
+  --cathi-primary:              45 100% 58%;
+  --cathi-primary-active:       45 100% 46%;
+  --cathi-primary-foreground:   26 30% 8%;
+
+  --cathi-secondary:            26 20% 18%;
+  --cathi-secondary-foreground: 46 100% 86%;
+
+  --cathi-muted:                26 20% 18%;
+  --cathi-muted-foreground:     38 16% 64%;
+
+  --cathi-accent:               45 60% 22%;
+  --cathi-accent-foreground:    46 100% 72%;
+
+  --cathi-destructive:          0 70% 56%;
+  --cathi-destructive-foreground: 0 0% 98%;
+
+  --cathi-success:              145 45% 50%;
+  --cathi-success-foreground:   145 60% 10%;
+
+  --cathi-warning:              38 95% 60%;
+  --cathi-warning-foreground:   30 40% 12%;
+
+  --cathi-info:                 199 75% 62%;
+  --cathi-info-foreground:      205 60% 10%;
+
+  --cathi-border:               30 16% 26%;
+  --cathi-input:                30 18% 32%;
+  --cathi-ring:                 45 100% 60%;
+
+  --cathi-shadow-color: 0 0% 0%;
+  --cathi-shadow-sm:    0 2px 0 hsl(0 0% 0% / .5);
+  --cathi-shadow-md:    0 4px 0 hsl(0 0% 0% / .55), 0 8px 16px hsl(0 0% 0% / .45);
+  --cathi-shadow-lg:    0 6px 0 hsl(0 0% 0% / .55), 0 14px 28px hsl(0 0% 0% / .5);
+  --cathi-shadow-inset: inset 0 2px 4px hsl(0 0% 0% / .45);
+
+  --cathi-ring-alpha:   .7;
+  --cathi-surface-alpha: 1;
+  --cathi-glass-blur:    0px;
+}
+
+/* 终末地：深色页面背景带极轻暖调，避免纯黑死板 */
+[data-theme="endfield"] .cathi-root,
+.cathi-theme-endfield.cathi-root {
+  background: hsl(24 20% 9%);
+}

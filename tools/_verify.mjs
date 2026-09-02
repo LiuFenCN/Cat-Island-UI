@@ -123,6 +123,30 @@ async function main() {
     }
   }
 
+  // 三主题切换验证（动森 / 终末地 / 液态玻璃）
+  for (const theme of ['cozy', 'endfield', 'liquidglass']) {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
+    const errs = [];
+    page.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
+    page.on('pageerror', (e) => errs.push('PAGEERROR ' + e.message));
+    await page.goto(pathToFileURL(path.join(ROOT, 'index.html')).href, { waitUntil: 'networkidle0' });
+    await page.evaluate((t) => { document.body.setAttribute('data-theme', t); }, theme);
+    await sleep(500);
+    const res = await page.evaluate(collectFn, SAMPLES);
+    const cs = await page.evaluate(() => {
+      const card = getComputedStyle(document.querySelector('.cathi-card'));
+      return { cardBackdrop: card.backdropFilter || card.webkitBackdropFilter };
+    });
+    console.log(`\n===== THEME ${theme} =====`);
+    console.log('  body:', res['body']);
+    console.log('  btn :', res['.cathi-btn']);
+    console.log('  card:', res['.cathi-card'], '| backdrop:', cs.cardBackdrop);
+    if (errs.length) console.log('  console errors:', errs);
+    await page.screenshot({ path: path.join(OUT, `cathi_theme_${theme}.png`), fullPage: true });
+    await page.close();
+  }
+
   await browser.close();
 
   for (const mode of ['light', 'dark']) {

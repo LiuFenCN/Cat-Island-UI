@@ -1,0 +1,64 @@
+/*!
+ * cathi-ui v4 — 主题预设：液态玻璃（Liquid Glass）
+ * 作用域：[data-theme="liquidglass"] / .cathi-theme-liquidglass
+ * 风格：苹果风毛玻璃——半透明表面 + backdrop-filter 模糊，浅色渐变底。
+ *       通过 --cathi-surface-alpha(<1) + --cathi-glass-blur 实现，其余主题不受影响。
+ *       必须放在 cathi-ui.css 之后引入。
+ */
+
+[data-theme="liquidglass"],
+.cathi-theme-liquidglass {
+  --cathi-background:           210 40% 96%;
+  --cathi-foreground:           220 30% 22%;
+
+  --cathi-card:                 0 0% 100%;
+  --cathi-card-foreground:      220 30% 22%;
+
+  --cathi-popover:              0 0% 100%;
+  --cathi-popover-foreground:   220 30% 22%;
+
+  --cathi-primary:              205 90% 52%;
+  --cathi-primary-active:       205 90% 40%;
+  --cathi-primary-foreground:   0 0% 100%;
+
+  --cathi-secondary:            210 40% 90%;
+  --cathi-secondary-foreground: 220 30% 22%;
+
+  --cathi-muted:                210 40% 92%;
+  --cathi-muted-foreground:     220 12% 45%;
+
+  --cathi-accent:               205 90% 92%;
+  --cathi-accent-foreground:    205 90% 40%;
+
+  --cathi-destructive:          0 80% 60%;
+  --cathi-destructive-foreground: 0 0% 100%;
+
+  --cathi-success:              150 60% 42%;
+  --cathi-success-foreground:   0 0% 100%;
+
+  --cathi-warning:              38 95% 56%;
+  --cathi-warning-foreground:   30 40% 12%;
+
+  --cathi-info:                 205 85% 55%;
+  --cathi-info-foreground:      0 0% 100%;
+
+  --cathi-border:               210 30% 85%;
+  --cathi-input:                210 30% 82%;
+  --cathi-ring:                 205 90% 55%;
+
+  --cathi-shadow-color: 220 30% 60%;
+  --cathi-shadow-sm:    0 2px 8px hsl(220 30% 50% / .18);
+  --cathi-shadow-md:    0 8px 24px hsl(220 30% 50% / .22);
+  --cathi-shadow-lg:    0 16px 40px hsl(220 30% 50% / .28);
+  --cathi-shadow-inset: inset 0 1px 2px hsl(0 0% 100% / .6);
+
+  --cathi-ring-alpha:    .6;
+  --cathi-surface-alpha: .62;   /* 半透明表面 */
+  --cathi-glass-blur:    18px;  /* 毛玻璃模糊 */
+}
+
+/* 液态玻璃：彩色渐变底，让毛玻璃的模糊有内容可透 */
+[data-theme="liquidglass"] .cathi-root,
+.cathi-theme-liquidglass.cathi-root {
+  background: linear-gradient(135deg, #e9f4ff 0%, #f3ecff 50%, #e9fff6 100%);
+}

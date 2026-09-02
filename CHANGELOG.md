@@ -1,5 +1,44 @@
 # Changelog
 
+## v4.1 — 2026-09-03
+
+补齐 v4 的「多主题」与「React 适配」两块拼图：cathi-ui 现在是单仓库三主题预设 + 一套可复制的 shadcn 风格 React 组件。
+
+### 主题预设（新）
+
+- 新增 `themes/` 目录，内置 **3 套主题预设**，机制同 shadcn 的 `:root` 变量覆盖——放在 `cathi-ui.css` 之后引入，重写同一组语义 token 即整站换肤：
+  - `themes/cozy.css` — 动森（Cozy，默认）：奶油底 + 薄荷绿，治愈圆润
+  - `themes/endfield.css` — 终末地（Endfield）：黑底 `24 20% 9%` + 终末地黄 `45 100% 58%`，工业冷峻
+  - `themes/liquidglass.css` — 液态玻璃（Liquid Glass）：浅渐变底 + 半透明毛玻璃
+- 激活方式：`data-theme="cozy|endfield|liquidglass"` 或 `.cathi-theme-X`（作用域同时支持属性与 class 两种写法）
+- 主题预设与「暗色模式」正交：主题决定配色气质，暗色决定明暗，可叠加使用
+
+### 换肤彻底的 Token 修正（破坏性隐患修复）
+
+- 新增 `--cathi-primary-active`：按压态 / 深一档主色，随主题变。原先按钮按压、进度条渐变、Alert 强调色硬编码了 `--cathi-mint-700/500/600`（约 10 处），换肤会失效——已全部改为 `var(--cathi-primary-active)` / `var(--cathi-primary)`，使强调色跟随主题
+- 新增 `--cathi-surface-alpha`（默认 `1`）与 `--cathi-glass-blur`（默认 `0px`）：卡片 / 浮层 / 弹窗 / 抽屉用 `hsl(var(--cathi-card) / var(--cathi-surface-alpha))` + `backdrop-filter: blur(var(--cathi-glass-blur))`。液态玻璃设 `alpha:.62` / `blur:18px`，其余主题保持 `1` / `0px` 不受影响
+
+### React 适配（新子工程 `react/`）
+
+- 新增完整 shadcn 风格 React 组件子工程（Vite + React 18 + TypeScript）：组件即源码、可复制进项目，由 cathi-ui 的 class + 语义 token 驱动
+- `cn()` 合并 className、`forwardRef` 原语、`data-variant` / `data-size` 映射 cathi-ui class；零 JS 浮层（`<details>` 做 Dropdown / Accordion，原生 `<dialog>` 做 Dialog / Sheet）
+- 24 个原语：Button / Card / Input / Textarea / Select / Label / Field / Checkbox / Radio / Option / Switch / Slider / Separator / Badge / Tag / Spinner / Kbd / Skeleton / Alert / Progress / Avatar / AvatarGroup / Empty / Breadcrumb / Tooltip / Table / Toggle / ToggleGroup / Dropdown / Dialog / Sheet / Accordion / Tabs（统一从 `react/src/components/index.ts` 导出）
+- `react/src/App.tsx` 演示页含三主题切换（动森 / 终末地 / 液态玻璃 / 暗色）；`react/src/styles.css` 用 `../../` 引入仓库根 CSS 与三主题
+- `react/dist/`、`react/node_modules/`、`react/tsconfig.tsbuildinfo` 已在 `.gitignore` 排除，仓库只存源码
+- 构建通过：`tsc -b && vite build` 成功，产物 CSS 含全部 cathi-ui 样式 + 3 个 `data-theme` 选择器 + `cathi-glass-blur` 毛玻璃规则
+
+### 文档
+
+- `README.md` / `README-CATHI-UI.md` 新增「三套主题预设」「React 适配」两节 + 更新项目结构树
+- 组件清单表格补「主题预设」行（cozy / endfield / liquidglass）
+
+### 验证
+
+- `tools/_verify.mjs` 扩展为对 cozy / endfield / liquidglass 三主题采样关键 `getComputedStyle`（body / btn / card 及 `backdrop-filter`）并截图
+- 三主题实测：cozy body `rgb(246,240,224)`、endfield body `rgb(28,22,18)` 按钮 `rgb(255,201,41)`、liquidglass 卡片 `rgba(255,255,255,.62)` + `blur(18px)`，控制台 0 错误
+
+---
+
 ## v4.0 — 2026-09-03
 
 参考 shadcn/ui 设计系统做了一次底层重构，所有组件视觉保持治愈系（cozy）但工程性大幅提升。

@@ -33,6 +33,60 @@
 | `--cathi-ring` | focus 环 | `outline: 3px solid hsl(var(--cathi-ring) / .55)` |
 | `--cathi-radius` | 全局圆角基准 | `calc(--cathi-radius - .75rem)` |
 
+## 🎨 三套主题预设（Themes）
+
+cathi-ui 内置 **3 套主题预设**，机制与 shadcn 的 `:root` 变量覆盖一致：每个预设都是一个 CSS 文件，放在 `cathi-ui.css` **之后**引入，重写同一组语义 token 即可整站换肤。
+
+| 预设 | 文件 | 风格 | 激活 |
+|------|------|------|------|
+| 动森 Cozy（默认） | `themes/cozy.css` | 奶油底 + 薄荷绿，治愈圆润 | `data-theme="cozy"` / `.cathi-theme-cozy` |
+| 终末地 Endfield | `themes/endfield.css` | 黑底 `24 20% 9%` + 终末地黄 `45 100% 58%`，工业冷峻 | `data-theme="endfield"` / `.cathi-theme-endfield` |
+| 液态玻璃 Liquid Glass | `themes/liquidglass.css` | 浅渐变底 + 半透明毛玻璃 | `data-theme="liquidglass"` / `.cathi-theme-liquidglass` |
+
+```html
+<link rel="stylesheet" href="cathi-ui.css">
+<link rel="stylesheet" href="themes/cozy.css">
+<link rel="stylesheet" href="themes/endfield.css">
+<link rel="stylesheet" href="themes/liquidglass.css">
+
+<body class="cathi-root" data-theme="endfield"> ... </body>
+```
+
+**换肤彻底的关键 token**（v4.1 新增 / 修正）：
+
+- `--cathi-primary-active`：按压态 / 深一档主色，随主题变（替代原先硬编码的 `--cathi-mint-700`）。按钮按压、进度条渐变、Alert 强调色全部改用它，否则换肤会失效。
+- `--cathi-surface-alpha`：表面不透明度，默认 `1`；液态玻璃设为 `.62`。
+- `--cathi-glass-blur`：背景模糊值，默认 `0px`；液态玻璃设为 `18px`。卡片 / 浮层 / 弹窗用 `hsl(var(--cathi-card) / var(--cathi-surface-alpha))` + `backdrop-filter: blur(var(--cathi-glass-blur))`，因此毛玻璃只影响液态玻璃，其余主题无感。
+
+主题预设与「暗色模式」正交：主题决定配色气质，暗色决定明暗，可叠加。三套均已用 puppeteer + Edge 实测关键 `getComputedStyle`（endfield 按钮 `rgb(255,201,41)`、liquidglass 卡片 `rgba(255,255,255,.62)` + `blur(18px)`），控制台 0 错误。
+
+## ⚛️ React 适配（shadcn 风格）
+
+`react/` 是完整 shadcn 式 React 组件子工程（Vite + React 18 + TypeScript）。设计原则与 shadcn/ui 一致——**组件即源码，可复制进你的项目**，由 cathi-ui 的 class + 语义 token 驱动，不绑定任何运行时：
+
+- `cn()` 合并 className，`forwardRef` 原语组件，`data-variant` / `data-size` 映射 cathi-ui class
+- 零 JS 浮层：`<details>` 实现 Dropdown / Accordion，原生 `<dialog>` 实现 Dialog / Sheet
+- 24 个原语（Button / Card / Input / Label / Checkbox / Radio / Switch / Slider / Separator / Badge / Tag / Spinner / Kbd / Skeleton / Alert / Progress / Avatar / Empty / Breadcrumb / Tooltip / Table / Toggle / Dropdown / Dialog / Sheet / Accordion / Tabs），统一从 `react/src/components/index.ts` 导出
+- `react/src/App.tsx` 是带三主题切换的演示页（动森 / 终末地 / 液态玻璃 / 暗色）
+
+```bash
+cd react
+npm install
+npm run dev      # 本地预览（含三主题切换 demo）
+npm run build    # tsc -b && vite build → react/dist/
+```
+
+`react/src/styles.css` 通过 `../../` 引用仓库根 CSS 与主题：
+
+```css
+@import url('../../cathi-ui.css');
+@import url('../../themes/cozy.css');
+@import url('../../themes/endfield.css');
+@import url('../../themes/liquidglass.css');
+```
+
+> 发布产物 `react/dist/` 与 `react/node_modules/` 已在 `.gitignore` 中排除，仓库只存源码。
+
 ## 🚀 快速使用
 
 ```html
@@ -124,8 +178,18 @@
 Cat-Island-UI/
 ├── cathi-ui.css        # 完整设计系统（≈1900 行，含 @layer）
 ├── cathi-ui.min.css    # 压缩版（构建生成）
-├── index.html          # 交互式演示页（含 v4 新组件展示）
+├── index.html          # 交互式演示页（含三主题切换）
+├── themes/             # v4.1 主题预设（放在 cathi-ui.css 之后引入）
+│   ├── cozy.css        # 动森（默认）
+│   ├── endfield.css    # 终末地
+│   └── liquidglass.css # 液态玻璃
+├── react/              # v4.1 shadcn 风格 React 组件子工程（Vite+React+TS）
+│   ├── src/components/ # 24 个可复制 .tsx 原语 + index.ts barrel
+│   ├── src/lib/cn.ts   # className 合并工具
+│   ├── src/App.tsx     # 三主题切换演示页
+│   └── src/styles.css  # 引入仓库根 cathi-ui.css + 三主题
 ├── README-CATHI-UI.md  # 本文件
+├── README.md           # 总览
 ├── LICENSE             # CC BY-NC 4.0
 ├── CHANGELOG.md        # 变更记录
 └── tools/

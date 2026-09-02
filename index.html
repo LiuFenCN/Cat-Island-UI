@@ -6,6 +6,10 @@
   <title>cathi-ui v4 · 治愈系设计系统</title>
   <link rel="stylesheet" href="assets/fonts/nunito.css">
   <link rel="stylesheet" href="cathi-ui.css">
+  <!-- 三套主题预设：必须放在 cathi-ui.css 之后 -->
+  <link rel="stylesheet" href="themes/cozy.css">
+  <link rel="stylesheet" href="themes/endfield.css">
+  <link rel="stylesheet" href="themes/liquidglass.css">
   <style>
     body { margin: 0; background: var(--cathi-bg); }
     .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
@@ -36,6 +40,22 @@
     .cathi-swatch[data-token="--cathi-muted"]      { background: hsl(var(--cathi-muted)); }
     .cathi-swatch[data-token="--cathi-accent"]     { background: hsl(var(--cathi-accent)); }
     .cathi-swatch[data-token="--cathi-destructive"]{ background: hsl(var(--cathi-destructive)); }
+
+    /* 三主题分段切换器 */
+    .cathi-theme-switch {
+      display: inline-flex; background: hsl(var(--cathi-muted));
+      border-radius: 999px; padding: 4px; gap: 4px;
+    }
+    .cathi-theme-switch button {
+      border: none; background: transparent; color: hsl(var(--cathi-muted-foreground));
+      font: inherit; font-weight: 800; font-size: 13px; padding: 6px 14px;
+      border-radius: 999px; cursor: pointer; transition: all var(--cathi-dur);
+    }
+    .cathi-theme-switch button:hover { color: hsl(var(--cathi-foreground)); }
+    .cathi-theme-switch button.is-active {
+      background: hsl(var(--cathi-card)); color: hsl(var(--cathi-foreground));
+      box-shadow: var(--cathi-shadow-sm);
+    }
 
     .cathi-alpha {
       display: inline-flex; align-items: center; justify-content: center;
@@ -99,7 +119,15 @@
         <button class="cathi-btn cathi-btn--pink">樱粉</button>
         <button class="cathi-btn cathi-btn--sky">天蓝</button>
         <button class="cathi-btn cathi-btn--ghost">幽灵</button>
-        <button class="cathi-btn cathi-btn--ghost" id="themeToggle">🌙 暗色</button>
+      </div>
+      <div class="cathi-row cathi-center" style="justify-content:center;margin-top:18px;gap:10px">
+        <span class="cathi-muted" style="font-size:13px;font-weight:800">主题</span>
+        <div class="cathi-theme-switch" role="group" aria-label="主题切换">
+          <button type="button" data-theme-value="cozy" class="is-active">🏝️ 动森</button>
+          <button type="button" data-theme-value="endfield">🛰️ 终末地</button>
+          <button type="button" data-theme-value="liquidglass">🫧 液态玻璃</button>
+          <button type="button" data-theme-value="cozy" data-dark="1">🌙 暗色</button>
+        </div>
       </div>
     </div>
 
@@ -1057,12 +1085,17 @@
       });
     });
 
-    // 暗色主题切换
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const dark = document.body.classList.toggle('cathi-theme-dark');
-        themeToggle.textContent = dark ? '☀️ 亮色' : '🌙 暗色';
+    // 三主题切换（动森 / 终末地 / 液态玻璃 / 动森暗）
+    const themeSwitch = document.querySelector('.cathi-theme-switch');
+    if (themeSwitch) {
+      themeSwitch.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-theme-value]');
+        if (!btn) return;
+        const theme = btn.dataset.themeValue;
+        const dark = btn.dataset.dark === '1';
+        document.body.setAttribute('data-theme', theme);
+        document.body.classList.toggle('cathi-theme-dark', dark);
+        themeSwitch.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b === btn));
       });
     }
 

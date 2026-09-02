@@ -1,3 +1,8 @@
 *.log
 .DS_Store
 .trash_tmp/
+
+# React 子工程构建产物与依赖（源码在 react/src/，发布用 react/dist/）
+react/node_modules/
+react/dist/
+react/tsconfig.tsbuildinfo
