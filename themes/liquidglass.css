@@ -81,6 +81,7 @@
 }
 
 /* 液态玻璃：彩色 mesh 光晕 + 点阵纹理（让玻璃有更多内容可透）*/
+[data-theme="liquidglass"].cathi-root,
 [data-theme="liquidglass"] .cathi-root,
 .cathi-theme-liquidglass.cathi-root {
   background-color: #eaf3ff;
@@ -94,6 +95,268 @@
   background-position: 0 0, center, center, center, center;
   background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   color: hsl(var(--cathi-foreground));
+}
+
+/* ===================== 深色变体（[data-dark]：暗色玻璃）===================== */
+[data-theme="liquidglass"][data-dark],
+.cathi-theme-liquidglass.cathi-dark {
+  --cathi-background:           220 30% 10%;
+  --cathi-foreground:           220 20% 92%;
+  --cathi-card:                 220 25% 16%;
+  --cathi-card-foreground:      220 20% 92%;
+  --cathi-popover:              220 25% 18%;
+  --cathi-popover-foreground:   220 20% 92%;
+  --cathi-primary:              205 90% 62%;
+  --cathi-primary-active:       205 90% 50%;
+  --cathi-primary-foreground:   220 40% 10%;
+  --cathi-secondary:            220 22% 24%;
+  --cathi-secondary-foreground: 220 20% 92%;
+  --cathi-muted:                220 22% 22%;
+  --cathi-muted-foreground:     220 14% 70%;
+  --cathi-accent:               205 60% 26%;
+  --cathi-accent-foreground:    205 90% 80%;
+  --cathi-destructive:          0 80% 66%;
+  --cathi-destructive-foreground: 0 0% 100%;
+  --cathi-success:              150 60% 52%;
+  --cathi-success-foreground:   220 40% 10%;
+  --cathi-warning:              38 95% 62%;
+  --cathi-warning-foreground:   30 40% 12%;
+  --cathi-info:                 205 85% 65%;
+  --cathi-info-foreground:      220 40% 10%;
+  --cathi-border:               215 25% 38%;
+  --cathi-input:                215 25% 42%;
+  --cathi-ring:                 205 90% 62%;
+  --cathi-glass-edge:          220 40% 88%;   /* 暗底用更亮的镜面高光 */
+  --cathi-tint:                 220 40% 30%;
+  --cathi-shadow-color: 220 40% 6%;
+  --cathi-shadow-sm:    0 2px 8px hsl(220 40% 6% / .4);
+  --cathi-shadow-md:    0 8px 24px hsl(220 40% 6% / .5);
+  --cathi-shadow-lg:    0 16px 40px hsl(220 40% 6% / .55);
+  --cathi-shadow-inset: inset 0 1px 2px hsl(220 40% 90% / .12);
+  --cathi-surface-alpha: .55;
+  --cathi-glass-blur:    22px;
+}
+
+/* 液态玻璃深色：深色 mesh 光晕（玻璃在暗底上更通透）*/
+[data-theme="liquidglass"][data-dark].cathi-root,
+[data-theme="liquidglass"][data-dark] .cathi-root {
+  background-color: #0b1424;
+  background-image:
+    radial-gradient(circle at 1px 1px, hsl(220 40% 70% / .08) 1px, transparent 1.6px),
+    radial-gradient(620px 620px at 12% 16%, hsl(205 100% 55% / .30), transparent 60%),
+    radial-gradient(540px 540px at 88% 22%, hsl(280 100% 60% / .26), transparent 60%),
+    radial-gradient(640px 640px at 72% 90%, hsl(150 80% 50% / .26), transparent 60%),
+    linear-gradient(135deg, #0b1424 0%, #140f28 48%, #0a1f1a 100%);
+  background-size: 22px 22px, auto, auto, auto, auto;
+  background-position: 0 0, center, center, center, center;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  color: hsl(var(--cathi-foreground));
+}
+
+/* —— 暗色玻璃材质 mixin —— */
+[data-theme="liquidglass"][data-dark] .cathi-card,
+[data-theme="liquidglass"][data-dark] .cathi-dialog,
+[data-theme="liquidglass"][data-dark] .cathi-sheet,
+[data-theme="liquidglass"][data-dark] .cathi-dropdown__menu {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .40);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.8);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 hsl(var(--cathi-glass-edge) / .6),
+    inset 0 0 0 1px hsl(var(--cathi-glass-edge) / .18),
+    0 10px 30px hsl(220 40% 6% / .45),
+    0 2px 8px hsl(220 40% 6% / .3);
+}
+[data-theme="liquidglass"][data-dark] .cathi-input,
+[data-theme="liquidglass"][data-dark] .cathi-textarea,
+[data-theme="liquidglass"][data-dark] .cathi-select {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(215 25% 42% / .9);
+  background: hsl(220 25% 22% / .5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: hsl(var(--cathi-foreground));
+  box-shadow: inset 0 1px 2px hsl(220 40% 6% / .3);
+}
+[data-theme="liquidglass"][data-dark] .cathi-input:focus,
+[data-theme="liquidglass"][data-dark] .cathi-textarea:focus,
+[data-theme="liquidglass"][data-dark] .cathi-select:focus {
+  border-color: hsl(var(--cathi-primary));
+  box-shadow: 0 0 0 3px hsl(var(--cathi-primary) / .3), inset 0 1px 2px hsl(220 40% 6% / .3);
+}
+[data-theme="liquidglass"][data-dark] .cathi-checkbox,
+[data-theme="liquidglass"][data-dark] .cathi-radio {
+  border: 1.5px solid hsl(215 25% 40%);
+  background: hsl(220 25% 22% / .5);
+}
+[data-theme="liquidglass"][data-dark] .cathi-checkbox:checked,
+[data-theme="liquidglass"][data-dark] .cathi-radio:checked {
+  border-color: hsl(var(--cathi-primary));
+  background: hsl(var(--cathi-primary));
+}
+[data-theme="liquidglass"][data-dark] .cathi-switch__track {
+  border-radius: 999px;
+  background: hsl(220 25% 36% / .9);
+  border: 1px solid hsl(215 25% 42%);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+[data-theme="liquidglass"][data-dark] .cathi-switch__thumb {
+  border-radius: 50%;
+  background: hsl(0 0% 100%);
+  box-shadow: 0 2px 6px hsl(220 40% 6% / .5);
+}
+[data-theme="liquidglass"][data-dark] .cathi-switch__input:checked + .cathi-switch__track { background: hsl(var(--cathi-primary)); }
+[data-theme="liquidglass"][data-dark] .cathi-slider { height: 6px; border-radius: 999px; background: hsl(220 25% 34%); }
+[data-theme="liquidglass"][data-dark] .cathi-slider::-webkit-slider-thumb {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: hsl(0 0% 100%); border: 2px solid hsl(var(--cathi-primary));
+  box-shadow: 0 2px 8px hsl(220 40% 6% / .5);
+}
+[data-theme="liquidglass"][data-dark] .cathi-slider::-moz-range-thumb {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: hsl(0 0% 100%); border: 2px solid hsl(var(--cathi-primary));
+  box-shadow: 0 2px 8px hsl(220 40% 6% / .5);
+}
+[data-theme="liquidglass"][data-dark] .cathi-progress {
+  background: hsl(220 25% 34%);
+  border-radius: 999px;
+}
+[data-theme="liquidglass"][data-dark] .cathi-alert {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .4);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .5), 0 6px 18px hsl(220 40% 6% / .4);
+  border-left: 3px solid hsl(var(--cathi-primary));
+}
+[data-theme="liquidglass"][data-dark] .cathi-alert[data-variant="success"] { border-left-color: hsl(var(--cathi-success)); }
+[data-theme="liquidglass"][data-dark] .cathi-alert[data-variant="warning"] { border-left-color: hsl(var(--cathi-warning)); }
+[data-theme="liquidglass"][data-dark] .cathi-alert[data-variant="destructive"] { border-left-color: hsl(var(--cathi-destructive)); }
+[data-theme="liquidglass"][data-dark] .cathi-alert[data-variant="info"] { border-left-color: hsl(var(--cathi-info)); }
+[data-theme="liquidglass"][data-dark] .cathi-kbd {
+  border-radius: var(--cathi-r-xs);
+  border: 1px solid hsl(215 25% 40%);
+  background: hsl(220 25% 20% / .6);
+  box-shadow: inset 0 -1px 0 hsl(220 40% 90% / .15);
+}
+[data-theme="liquidglass"][data-dark] .cathi-separator { background: hsl(215 25% 40% / .8); }
+[data-theme="liquidglass"][data-dark] .cathi-skeleton {
+  background: hsl(220 25% 34%);
+  border-radius: var(--cathi-r-sm);
+}
+[data-theme="liquidglass"][data-dark] .cathi-dropdown__menu { border-radius: var(--cathi-r-md); }
+[data-theme="liquidglass"][data-dark] .cathi-dropdown__item:hover { background: hsl(var(--cathi-muted) / .8); }
+[data-theme="liquidglass"][data-dark] .cathi-sheet { border-radius: var(--cathi-r-xl); }
+[data-theme="liquidglass"][data-dark] .cathi-accordion {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .4);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+}
+[data-theme="liquidglass"][data-dark] .cathi-empty {
+  border: 1px dashed hsl(215 25% 40% / .9);
+  border-radius: var(--cathi-r-lg);
+  background: hsl(220 25% 18% / .4);
+}
+[data-theme="liquidglass"][data-dark] .cathi-toggle-group {
+  border-radius: 999px;
+  border: 1px solid hsl(var(--cathi-glass-edge) / .4);
+  background: hsl(220 25% 18% / .55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+[data-theme="liquidglass"][data-dark] .cathi-toggle { border-radius: 999px; }
+[data-theme="liquidglass"][data-dark] .cathi-toggle[aria-pressed="true"] {
+  background: hsl(var(--cathi-primary));
+  color: hsl(var(--cathi-primary-foreground));
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .5);
+}
+[data-theme="liquidglass"][data-dark] .cathi-table th {
+  border-bottom: 1px solid hsl(215 25% 40% / .8);
+  background: hsl(220 25% 22% / .5);
+  font-weight: 600;
+}
+[data-theme="liquidglass"][data-dark] .cathi-table td { border-bottom: 1px solid hsl(215 25% 40% / .7); }
+[data-theme="liquidglass"][data-dark] .cathi-table tbody tr:hover { background: hsl(var(--cathi-muted) / .7); }
+[data-theme="liquidglass"][data-dark] .cathi-avatar { border: 2px solid hsl(var(--cathi-glass-edge) / .6); }
+[data-theme="liquidglass"][data-dark] .cathi-sidebar-nav {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .4);
+  background: hsl(220 25% 18% / .55);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.6);
+}
+[data-theme="liquidglass"][data-dark] .cathi-nav-item { border-radius: var(--cathi-r-md); }
+[data-theme="liquidglass"][data-dark] .cathi-nav-item:hover { background: hsl(var(--cathi-muted) / .8); }
+[data-theme="liquidglass"][data-dark] .cathi-nav-item[aria-current="page"],
+[data-theme="liquidglass"][data-dark] .cathi-nav-item.is-active {
+  background: hsl(var(--cathi-primary) / .22);
+  color: hsl(var(--cathi-primary));
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .4);
+}
+[data-theme="liquidglass"][data-dark] .cathi-tabs { border-bottom: 1px solid hsl(215 25% 40% / .8); }
+[data-theme="liquidglass"][data-dark] .cathi-tab[aria-selected="true"] {
+  color: hsl(var(--cathi-primary));
+  border-bottom: 2px solid hsl(var(--cathi-primary));
+}
+[data-theme="liquidglass"][data-dark] .cathi-toast {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .4);
+  border-left: 3px solid hsl(var(--cathi-primary));
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.6);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .5), 0 10px 30px hsl(220 40% 6% / .5);
+}
+[data-theme="liquidglass"][data-dark] .cathi-list {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .4);
+  background: hsl(220 25% 18% / .55);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+[data-theme="liquidglass"][data-dark] .cathi-list__item { border-bottom: 1px solid hsl(215 25% 40% / .7); }
+[data-theme="liquidglass"][data-dark] .cathi-action-btn {
+  border-radius: var(--cathi-r-md);
+  border: 1px solid hsl(215 25% 42%);
+  background: hsl(220 25% 20% / .6);
+}
+[data-theme="liquidglass"][data-dark] .cathi-action-btn--primary { color: hsl(var(--cathi-primary)); border-color: hsl(var(--cathi-primary) / .6); }
+[data-theme="liquidglass"][data-dark] .cathi-search-bar {
+  border-radius: 999px;
+  border: 1px solid hsl(215 25% 42% / .9);
+  background: hsl(220 25% 22% / .5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+[data-theme="liquidglass"][data-dark] .cathi-window {
+  border-radius: var(--cathi-r-xl);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .45);
+  background: hsl(var(--cathi-card) / var(--cathi-surface-alpha));
+  -webkit-backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.7);
+  backdrop-filter: blur(var(--cathi-glass-blur)) saturate(1.7);
+  box-shadow: inset 0 1px 0 hsl(var(--cathi-glass-edge) / .6), 0 16px 40px hsl(220 40% 6% / .55);
+}
+[data-theme="liquidglass"][data-dark] .cathi-window__bar {
+  border-bottom: 1px solid hsl(215 25% 40% / .7);
+  background: hsl(220 25% 14% / .6);
+}
+[data-theme="liquidglass"][data-dark] .cathi-tab-panel {
+  border: 1px solid hsl(215 25% 40% / .8);
+  border-top: none;
+  border-radius: 0 0 var(--cathi-r-md) var(--cathi-r-md);
+}
+[data-theme="liquidglass"][data-dark] .cathi-scroll-area {
+  border-radius: var(--cathi-r-lg);
+  border: 1px solid hsl(var(--cathi-glass-edge) / .4);
+  background: hsl(220 25% 16% / .45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 /* ===================== 组件级覆盖 ===================== */

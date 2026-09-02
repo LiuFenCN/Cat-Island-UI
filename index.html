@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cathi-ui v4 · 治愈系设计系统</title>
-  <link rel="stylesheet" href="assets/fonts/nunito.css?v=4.3.1">
-  <link rel="stylesheet" href="cathi-ui.css?v=4.3.1">
+  <link rel="stylesheet" href="assets/fonts/nunito.css?v=4.4">
+  <link rel="stylesheet" href="cathi-ui.css?v=4.4">
   <!-- 三套主题预设：必须放在 cathi-ui.css 之后 -->
-  <link rel="stylesheet" href="themes/cozy.css?v=4.3.1">
-  <link rel="stylesheet" href="themes/endfield.css?v=4.3.1">
-  <link rel="stylesheet" href="themes/liquidglass.css?v=4.3.1">
+  <link rel="stylesheet" href="themes/cozy.css?v=4.4">
+  <link rel="stylesheet" href="themes/endfield.css?v=4.4">
+  <link rel="stylesheet" href="themes/liquidglass.css?v=4.4">
   <style>
-    body { margin: 0; background: var(--cathi-bg); }
+    body { margin: 0; }
     .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 100px; }
     .hero {
       text-align: center; padding: 48px 24px; border-radius: var(--cathi-r-xl);
@@ -59,6 +59,15 @@
       background: hsl(var(--cathi-card)); color: hsl(var(--cathi-foreground));
       box-shadow: var(--cathi-shadow-sm);
     }
+
+    /* 深色模式开关（独立于主题，每个主题都生效）*/
+    .cathi-dark-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: hsl(var(--cathi-muted)); border-radius: 999px; padding: 6px 12px 6px 10px;
+      cursor: pointer; user-select: none;
+    }
+    .cathi-dark-toggle__label { font-size: 13px; font-weight: 800; color: hsl(var(--cathi-muted-foreground)); }
+    .cathi-dark-toggle .cathi-switch { margin: 0; }
 
     .cathi-alpha {
       display: inline-flex; align-items: center; justify-content: center;
@@ -109,7 +118,7 @@
     }
   </style>
 </head>
-<body class="cathi-root" data-theme="endfield">
+<body class="cathi-root" data-theme="endfield" data-dark>
   <div class="wrap">
 
     <!-- ═══ Hero ═══ -->
@@ -123,14 +132,17 @@
         <button class="cathi-btn cathi-btn--sky">天蓝</button>
         <button class="cathi-btn cathi-btn--ghost">幽灵</button>
       </div>
-      <div class="cathi-row cathi-center" style="justify-content:center;margin-top:18px;gap:10px">
+      <div class="cathi-row cathi-center" style="justify-content:center;margin-top:18px;gap:14px">
         <span class="cathi-muted" style="font-size:13px;font-weight:800">主题</span>
         <div class="cathi-theme-switch" role="group" aria-label="主题切换">
           <button type="button" data-theme-value="cozy">✦ 动森</button>
           <button type="button" data-theme-value="endfield" class="is-active">▲ 终末地</button>
           <button type="button" data-theme-value="liquidglass">◇ 液态玻璃</button>
-          <button type="button" data-theme-value="cozy" data-dark="1">◐ 暗色</button>
         </div>
+        <label class="cathi-dark-toggle" title="每个主题都支持浅色 / 深色">
+          <span class="cathi-switch"><input type="checkbox" id="darkToggle" checked><span class="cathi-switch__track"></span></span>
+          <span class="cathi-dark-toggle__label">◐ 深色</span>
+        </label>
       </div>
     </div>
 
@@ -1088,17 +1100,23 @@
       });
     });
 
-    // 三主题切换（动森 / 终末地 / 液态玻璃 / 动森暗）
+    // 三主题切换（动森 / 终末地 / 液态玻璃）—— 只切主题，深浅由独立开关控制
     const themeSwitch = document.querySelector('.cathi-theme-switch');
     if (themeSwitch) {
       themeSwitch.addEventListener('click', (e) => {
         const btn = e.target.closest('button[data-theme-value]');
         if (!btn) return;
-        const theme = btn.dataset.themeValue;
-        const dark = btn.dataset.dark === '1';
-        document.body.setAttribute('data-theme', theme);
-        document.body.classList.toggle('cathi-theme-dark', dark);
+        document.body.setAttribute('data-theme', btn.dataset.themeValue);
         themeSwitch.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b === btn));
+      });
+    }
+
+    // 深色模式独立开关：给当前主题加 / 去 [data-dark]（每个主题都生效）
+    const darkToggle = document.getElementById('darkToggle');
+    if (darkToggle) {
+      darkToggle.addEventListener('change', () => {
+        if (darkToggle.checked) document.body.setAttribute('data-dark', '');
+        else document.body.removeAttribute('data-dark');
       });
     }
 

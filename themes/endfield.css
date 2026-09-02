@@ -4,6 +4,7 @@
  * 参考：游戏《明日方舟：终末地》官方 / 游戏内 UI —— 中性炭黑工业机能底 + 黄绿(chartreuse)点缀，
  *       地形等高线背景、斜纹按钮(左侧色块+三角)、`//` 标题前缀与 `[ ]` 括号容器、虚线圆环头像框、
  *       金属细描边、HUD 式等宽读数、扁平信息化。
+ *       浅色为默认基，深色由 [data-dark] 触发（每个主题都有浅/深两套）。
  *       必须放在 cathi-ui.css 之后引入。
  */
 
@@ -14,49 +15,55 @@
 @font-face { font-family: "Cathi Endfield"; src: url(../assets/fonts/cathi-chakra-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
 @font-face { font-family: "Cathi Mono EF"; src: url(../assets/fonts/cathi-mono-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
 
+/* ===================== 浅色工业基（默认）===================== */
 [data-theme="endfield"],
 .cathi-theme-endfield {
   /* —— 语义色（黄绿 / chartreuse，非荧光）—— */
-  --cathi-background:           220 5% 8%;     /* 中性近黑（炭黑，非蓝黑）*/
-  --cathi-foreground:           0 0% 95%;      /* 接近纯白 */
+  --cathi-background:           220 14% 94%;    /* 浅冷灰底 */
+  --cathi-foreground:           220 22% 12%;
 
-  --cathi-card:                 220 6% 12%;
-  --cathi-card-foreground:      0 0% 95%;
+  --cathi-card:                 0 0% 100%;
+  --cathi-card-foreground:      220 22% 12%;
 
-  --cathi-popover:              220 6% 14%;
-  --cathi-popover-foreground:   0 0% 95%;
+  --cathi-popover:              0 0% 100%;
+  --cathi-popover-foreground:   220 22% 12%;
 
-  --cathi-primary:              68 100% 48%;   /* 黄绿 / chartreuse（终末地主色）*/
-  --cathi-primary-active:       68 100% 38%;
-  --cathi-primary-foreground:   26 35% 8%;
+  --cathi-primary:              68 95% 36%;     /* 黄绿（浅底用深一档保证对比）*/
+  --cathi-primary-active:       68 95% 28%;
+  --cathi-primary-foreground:   0 0% 100%;
 
-  --cathi-secondary:            220 6% 16%;
-  --cathi-secondary-foreground: 0 0% 95%;
+  --cathi-secondary:            220 16% 89%;
+  --cathi-secondary-foreground: 220 22% 12%;
 
-  --cathi-muted:                220 6% 15%;
-  --cathi-muted-foreground:     214 8% 66%;
+  --cathi-muted:                220 16% 91%;
+  --cathi-muted-foreground:     220 12% 42%;
 
-  --cathi-accent:               68 55% 17%;
-  --cathi-accent-foreground:    0 0% 90%;
+  --cathi-accent:               68 55% 90%;
+  --cathi-accent-foreground:    68 85% 22%;
 
-  --cathi-destructive:          0 72% 56%;
-  --cathi-destructive-foreground: 0 0% 98%;
+  --cathi-destructive:          0 72% 50%;
+  --cathi-destructive-foreground: 0 0% 100%;
 
-  --cathi-success:              145 45% 50%;
-  --cathi-success-foreground:   145 60% 10%;
+  --cathi-success:              145 45% 38%;
+  --cathi-success-foreground:   0 0% 100%;
 
-  --cathi-warning:              38 95% 60%;
-  --cathi-warning-foreground:   30 40% 12%;
+  --cathi-warning:              38 95% 46%;
+  --cathi-warning-foreground:   30 45% 10%;
 
-  --cathi-info:                 199 75% 62%;
-  --cathi-info-foreground:      205 60% 10%;
+  --cathi-info:                 199 75% 45%;
+  --cathi-info-foreground:      0 0% 100%;
 
-  /* —— 工业金属描边 / 几何符号色 —— */
-  --cathi-border:               214 12% 28%;
-  --cathi-input:                214 12% 30%;
-  --cathi-ring:                 68 100% 48%;
-  --cathi-line:                 214 12% 30%;     /* 金属细描边 */
-  --cathi-accent-line:         68 100% 55%;     /* HUD 直角/三角符号（黄绿）*/
+  /* —— 工业金属描边 / 几何符号色（浅色档）—— */
+  --cathi-border:               220 14% 76%;
+  --cathi-input:                220 16% 80%;
+  --cathi-ring:                 68 95% 40%;
+  --cathi-line:                 220 16% 78%;      /* 金属细描边（浅）*/
+  --cathi-accent-line:         68 90% 36%;      /* HUD 直角/三角符号（黄绿，浅）*/
+
+  /* —— 控件表面（随明暗翻转的灰）—— */
+  --cathi-field:                220 16% 96%;     /* 输入框 / 控件表面 */
+  --cathi-field-2:             220 16% 85%;     /* 轨道 / 强表面 */
+  --cathi-on-field:            220 22% 12%;
 
   /* —— 锐利圆角（脱离治愈系大圆角）—— */
   --cathi-radius: .25rem;
@@ -66,12 +73,12 @@
   --cathi-r-lg:   .5rem;
   --cathi-r-xl:   .75rem;
 
-  /* —— 去塑料感的硬投影 —— */
-  --cathi-shadow-color: 0 0% 0%;
-  --cathi-shadow-sm:    0 1px 2px hsl(0 0% 0% / .5);
-  --cathi-shadow-md:    0 6px 20px hsl(0 0% 0% / .55), 0 0 0 1px hsl(0 0% 0% / .35);
-  --cathi-shadow-lg:    0 12px 36px hsl(0 0% 0% / .62);
-  --cathi-shadow-inset: inset 0 1px 0 hsl(0 0% 100% / .06);
+  /* —— 去塑料感的硬投影（浅色档，较弱）—— */
+  --cathi-shadow-color: 220 20% 20%;
+  --cathi-shadow-sm:    0 1px 2px hsl(220 20% 20% / .18);
+  --cathi-shadow-md:    0 6px 20px hsl(220 20% 20% / .20), 0 0 0 1px hsl(220 20% 20% / .06);
+  --cathi-shadow-lg:    0 12px 36px hsl(220 20% 20% / .24);
+  --cathi-shadow-inset: inset 0 1px 0 hsl(0 0% 100% / .6);
 
   /* —— 字体（工业机械感 + 等宽读数）—— */
   --cathi-font: "Cathi Endfield", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
@@ -82,16 +89,17 @@
   --cathi-glass-blur:    0px;
 }
 
-/* 终末地：地形等高线 + 工业网格 + 黄绿能源辉光（科技感背景）*/
+/* 终末地浅色：地形等高线 + 工业网格 + 黄绿能源辉光（科技感背景）*/
+[data-theme="endfield"].cathi-root,
 [data-theme="endfield"] .cathi-root,
 .cathi-theme-endfield.cathi-root {
-  background-color: hsl(220 5% 8%);
+  background-color: hsl(220 14% 94%);
   background-image:
     url(../assets/patterns/endfield-contour.svg),
-    linear-gradient(hsl(214 13% 34% / .04) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(214 13% 34% / .04) 1px, transparent 1px),
-    radial-gradient(1100px 560px at 82% -12%, hsl(68 100% 45% / .14), transparent 60%),
-    radial-gradient(900px 520px at -8% 112%, hsl(210 30% 20% / .26), transparent 55%);
+    linear-gradient(hsl(214 13% 34% / .05) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(214 13% 34% / .05) 1px, transparent 1px),
+    radial-gradient(1100px 560px at 82% -12%, hsl(68 100% 45% / .10), transparent 60%),
+    radial-gradient(900px 520px at -8% 112%, hsl(210 30% 60% / .10), transparent 55%);
   background-size: 1100px 820px, 30px 30px, 30px 30px, auto, auto;
   background-position: 88% -10%, 0 0, 0 0, center, center;
   background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat;
@@ -109,8 +117,8 @@
   position: relative;
   border-radius: var(--cathi-r-md);
   border: 1px solid hsl(var(--cathi-line));
-  background: hsl(var(--cathi-card) / .94);
-  box-shadow: 0 0 0 1px hsl(0 0% 0% / .4), 0 8px 24px hsl(0 0% 0% / .55), inset 0 1px 0 hsl(0 0% 100% / .05);
+  background: hsl(var(--cathi-card) / .98);
+  box-shadow: 0 0 0 1px hsl(220 20% 20% / .08), 0 8px 24px hsl(220 20% 20% / .14), inset 0 1px 0 hsl(0 0% 100% / .5);
   backdrop-filter: none;
 }
 /* 四角直角 HUD 框（黄绿，标志性几何符号）*/
@@ -140,12 +148,12 @@
   border-radius: var(--cathi-r-sm);
   letter-spacing: .04em;
   border: 1px solid hsl(var(--cathi-line));
-  box-shadow: 0 0 0 1px hsl(0 0% 0% / .35), 0 2px 0 hsl(0 0% 0% / .45);
+  box-shadow: 0 0 0 1px hsl(220 20% 20% / .08), 0 2px 0 hsl(220 20% 20% / .14);
   transition: filter .15s ease, background-color .15s ease, box-shadow .15s ease, transform .08s ease;
 }
 [data-theme="endfield"] .cathi-btn:active {
   transform: translateY(1px);
-  box-shadow: 0 0 0 1px hsl(0 0% 0% / .35), 0 1px 0 hsl(0 0% 0% / .45);
+  box-shadow: 0 0 0 1px hsl(220 20% 20% / .08), 0 1px 0 hsl(220 20% 20% / .14);
 }
 
 /* 主按钮：黄绿实色 + 左侧深色色块 + 斜纹底 + 右侧三角 */
@@ -154,7 +162,7 @@
   background-image: repeating-linear-gradient(45deg, hsl(var(--cathi-primary-active) / .22) 0 6px, transparent 6px 12px);
   color: hsl(var(--cathi-primary-foreground));
   border-color: hsl(var(--cathi-primary-active));
-  box-shadow: inset 4px 0 0 hsl(var(--cathi-primary-active)), 0 0 0 1px hsl(0 0% 0% / .35), 0 2px 0 hsl(0 0% 0% / .45);
+  box-shadow: inset 4px 0 0 hsl(var(--cathi-primary-active)), 0 0 0 1px hsl(220 20% 20% / .08), 0 2px 0 hsl(220 20% 20% / .14);
 }
 [data-theme="endfield"] .cathi-btn--primary::after {
   content: "";
@@ -175,21 +183,21 @@
 [data-theme="endfield"] .cathi-btn--destructive { background: hsl(var(--cathi-destructive)); color: hsl(var(--cathi-destructive-foreground)); }
 [data-theme="endfield"] .cathi-btn--link { background: transparent; color: hsl(var(--cathi-primary)); box-shadow: none; }
 
-/* 表单：暗色半透明 + 金属描边 + 聚焦柠檬黄辉光 */
+/* 表单：半透明表面 + 金属描边 + 聚焦黄绿辉光 */
 [data-theme="endfield"] .cathi-input,
 [data-theme="endfield"] .cathi-textarea,
 [data-theme="endfield"] .cathi-select {
   border-radius: var(--cathi-r-sm);
   border: 1px solid hsl(var(--cathi-input));
-  background: hsl(220 12% 11% / .85);
+  background: hsl(var(--cathi-field) / .92);
   color: hsl(var(--cathi-foreground));
-  box-shadow: inset 0 1px 2px hsl(0 0% 0% / .4);
+  box-shadow: inset 0 1px 2px hsl(220 20% 20% / .10);
 }
 [data-theme="endfield"] .cathi-input:focus,
 [data-theme="endfield"] .cathi-textarea:focus,
 [data-theme="endfield"] .cathi-select:focus {
   border-color: hsl(var(--cathi-primary));
-  box-shadow: 0 0 0 3px hsl(var(--cathi-primary) / .28), inset 0 1px 2px hsl(0 0% 0% / .4);
+  box-shadow: 0 0 0 3px hsl(var(--cathi-primary) / .28), inset 0 1px 2px hsl(220 20% 20% / .10);
 }
 [data-theme="endfield"] .cathi-input[aria-invalid="true"],
 [data-theme="endfield"] .cathi-textarea[aria-invalid="true"] {
@@ -201,7 +209,7 @@
 [data-theme="endfield"] .cathi-checkbox,
 [data-theme="endfield"] .cathi-radio {
   border: 1.5px solid hsl(var(--cathi-input));
-  background: hsl(220 12% 11% / .85);
+  background: hsl(var(--cathi-field) / .92);
 }
 [data-theme="endfield"] .cathi-checkbox:checked,
 [data-theme="endfield"] .cathi-radio:checked {
@@ -210,29 +218,29 @@
 }
 [data-theme="endfield"] .cathi-radio { border-radius: 50%; }
 
-/* 开关：方形轨道 + 柠檬黄激活 */
+/* 开关：方形轨道 + 黄绿激活 */
 [data-theme="endfield"] .cathi-switch__track {
   border-radius: 3px;
-  background: hsl(220 12% 22%);
+  background: hsl(var(--cathi-field-2));
   border: 1px solid hsl(var(--cathi-input));
 }
 [data-theme="endfield"] .cathi-switch__thumb { border-radius: 2px; }
 [data-theme="endfield"] .cathi-switch__input:checked + .cathi-switch__track { background: hsl(var(--cathi-primary)); }
 
-/* 滑块：工业细轨 + 柠檬黄 */
-[data-theme="endfield"] .cathi-slider { height: 4px; border-radius: 2px; background: hsl(220 12% 24%); }
+/* 滑块：工业细轨 + 黄绿 */
+[data-theme="endfield"] .cathi-slider { height: 4px; border-radius: 2px; background: hsl(var(--cathi-field-2)); }
 [data-theme="endfield"] .cathi-slider::-webkit-slider-thumb {
   width: 16px; height: 16px; border-radius: 3px;
-  background: hsl(var(--cathi-primary)); border: 2px solid hsl(220 12% 13%);
+  background: hsl(var(--cathi-primary)); border: 2px solid hsl(var(--cathi-field));
 }
 [data-theme="endfield"] .cathi-slider::-moz-range-thumb {
   width: 16px; height: 16px; border-radius: 3px;
-  background: hsl(var(--cathi-primary)); border: 2px solid hsl(220 12% 13%);
+  background: hsl(var(--cathi-primary)); border: 2px solid hsl(var(--cathi-field));
 }
 
-/* 进度：能源条（柠檬黄渐变 + 辉光）*/
+/* 进度：能源条（黄绿渐变 + 辉光）*/
 [data-theme="endfield"] .cathi-progress {
-  background: hsl(220 12% 20%);
+  background: hsl(var(--cathi-field-2));
   border-radius: 3px;
   border: 1px solid hsl(var(--cathi-input));
 }
@@ -246,7 +254,7 @@
   border-radius: var(--cathi-r-sm);
   border: 1px solid hsl(var(--cathi-line));
   border-left: 3px solid hsl(var(--cathi-primary));
-  background: hsl(220 12% 13% / .92);
+  background: hsl(var(--cathi-card) / .95);
 }
 [data-theme="endfield"] .cathi-alert[data-variant="success"] { border-left-color: hsl(var(--cathi-success)); }
 [data-theme="endfield"] .cathi-alert[data-variant="warning"] { border-left-color: hsl(var(--cathi-warning)); }
@@ -261,15 +269,15 @@
   border-radius: var(--cathi-r-xs);
   font-family: var(--cathi-font-mono);
   border: 1px solid hsl(var(--cathi-line));
-  background: hsl(220 12% 12%);
-  box-shadow: 0 2px 0 hsl(0 0% 0% / .5);
+  background: hsl(var(--cathi-field));
+  box-shadow: 0 2px 0 hsl(220 20% 20% / .18);
 }
 
 /* 分隔线：金属细线 */
 [data-theme="endfield"] .cathi-separator { background: hsl(var(--cathi-line)); }
 
 /* 骨架：冷灰 */
-[data-theme="endfield"] .cathi-skeleton { background: hsl(220 12% 24%); }
+[data-theme="endfield"] .cathi-skeleton { background: hsl(var(--cathi-field-2)); }
 
 /* 下拉菜单：HUD 框（已含 ::before 直角）*/
 [data-theme="endfield"] .cathi-dropdown__menu { border-radius: var(--cathi-r-sm); }
@@ -282,18 +290,18 @@
 [data-theme="endfield"] .cathi-accordion {
   border: 1px solid hsl(var(--cathi-line));
   border-radius: var(--cathi-r-sm);
-  background: hsl(var(--cathi-card) / .9);
+  background: hsl(var(--cathi-card) / .96);
 }
 
 /* 面包屑 / 空态 */
 [data-theme="endfield"] .cathi-breadcrumb { font-family: var(--cathi-font-mono); letter-spacing: .03em; }
 [data-theme="endfield"] .cathi-empty { border: 1px dashed hsl(var(--cathi-line)); border-radius: var(--cathi-r-md); }
 
-/* 切换组 / 切换按钮：方角 + 柠檬黄激活 */
+/* 切换组 / 切换按钮：方角 + 黄绿激活 */
 [data-theme="endfield"] .cathi-toggle-group {
   border: 1px solid hsl(var(--cathi-line));
   border-radius: var(--cathi-r-sm);
-  background: hsl(220 12% 11% / .7);
+  background: hsl(var(--cathi-field) / .8);
 }
 [data-theme="endfield"] .cathi-toggle { border-radius: var(--cathi-r-xs); letter-spacing: .03em; }
 [data-theme="endfield"] .cathi-toggle[aria-pressed="true"] {
@@ -304,13 +312,13 @@
 /* 表格：冷灰分隔 + 表头微底 */
 [data-theme="endfield"] .cathi-table th {
   border-bottom: 1px solid hsl(var(--cathi-line));
-  background: hsl(220 12% 15% / .6);
+  background: hsl(var(--cathi-field) / .7);
   text-transform: uppercase;
   letter-spacing: .04em;
   font-family: var(--cathi-font-mono);
   font-size: 12px;
 }
-[data-theme="endfield"] .cathi-table td { border-bottom: 1px solid hsl(214 13% 24% / .6); }
+[data-theme="endfield"] .cathi-table td { border-bottom: 1px solid hsl(var(--cathi-line) / .6); }
 [data-theme="endfield"] .cathi-table tbody tr:hover { background: hsl(var(--cathi-muted) / .6); }
 
 /* 头像：虚线圆环框（金属细描边 + 虚线，终末地角色框语言）*/
@@ -323,7 +331,7 @@
 [data-theme="endfield"] .cathi-sidebar-nav {
   border: 1px solid hsl(var(--cathi-line));
   border-radius: var(--cathi-r-md);
-  background: hsl(220 12% 11% / .7);
+  background: hsl(var(--cathi-field) / .8);
 }
 [data-theme="endfield"] .cathi-nav-item { border-radius: var(--cathi-r-sm); letter-spacing: .02em; }
 [data-theme="endfield"] .cathi-nav-item:hover { background: hsl(var(--cathi-muted)); }
@@ -345,13 +353,13 @@
   border-radius: var(--cathi-r-sm);
   border: 1px solid hsl(var(--cathi-line));
   border-left: 3px solid hsl(var(--cathi-primary));
-  background: hsl(220 12% 13% / .96);
+  background: hsl(var(--cathi-card) / .97);
   box-shadow: var(--cathi-shadow-md);
 }
 
 /* 列表项 */
 [data-theme="endfield"] .cathi-list { border-radius: var(--cathi-r-md); border: 1px solid hsl(var(--cathi-line)); }
-[data-theme="endfield"] .cathi-list__item { border-bottom: 1px solid hsl(214 13% 24% / .6); }
+[data-theme="endfield"] .cathi-list__item { border-bottom: 1px solid hsl(var(--cathi-line) / .6); }
 
 /* 操作按钮 */
 [data-theme="endfield"] .cathi-action-btn { border-radius: var(--cathi-r-sm); border: 1px solid hsl(var(--cathi-line)); }
@@ -362,8 +370,8 @@
   border-radius: var(--cathi-r-xs);
   border: 1px solid hsl(var(--cathi-line));
   font-family: var(--cathi-font-mono);
-  background: hsl(220 12% 14%);
-  box-shadow: 0 2px 0 hsl(0 0% 0% / .5);
+  background: hsl(var(--cathi-field));
+  box-shadow: 0 2px 0 hsl(220 20% 20% / .18);
 }
 [data-theme="endfield"] .cathi-key:active { transform: translateY(2px); box-shadow: none; }
 
@@ -371,21 +379,21 @@
 [data-theme="endfield"] .cathi-search-bar {
   border-radius: var(--cathi-r-sm);
   border: 1px solid hsl(var(--cathi-input));
-  background: hsl(220 12% 11% / .85);
+  background: hsl(var(--cathi-field) / .9);
 }
 
 /* 窗口框架：工业标题栏 */
 [data-theme="endfield"] .cathi-window {
   border-radius: var(--cathi-r-md);
   border: 1px solid hsl(var(--cathi-line));
-  background: hsl(var(--cathi-card) / .96);
+  background: hsl(var(--cathi-card) / .98);
 }
-[data-theme="endfield"] .cathi-window__bar { border-bottom: 1px solid hsl(var(--cathi-line)); background: hsl(220 12% 15%); }
+[data-theme="endfield"] .cathi-window__bar { border-bottom: 1px solid hsl(var(--cathi-line)); background: hsl(var(--cathi-field-2)); }
 
 /* 时间显示：等宽读数 */
 [data-theme="endfield"] .cathi-time-display { font-family: var(--cathi-font-mono); letter-spacing: .05em; }
 
-/* 角色卡：方角 + 柠檬黄强调 */
+/* 角色卡：方角 + 黄绿强调 */
 [data-theme="endfield"] .cathi-char-card { border-radius: var(--cathi-r-md); border: 1px solid hsl(var(--cathi-line)); }
 [data-theme="endfield"] .cathi-char-card__name { font-family: var(--cathi-font-mono); letter-spacing: .04em; }
 
@@ -403,18 +411,6 @@
 /* 区块 ribbon 加 [ ] 括号容器 */
 [data-theme="endfield"] .cathi-ribbon::before { content: "[\00a0"; color: hsl(var(--cathi-accent-line)); }
 [data-theme="endfield"] .cathi-ribbon::after  { content: "\00a0]"; color: hsl(var(--cathi-accent-line)); }
-/* 侧栏选中态：浅灰底白字 + 左侧黄绿竖条（与官网一致，去掉黄字）*/
-[data-theme="endfield"] .cathi-nav-item[aria-current="page"],
-[data-theme="endfield"] .cathi-nav-item.is-active {
-  background: hsl(220 6% 20%);
-  color: hsl(0 0% 98%);
-  box-shadow: inset 3px 0 0 hsl(var(--cathi-primary));
-}
-/* 标签选中态：黄绿下划线（保留）*/
-[data-theme="endfield"] .cathi-tab[aria-selected="true"] {
-  color: hsl(var(--cathi-primary));
-  border-bottom: 2px solid hsl(var(--cathi-primary));
-}
 
 /* 标签页面板 */
 [data-theme="endfield"] .cathi-tab-panel { border: 1px solid hsl(var(--cathi-line)); border-top: none; }
@@ -426,4 +422,70 @@
 @media (prefers-reduced-motion: reduce) {
   [data-theme="endfield"] .cathi-btn:active { transform: none; }
   [data-theme="endfield"] .cathi-key:active { transform: none; }
+}
+
+/* ===================== 深色变体（[data-dark]）===================== */
+[data-theme="endfield"][data-dark],
+.cathi-theme-endfield.cathi-dark {
+  --cathi-background:           220 5% 8%;      /* 中性近黑（炭黑）*/
+  --cathi-foreground:           0 0% 95%;
+  --cathi-card:                 220 6% 12%;
+  --cathi-card-foreground:      0 0% 95%;
+  --cathi-popover:              220 6% 14%;
+  --cathi-popover-foreground:   0 0% 95%;
+  --cathi-primary:              68 100% 48%;    /* 黄绿（暗底提亮）*/
+  --cathi-primary-active:       68 100% 38%;
+  --cathi-primary-foreground:   26 35% 8%;
+  --cathi-secondary:            220 6% 16%;
+  --cathi-secondary-foreground: 0 0% 95%;
+  --cathi-muted:                220 6% 15%;
+  --cathi-muted-foreground:     214 8% 66%;
+  --cathi-accent:               68 55% 17%;
+  --cathi-accent-foreground:    0 0% 90%;
+  --cathi-destructive:          0 72% 56%;
+  --cathi-destructive-foreground: 0 0% 98%;
+  --cathi-success:              145 45% 50%;
+  --cathi-success-foreground:   145 60% 10%;
+  --cathi-warning:              38 95% 60%;
+  --cathi-warning-foreground:   30 40% 12%;
+  --cathi-info:                 199 75% 62%;
+  --cathi-info-foreground:      205 60% 10%;
+  --cathi-border:               214 12% 28%;
+  --cathi-input:                214 12% 30%;
+  --cathi-ring:                 68 100% 48%;
+  --cathi-line:                 214 12% 30%;
+  --cathi-accent-line:         68 100% 55%;
+  --cathi-field:                220 12% 11%;
+  --cathi-field-2:             220 12% 20%;
+  --cathi-on-field:            0 0% 92%;
+  --cathi-shadow-color: 0 0% 0%;
+  --cathi-shadow-sm:    0 1px 2px hsl(0 0% 0% / .5);
+  --cathi-shadow-md:    0 6px 20px hsl(0 0% 0% / .55), 0 0 0 1px hsl(0 0% 0% / .35);
+  --cathi-shadow-lg:    0 12px 36px hsl(0 0% 0% / .62);
+  --cathi-shadow-inset: inset 0 1px 0 hsl(0 0% 100% / .06);
+}
+
+/* 终末地深色：炭黑等高线 + 工业网格 + 黄绿能源辉光 */
+[data-theme="endfield"][data-dark].cathi-root,
+[data-theme="endfield"][data-dark] .cathi-root {
+  background-color: hsl(220 5% 8%);
+  background-image:
+    url(../assets/patterns/endfield-contour.svg),
+    linear-gradient(hsl(214 13% 34% / .045) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(214 13% 34% / .045) 1px, transparent 1px),
+    radial-gradient(1100px 560px at 82% -12%, hsl(68 100% 45% / .16), transparent 60%),
+    radial-gradient(900px 520px at -8% 112%, hsl(210 30% 20% / .30), transparent 55%);
+  background-size: 1100px 820px, 30px 30px, 30px 30px, auto, auto;
+  background-position: 88% -10%, 0 0, 0 0, center, center;
+  background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat;
+  background-attachment: fixed, scroll, scroll, scroll, scroll;
+  color: hsl(var(--cathi-foreground));
+}
+
+/* 深色档：侧栏选中态改暗灰底白字（与官网一致）*/
+[data-theme="endfield"][data-dark] .cathi-nav-item[aria-current="page"],
+[data-theme="endfield"][data-dark] .cathi-nav-item.is-active {
+  background: hsl(var(--cathi-field-2));
+  color: hsl(0 0% 98%);
+  box-shadow: inset 3px 0 0 hsl(var(--cathi-primary));
 }
