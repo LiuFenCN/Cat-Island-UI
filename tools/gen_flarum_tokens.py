@@ -206,8 +206,9 @@ MAP = [
 ]
 
 
-def emit_scope(title, scope, is_dark):
+def emit_scope(title, scope, is_dark, important=True):
     lines = [f"/* {title} */"]
+    suffix = " !important" if important else ""
     for var, light_src, dark_src, *rest in MAP:
         alpha = rest[0] if rest else None
         src = dark_src if is_dark else light_src
@@ -216,7 +217,7 @@ def emit_scope(title, scope, is_dark):
             val = hsl(ch, alpha)
         else:
             val = src  # 常量原样
-        lines.append(f"  {var}: {val};")
+        lines.append(f"  {var}: {val}{suffix};")
     # 额外导出 cathi token 供组件桥引用（保持单一来源）
     lines.append("  /* cathi tokens export for components-bridge */")
     for name in CATHI_EXPORTS:
@@ -226,7 +227,7 @@ def emit_scope(title, scope, is_dark):
             if val.startswith("var("):
                 val = resolve(name, scope)
                 val = hsl(val)
-            lines.append(f"  {name}: {val};")
+            lines.append(f"  {name}: {val}{suffix};")
     return "\n".join(lines)
 
 
@@ -254,9 +255,23 @@ def main():
  */
 """
     light_block = ":root {\n" + emit_scope("浅色（覆盖 forum.css :root）", scope_light, False) + "\n}\n"
-    dark_block = '[data-theme^="dark"] {\n' + emit_scope('深色（覆盖 forum.css [data-theme^="dark"]）', scope_dark, True) + "\n}\n"
+    dark_block = '[data-theme^="dark"] {\n' + emit_scope('深色（覆盖 forum.css [data-theme^="dark"])', scope_dark, True) + "\n}\n"
 
-    out = header + "\n" + light_block + "\n" + dark_block
+    # 论坛若开启 data-colored-header=true，forum.css 会 !important 把 --primary-color 等改回 #fffa00。
+    # 用与 forum.css 同特异性的选择器 + 更晚源顺序 + !important 把它顶回 chartreuse。
+    colored_light = (
+        '[data-colored-header="true"][data-theme^="light"],\n'
+        '[data-colored-header="true"]:not([data-theme^="dark"]) {\n'
+        + emit_scope("浅色 + 彩色顶栏", scope_light, False)
+        + "\n}\n"
+    )
+    colored_dark = (
+        '[data-colored-header="true"][data-theme^="dark"] {\n'
+        + emit_scope("深色 + 彩色顶栏", scope_dark, True)
+        + "\n}\n"
+    )
+
+    out = header + "\n" + light_block + "\n" + dark_block + "\n" + colored_light + "\n" + colored_dark
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:

@@ -8,12 +8,12 @@
 body {
   background-image:
     url(/assets/endfield-contour.svg),
-    linear-gradient(hsl(214 13% 34% / .08) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(214 13% 34% / .08) 1px, transparent 1px),
-    radial-gradient(1200px 620px at 86% -14%, hsl(68 100% 42% / .18), transparent 62%),
-    radial-gradient(1000px 580px at -10% 116%, hsl(210 40% 55% / .16), transparent 58%),
+    linear-gradient(hsl(214 13% 34% / .14) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(214 13% 34% / .14) 1px, transparent 1px),
+    radial-gradient(1200px 620px at 86% -14%, hsl(68 100% 42% / .28), transparent 62%),
+    radial-gradient(1000px 580px at -10% 116%, hsl(210 40% 55% / .24), transparent 58%),
     linear-gradient(180deg, hsl(220 14% 96%) 0%, hsl(220 14% 92%) 100%);
-  background-size: 1200px 900px, 30px 30px, 30px 30px, auto, auto, auto;
+  background-size: cover, 30px 30px, 30px 30px, auto, auto, auto;
   background-position: center, 0 0, 0 0, center, center, center;
   background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
   background-attachment: fixed, scroll, scroll, scroll, scroll, scroll;
@@ -25,12 +25,12 @@ html.dark body,
 body.dark {
   background-image:
     url(/assets/endfield-contour.svg),
-    linear-gradient(hsl(214 13% 34% / .045) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(214 13% 34% / .045) 1px, transparent 1px),
-    radial-gradient(1100px 560px at 82% -12%, hsl(68 100% 45% / .16), transparent 60%),
-    radial-gradient(900px 520px at -8% 112%, hsl(210 30% 20% / .30), transparent 55%);
-  background-size: 1100px 820px, 30px 30px, 30px 30px, auto, auto;
-  background-position: 88% -10%, 0 0, 0 0, center, center;
+    linear-gradient(hsl(214 13% 34% / .16) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(214 13% 34% / .16) 1px, transparent 1px),
+    radial-gradient(1100px 560px at 82% -12%, hsl(68 100% 45% / .26), transparent 60%),
+    radial-gradient(900px 520px at -8% 112%, hsl(210 30% 20% / .42), transparent 55%);
+  background-size: cover, 30px 30px, 30px 30px, auto, auto;
+  background-position: center, 0 0, 0 0, center, center;
   background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat;
   background-attachment: fixed, scroll, scroll, scroll, scroll;
 }
@@ -47,9 +47,14 @@ body.dark {
 .IndexPage,
 .IndexPage-nav,
 .IndexPage-results,
+.IndexPage-toolbar,
 .TagsPage,
+.TagsPage .container,
 .UserPage,
+.UserPage .container,
 .DiscussionPage,
+.DiscussionPage-nav,
+.DiscussionPage-stream,
 .NotificationsPage { background: transparent !important; }
 
 /* 主要卡片/面板：半透明表面（透出 contour 同时保证可读） */
@@ -70,11 +75,6 @@ body.dark {
 .Dropdown-menu > li > button,
 .SelectDropdown-list > li > a,
 .SelectDropdown-list > li > button,
-#app,
-.App,
-.App-content,
-#content,
-.container,
 .sideNav,
 .sideNav--horizontal,
 .Dropdown-menu,
@@ -92,14 +92,8 @@ body.dark {
 .App-composer,
 .Composer-body,
 .item-excerpt,
-.TagsPage .container,
-.DiscussionPage-nav,
-.DiscussionPage-stream,
-.DiscussionPage-options-dropdown,
-.IndexPage-toolbar,
-.IndexPage-results,
-.UserPage .container {
-  background: hsl(var(--cathi-card) / .88) !important;
+.DiscussionPage-options-dropdown {
+  background: hsl(var(--cathi-card) / .72) !important;
 }
 
 /* 深色档：同样 alpha（用四组选择器保证 specificity 赢过 forum.css） */
@@ -171,26 +165,6 @@ body.dark .SelectDropdown-list > li > a,
 .dark .SelectDropdown-list > li > button,
 html.dark .SelectDropdown-list > li > button,
 body.dark .SelectDropdown-list > li > button,
-[data-theme^="dark"] #app,
-.dark #app,
-html.dark #app,
-body.dark #app,
-[data-theme^="dark"] .App,
-.dark .App,
-html.dark .App,
-body.dark .App,
-[data-theme^="dark"] .App-content,
-.dark .App-content,
-html.dark .App-content,
-body.dark .App-content,
-[data-theme^="dark"] #content,
-.dark #content,
-html.dark #content,
-body.dark #content,
-[data-theme^="dark"] .container,
-.dark .container,
-html.dark .container,
-body.dark .container,
 [data-theme^="dark"] .sideNav,
 .dark .sideNav,
 html.dark .sideNav,
@@ -259,35 +233,11 @@ body.dark .Composer-body,
 .dark .item-excerpt,
 html.dark .item-excerpt,
 body.dark .item-excerpt,
-[data-theme^="dark"] .TagsPage .container,
-.dark .TagsPage .container,
-html.dark .TagsPage .container,
-body.dark .TagsPage .container,
-[data-theme^="dark"] .DiscussionPage-nav,
-.dark .DiscussionPage-nav,
-html.dark .DiscussionPage-nav,
-body.dark .DiscussionPage-nav,
-[data-theme^="dark"] .DiscussionPage-stream,
-.dark .DiscussionPage-stream,
-html.dark .DiscussionPage-stream,
-body.dark .DiscussionPage-stream,
 [data-theme^="dark"] .DiscussionPage-options-dropdown,
 .dark .DiscussionPage-options-dropdown,
 html.dark .DiscussionPage-options-dropdown,
-body.dark .DiscussionPage-options-dropdown,
-[data-theme^="dark"] .IndexPage-toolbar,
-.dark .IndexPage-toolbar,
-html.dark .IndexPage-toolbar,
-body.dark .IndexPage-toolbar,
-[data-theme^="dark"] .IndexPage-results,
-.dark .IndexPage-results,
-html.dark .IndexPage-results,
-body.dark .IndexPage-results,
-[data-theme^="dark"] .UserPage .container,
-.dark .UserPage .container,
-html.dark .UserPage .container,
-body.dark .UserPage .container {
-  background: hsl(var(--cathi-card) / .88) !important;
+body.dark .DiscussionPage-options-dropdown {
+  background: hsl(var(--cathi-card) / .72) !important;
 }
 
 /* hover / active：稍微更不透明，保持交互反馈 */
@@ -299,7 +249,7 @@ body.dark .UserPage .container {
 .sideNav .Dropdown-menu > li > a:hover,
 .sideNav .Dropdown-menu > li > button:hover,
 .Notification:hover {
-  background: hsl(var(--cathi-card) / .95) !important;
+  background: hsl(var(--cathi-card) / .85) !important;
 }
 
 /* hover / active 深色档 */
@@ -335,14 +285,14 @@ body.dark .sideNav .Dropdown-menu > li > button:hover,
 .dark .Notification:hover,
 html.dark .Notification:hover,
 body.dark .Notification:hover {
-  background: hsl(var(--cathi-card) / .95) !important;
+  background: hsl(var(--cathi-card) / .85) !important;
 }
 
 /* count / badge：次级表面 */
 .DiscussionListItem-count,
 .Badge,
 .UserCard .Badge {
-  background: hsl(var(--cathi-muted) / .92) !important;
+  background: hsl(var(--cathi-muted) / .85) !important;
 }
 
 /* count / badge 深色档 */
@@ -358,13 +308,13 @@ body.dark .Badge,
 .dark .UserCard .Badge,
 html.dark .UserCard .Badge,
 body.dark .UserCard .Badge {
-  background: hsl(var(--cathi-muted) / .92) !important;
+  background: hsl(var(--cathi-muted) / .85) !important;
 }
 
 /* 置顶帖：保留黄绿渐变标识，但背景也半透明透出 contour */
 .DiscussionListItem--sticky,
 .DiscussionListItem--sticky:hover {
-  background: linear-gradient(180deg, hsl(var(--cathi-primary) / .22), hsl(var(--cathi-card) / .9)) !important;
+  background: linear-gradient(180deg, hsl(var(--cathi-primary) / .22), hsl(var(--cathi-card) / .78)) !important;
   border-left: 6px solid hsl(var(--cathi-primary)) !important;
 }
 
@@ -377,6 +327,96 @@ body.dark .DiscussionListItem--sticky,
 .dark .DiscussionListItem--sticky:hover,
 html.dark .DiscussionListItem--sticky:hover,
 body.dark .DiscussionListItem--sticky:hover {
-  background: linear-gradient(180deg, hsl(var(--cathi-primary) / .22), hsl(var(--cathi-card) / .9)) !important;
+  background: linear-gradient(180deg, hsl(var(--cathi-primary) / .22), hsl(var(--cathi-card) / .78)) !important;
   border-left: 6px solid hsl(var(--cathi-primary)) !important;
+}
+
+/* Hero / Widget：去掉 forum.css 的实心背景 + 偏移阴影矩形，让 contour 透上来 */
+.Hero,
+.WelcomeHero,
+.TagHero,
+.WidgetsContainer .Widget,
+.Widget-content,
+.item-widget,
+.FofWidgets-Widget-content,
+.NotificationList,
+.NotificationGroup,
+.NotificationGroup-header,
+.NotificationList-header,
+.NotificationGroup-content,
+.App-footer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 覆盖 forum.css 底部硬编码的柠檬黄，改回 chartreuse/白 */
+.Hero,
+.WelcomeHero,
+.Hero h1,
+.Hero h2,
+.Hero-title,
+.WelcomeHero .Hero-title {
+  color: hsl(var(--cathi-foreground)) !important;
+  text-shadow: none !important;
+}
+.Hero-subtitle,
+.WelcomeHero .Hero-subtitle {
+  color: hsl(var(--cathi-primary)) !important;
+}
+.Hero::before,
+.WelcomeHero::before {
+  background: repeating-linear-gradient(45deg, transparent 0, transparent 24px, hsl(var(--cathi-primary) / .06) 24px, hsl(var(--cathi-primary) / .06) 48px) !important;
+}
+header .Header-secondary .Button--link:hover,
+header .Header-secondary .Dropdown-toggle:hover,
+header .Button--icon:hover,
+.Hero .Hero-close.Button--icon:hover {
+  color: hsl(var(--cathi-primary-foreground)) !important;
+  background: hsl(var(--cathi-primary)) !important;
+  border-color: hsl(var(--cathi-primary)) !important;
+}
+
+/* 深色档：同上 */
+[data-theme^="dark"] .Hero,
+[data-theme^="dark"] .WelcomeHero,
+[data-theme^="dark"] .TagHero,
+[data-theme^="dark"] .WidgetsContainer .Widget,
+[data-theme^="dark"] .Widget-content,
+[data-theme^="dark"] .item-widget,
+[data-theme^="dark"] .FofWidgets-Widget-content,
+[data-theme^="dark"] .NotificationList,
+[data-theme^="dark"] .NotificationGroup,
+[data-theme^="dark"] .NotificationGroup-header,
+[data-theme^="dark"] .NotificationList-header,
+[data-theme^="dark"] .NotificationGroup-content,
+[data-theme^="dark"] .App-footer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+[data-theme^="dark"] .Hero,
+[data-theme^="dark"] .WelcomeHero,
+[data-theme^="dark"] .Hero h1,
+[data-theme^="dark"] .Hero h2,
+[data-theme^="dark"] .Hero-title,
+[data-theme^="dark"] .WelcomeHero .Hero-title {
+  color: hsl(var(--cathi-foreground)) !important;
+  text-shadow: none !important;
+}
+[data-theme^="dark"] .Hero-subtitle,
+[data-theme^="dark"] .WelcomeHero .Hero-subtitle {
+  color: hsl(var(--cathi-primary)) !important;
+}
+[data-theme^="dark"] .Hero::before,
+[data-theme^="dark"] .WelcomeHero::before {
+  background: repeating-linear-gradient(45deg, transparent 0, transparent 24px, hsl(var(--cathi-primary) / .06) 24px, hsl(var(--cathi-primary) / .06) 48px) !important;
+}
+[data-theme^="dark"] header .Header-secondary .Button--link:hover,
+[data-theme^="dark"] header .Header-secondary .Dropdown-toggle:hover,
+[data-theme^="dark"] header .Button--icon:hover,
+[data-theme^="dark"] .Hero .Hero-close.Button--icon:hover {
+  color: hsl(var(--cathi-primary-foreground)) !important;
+  background: hsl(var(--cathi-primary)) !important;
+  border-color: hsl(var(--cathi-primary)) !important;
 }

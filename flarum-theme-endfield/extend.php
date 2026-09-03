@@ -15,9 +15,9 @@ return [
             $document->head[] = '<script>(function(){var h=document.documentElement;if(h.classList.contains("dark")||window.matchMedia("(prefers-color-scheme: dark)").matches)h.setAttribute("data-theme","dark");})();</script>';
             $document->head[] = '<link rel="stylesheet" href="/assets/endfield.css?v=22">';
             // Flarum 原生变量桥：在 endfield.css 之后注入，覆盖 --primary-color 等漂移（源 src/tokens.css / tokens-bridge.css）
-            $document->head[] = '<link rel="stylesheet" href="/assets/endfield-tokens.css?v=2">';
+            $document->head[] = '<link rel="stylesheet" href="/assets/endfield-tokens.css?v=3">';
             // 终末地组件桥：在 endfield.css 之后注入，继承 themes/endfield.css 的 contour 科技感背景（源 themes/endfield.css / components-bridge.css）
-            $document->head[] = '<link rel="stylesheet" href="/assets/endfield-components.css?v=2">';
+            $document->head[] = '<link rel="stylesheet" href="/assets/endfield-components.css?v=3">';
 
             // 动物森友会风格随机默认头像：
             // 当 .Avatar 是 span 且没有 src（即未上传头像的默认占位）时，
