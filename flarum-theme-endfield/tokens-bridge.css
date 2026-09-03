@@ -72,6 +72,25 @@
   --online-user-circle-color: hsl(68 95% 36%);
   --switch-on-color: hsl(68 95% 36%);
   --switch-off-color: hsl(220 16% 91%);
+  /* cathi tokens export for components-bridge */
+  --cathi-card: 0 0% 100%;
+  --cathi-muted: 220 16% 91%;
+  --cathi-field: 220 16% 96%;
+  --cathi-field-2: 220 16% 85%;
+  --cathi-background: 220 14% 94%;
+  --cathi-foreground: 220 22% 12%;
+  --cathi-primary: 68 95% 36%;
+  --cathi-primary-active: 68 95% 28%;
+  --cathi-primary-foreground: 0 0% 100%;
+  --cathi-secondary: 220 16% 89%;
+  --cathi-line: 220 16% 78%;
+  --cathi-accent-line: 68 90% 36%;
+  --cathi-border: 220 14% 76%;
+  --cathi-input: 220 16% 80%;
+  --cathi-ring: 68 95% 40%;
+  --cathi-radius: .25rem;
+  --cathi-r-sm: .25rem;
+  --cathi-r-md: .35rem;
 }
 
 [data-theme^="dark"] {
@@ -139,4 +158,20 @@
   --online-user-circle-color: hsl(68 100% 48%);
   --switch-on-color: hsl(68 100% 48%);
   --switch-off-color: hsl(220 6% 15%);
+  /* cathi tokens export for components-bridge */
+  --cathi-card: 220 6% 12%;
+  --cathi-muted: 220 6% 15%;
+  --cathi-field: 220 12% 11%;
+  --cathi-field-2: 220 12% 20%;
+  --cathi-background: 220 5% 8%;
+  --cathi-foreground: 0 0% 95%;
+  --cathi-primary: 68 100% 48%;
+  --cathi-primary-active: 68 100% 38%;
+  --cathi-primary-foreground: 26 35% 8%;
+  --cathi-secondary: 220 6% 16%;
+  --cathi-line: 214 12% 30%;
+  --cathi-accent-line: 68 100% 55%;
+  --cathi-border: 214 12% 28%;
+  --cathi-input: 214 12% 30%;
+  --cathi-ring: 68 100% 48%;
 }

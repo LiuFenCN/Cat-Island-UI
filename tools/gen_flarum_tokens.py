@@ -32,6 +32,28 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_TOKENS = os.path.join(REPO_ROOT, "src", "tokens.css")
 DEFAULT_OUT = os.path.join(REPO_ROOT, "flarum-theme-endfield", "tokens-bridge.css")
 
+# 需要额外以 --cathi-* 形式保留在桥文件中的变量，供 components-bridge.css 引用
+CATHI_EXPORTS = [
+    "--cathi-card",
+    "--cathi-muted",
+    "--cathi-field",
+    "--cathi-field-2",
+    "--cathi-background",
+    "--cathi-foreground",
+    "--cathi-primary",
+    "--cathi-primary-active",
+    "--cathi-primary-foreground",
+    "--cathi-secondary",
+    "--cathi-line",
+    "--cathi-accent-line",
+    "--cathi-border",
+    "--cathi-input",
+    "--cathi-ring",
+    "--cathi-radius",
+    "--cathi-r-sm",
+    "--cathi-r-md",
+]
+
 # ── CSS 块提取：定位选择器锚点，返回其后匹配的第一个 {...} 内容 ──────────────
 def extract_block(text: str, anchor: str):
     i = text.find(anchor)
@@ -40,7 +62,7 @@ def extract_block(text: str, anchor: str):
     # 从锚点之后找第一个 {
     bi = text.find("{", i)
     if bi < 0:
-        raise RuntimeError(f"锚点后无 {{ : {anchor!r}")
+        raise RuntimeError(f"锚点后无 '{{' : {anchor!r}")
     depth = 0
     for j in range(bi, len(text)):
         if text[j] == "{":
@@ -195,6 +217,16 @@ def emit_scope(title, scope, is_dark):
         else:
             val = src  # 常量原样
         lines.append(f"  {var}: {val};")
+    # 额外导出 cathi token 供组件桥引用（保持单一来源）
+    lines.append("  /* cathi tokens export for components-bridge */")
+    for name in CATHI_EXPORTS:
+        if name in scope:
+            val = scope[name]
+            # 若值仍是 var(...) 则解析到最终字面量，避免桥内无定义
+            if val.startswith("var("):
+                val = resolve(name, scope)
+                val = hsl(val)
+            lines.append(f"  {name}: {val};")
     return "\n".join(lines)
 
 
