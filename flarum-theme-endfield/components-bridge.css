@@ -343,11 +343,39 @@ body.dark .DiscussionListItem--sticky:hover {
 .NotificationGroup,
 .NotificationGroup-header,
 .NotificationList-header,
-.NotificationGroup-content,
-.App-footer {
+.NotificationGroup-content {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+/* footer 底栏：forum.css 给 body > footer 硬编码了浅色背景，链式 chartreuse 链接看不清；改深色半透明 + 白字 */
+body > footer,
+.App-footer,
+body > footer:empty,
+.App-footer:empty {
+  background: hsl(var(--cathi-card) / .96) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+  border: none !important;
+  border-top: 1px solid hsl(var(--cathi-line) / .3) !important;
+  box-shadow: none !important;
+}
+body > footer p,
+body > footer span,
+body > footer a,
+body > footer a:link,
+body > footer a:visited,
+.App-footer p,
+.App-footer span,
+.App-footer a,
+.App-footer a:link,
+.App-footer a:visited {
+  color: hsl(var(--cathi-foreground)) !important;
+  text-decoration: underline !important;
+}
+body > footer a:hover,
+.App-footer a:hover {
+  color: hsl(var(--cathi-primary)) !important;
 }
 
 /* 覆盖 forum.css 底部硬编码的柠檬黄，改回 chartreuse/白 */
@@ -389,11 +417,39 @@ header .Button--icon:hover,
 [data-theme^="dark"] .NotificationGroup,
 [data-theme^="dark"] .NotificationGroup-header,
 [data-theme^="dark"] .NotificationList-header,
-[data-theme^="dark"] .NotificationGroup-content,
-[data-theme^="dark"] .App-footer {
+[data-theme^="dark"] .NotificationGroup-content {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+/* 深色档 footer 底栏 */
+[data-theme^="dark"] body > footer,
+[data-theme^="dark"] .App-footer,
+[data-theme^="dark"] body > footer:empty,
+[data-theme^="dark"] .App-footer:empty {
+  background: hsl(var(--cathi-card) / .96) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+  border: none !important;
+  border-top: 1px solid hsl(var(--cathi-line) / .3) !important;
+  box-shadow: none !important;
+}
+[data-theme^="dark"] body > footer p,
+[data-theme^="dark"] body > footer span,
+[data-theme^="dark"] body > footer a,
+[data-theme^="dark"] body > footer a:link,
+[data-theme^="dark"] body > footer a:visited,
+[data-theme^="dark"] .App-footer p,
+[data-theme^="dark"] .App-footer span,
+[data-theme^="dark"] .App-footer a,
+[data-theme^="dark"] .App-footer a:link,
+[data-theme^="dark"] .App-footer a:visited {
+  color: hsl(var(--cathi-foreground)) !important;
+  text-decoration: underline !important;
+}
+[data-theme^="dark"] body > footer a:hover,
+[data-theme^="dark"] .App-footer a:hover {
+  color: hsl(var(--cathi-primary)) !important;
 }
 [data-theme^="dark"] .Hero,
 [data-theme^="dark"] .WelcomeHero,
