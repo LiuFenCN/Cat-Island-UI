@@ -420,3 +420,154 @@ header .Button--icon:hover,
   background: hsl(var(--cathi-primary)) !important;
   border-color: hsl(var(--cathi-primary)) !important;
 }
+
+/* ── 对比度修复：透明/半透明表面上的文字必须可读 ── */
+/* 提高 specificity（body 前缀）强制外层卡片半透明，抵消 forum.css 的 transparent */
+body .DiscussionListItem,
+body .DiscussionList-discussions > li,
+body .DiscussionListItem-content,
+body .DiscussionListItem-main,
+body .DiscussionListItem-main:hover,
+body .DiscussionListItem-main:focus,
+body .sideNav,
+body .sideNav--horizontal,
+body .Dropdown-menu,
+body .UserCard,
+body .UserCard-profile,
+body .Post,
+body .Post-body,
+body .Notification,
+body .Notification-content,
+body .Modal-header,
+body .Modal-body,
+body .Modal-footer,
+body .Modal-content,
+body .Composer,
+body .App-composer,
+body .Composer-body,
+body .item-excerpt,
+body .DiscussionPage-options-dropdown,
+body .TagsPage .TagTile,
+body .TagsPage .TagIcon,
+body .UserPage .UserCard,
+body .PostStream-item,
+body .PostStream-item .Post,
+body .NotificationGroup-content,
+body .NotificationList .Notification,
+body .Dropdown-menu > li > a,
+body .Dropdown-menu > li > button,
+body .SelectDropdown-list > li > a,
+body .SelectDropdown-list > li > button {
+  background: hsl(var(--cathi-card) / .82) !important;
+}
+
+/* 文字色统一提亮，避免 forum.css 默认灰/棕色在深色 contour 上失踪 */
+body .DiscussionListItem-title,
+body .DiscussionListItem .DiscussionListItem-info,
+body .DiscussionListItem .DiscussionListItem-info .username,
+body .DiscussionListItem .DiscussionListItem-info > span,
+body .DiscussionListItem .DiscussionListItem-info > a,
+body .DiscussionListItem-stats-item,
+body .sideNav > li > a,
+body .sideNav > li > button,
+body .sideNav .Dropdown-menu > li > a,
+body .sideNav .Dropdown-menu > li > button,
+body .sideNav .Dropdown-menu > li.active > a,
+body .Dropdown-menu > li > a,
+body .Dropdown-menu > li > button,
+body .SelectDropdown-list > li > a,
+body .SelectDropdown-list > li > button,
+body .TagLabel:not(.colored),
+body .DiscussionListItem-count,
+body .Badge,
+body .App-footer,
+body .App-footer a,
+body .App-footer span,
+body .App-footer li,
+body .App-footer p {
+  color: hsl(var(--cathi-foreground)) !important;
+}
+
+/* footer 单独加一条半透明底栏，避免压 contour 看不清 */
+body .App-footer,
+body .App-footer a,
+body .App-footer span,
+body .App-footer li,
+body .App-footer p {
+  background: hsl(var(--cathi-card) / .9) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+}
+
+/* 深色档：同上 */
+[data-theme^="dark"] body .DiscussionListItem,
+[data-theme^="dark"] body .DiscussionList-discussions > li,
+[data-theme^="dark"] body .DiscussionListItem-content,
+[data-theme^="dark"] body .DiscussionListItem-main,
+[data-theme^="dark"] body .DiscussionListItem-main:hover,
+[data-theme^="dark"] body .DiscussionListItem-main:focus,
+[data-theme^="dark"] body .sideNav,
+[data-theme^="dark"] body .sideNav--horizontal,
+[data-theme^="dark"] body .Dropdown-menu,
+[data-theme^="dark"] body .UserCard,
+[data-theme^="dark"] body .UserCard-profile,
+[data-theme^="dark"] body .Post,
+[data-theme^="dark"] body .Post-body,
+[data-theme^="dark"] body .Notification,
+[data-theme^="dark"] body .Notification-content,
+[data-theme^="dark"] body .Modal-header,
+[data-theme^="dark"] body .Modal-body,
+[data-theme^="dark"] body .Modal-footer,
+[data-theme^="dark"] body .Modal-content,
+[data-theme^="dark"] body .Composer,
+[data-theme^="dark"] body .App-composer,
+[data-theme^="dark"] body .Composer-body,
+[data-theme^="dark"] body .item-excerpt,
+[data-theme^="dark"] body .DiscussionPage-options-dropdown,
+[data-theme^="dark"] body .TagsPage .TagTile,
+[data-theme^="dark"] body .TagsPage .TagIcon,
+[data-theme^="dark"] body .UserPage .UserCard,
+[data-theme^="dark"] body .PostStream-item,
+[data-theme^="dark"] body .PostStream-item .Post,
+[data-theme^="dark"] body .NotificationGroup-content,
+[data-theme^="dark"] body .NotificationList .Notification,
+[data-theme^="dark"] body .Dropdown-menu > li > a,
+[data-theme^="dark"] body .Dropdown-menu > li > button,
+[data-theme^="dark"] body .SelectDropdown-list > li > a,
+[data-theme^="dark"] body .SelectDropdown-list > li > button {
+  background: hsl(var(--cathi-card) / .82) !important;
+}
+
+[data-theme^="dark"] body .DiscussionListItem-title,
+[data-theme^="dark"] body .DiscussionListItem .DiscussionListItem-info,
+[data-theme^="dark"] body .DiscussionListItem .DiscussionListItem-info .username,
+[data-theme^="dark"] body .DiscussionListItem .DiscussionListItem-info > span,
+[data-theme^="dark"] body .DiscussionListItem .DiscussionListItem-info > a,
+[data-theme^="dark"] body .DiscussionListItem-stats-item,
+[data-theme^="dark"] body .sideNav > li > a,
+[data-theme^="dark"] body .sideNav > li > button,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li > a,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li > button,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,
+[data-theme^="dark"] body .Dropdown-menu > li > a,
+[data-theme^="dark"] body .Dropdown-menu > li > button,
+[data-theme^="dark"] body .SelectDropdown-list > li > a,
+[data-theme^="dark"] body .SelectDropdown-list > li > button,
+[data-theme^="dark"] body .TagLabel:not(.colored),
+[data-theme^="dark"] body .DiscussionListItem-count,
+[data-theme^="dark"] body .Badge,
+[data-theme^="dark"] body .App-footer,
+[data-theme^="dark"] body .App-footer a,
+[data-theme^="dark"] body .App-footer span,
+[data-theme^="dark"] body .App-footer li,
+[data-theme^="dark"] body .App-footer p {
+  color: hsl(var(--cathi-foreground)) !important;
+}
+
+[data-theme^="dark"] body .App-footer,
+[data-theme^="dark"] body .App-footer a,
+[data-theme^="dark"] body .App-footer span,
+[data-theme^="dark"] body .App-footer li,
+[data-theme^="dark"] body .App-footer p {
+  background: hsl(var(--cathi-card) / .9) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+}
