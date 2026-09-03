@@ -1,0 +1,36 @@
+/*
+ * cathi-ui -> Flarum 组件桥（终末地背景，编译自 themes/endfield.css 单一来源）
+ * 由 extend.php 在 endfield.css 之后注入，使 Flarum 继承终末地 contour 科技感背景
+ * 改背景只需改 themes/endfield.css 后重跑: python tools/gen_flarum_components.py
+ * 部署还需把 assets/patterns/endfield-contour.svg 拷到 public/assets/endfield-contour.svg
+ */
+
+body {
+  background-image:
+    url(/assets/endfield-contour.svg),
+    linear-gradient(hsl(214 13% 34% / .08) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(214 13% 34% / .08) 1px, transparent 1px),
+    radial-gradient(1200px 620px at 86% -14%, hsl(68 100% 42% / .18), transparent 62%),
+    radial-gradient(1000px 580px at -10% 116%, hsl(210 40% 55% / .16), transparent 58%),
+    linear-gradient(180deg, hsl(220 14% 96%) 0%, hsl(220 14% 92%) 100%);
+  background-size: 1200px 900px, 30px 30px, 30px 30px, auto, auto, auto;
+  background-position: center, 0 0, 0 0, center, center, center;
+  background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, scroll, scroll, scroll, scroll, scroll;
+}
+
+[data-theme^="dark"] body,
+.dark body,
+html.dark body,
+body.dark {
+  background-image:
+    url(/assets/endfield-contour.svg),
+    linear-gradient(hsl(214 13% 34% / .045) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(214 13% 34% / .045) 1px, transparent 1px),
+    radial-gradient(1100px 560px at 82% -12%, hsl(68 100% 45% / .16), transparent 60%),
+    radial-gradient(900px 520px at -8% 112%, hsl(210 30% 20% / .30), transparent 55%);
+  background-size: 1100px 820px, 30px 30px, 30px 30px, auto, auto;
+  background-position: 88% -10%, 0 0, 0 0, center, center;
+  background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat;
+  background-attachment: fixed, scroll, scroll, scroll, scroll;
+}

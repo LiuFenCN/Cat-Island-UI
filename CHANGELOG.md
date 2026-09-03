@@ -1,5 +1,19 @@
 # Changelog
 
+## v4.5.1 — 2026-09-03
+
+Flarum 终末地组件桥（contour 背景）+ 闭环机制补全。
+
+### Flarum 组件桥（视觉层继承）
+- 新增 `tools/gen_flarum_components.py`：把 `themes/endfield.css` 的终末地「组件/视觉事实来源」编译为 Flarum 原生选择器覆盖，输出 `flarum-theme-endfield/components-bridge.css`。
+- 首个切片：终末地 contour 科技感背景（地形等高线 + 工业网格 + 黄绿能源辉光），浅（`body`）/ 深（`[data-theme^="dark"] body` 等四组合）两档，从 `themes/endfield.css` 的 `.cathi-root` 背景块抽取。
+- 由 `extend.php` 在 `endfield.css` 之后注入独立 `<link>`（顺序 endfield.css → tokens-bridge → components-bridge），**不改动 `forum.css`**。改背景只改 `themes/endfield.css` 后重跑本脚本即可，Flarum 自动继承（单一来源下行闭环）。
+- 部署：contour SVG 拷到 `public/assets/endfield-contour.svg`，组件桥拷到 `public/assets/endfield-components.css`，线上已验证级联正确。
+
+### 单一来源原则澄清
+- SoT 是**双向闭环**：base 改 → 分支自动继承（下行）；分支发现更好效果 → 提升回 base 的单一来源（上行），绝不让改进只活在某分支里。
+- 值层（`src/tokens.css`）已闭环；组件/视觉层（`themes/endfield.css`）经组件桥闭环，Flarum 不再手工镜像、不再漂移。
+
 ## v4.5 — 2026-09-03
 
 Design Token 单一来源化 + 新增 Flarum 终末地 token 桥。
