@@ -6,3 +6,4 @@
 react/node_modules/
 react/dist/
 react/tsconfig.tsbuildinfo
+__pycache__/
