@@ -17,7 +17,7 @@ return [
             // Flarum 原生变量桥：在 endfield.css 之后注入，覆盖 --primary-color 等漂移（源 src/tokens.css / tokens-bridge.css）
             $document->head[] = '<link rel="stylesheet" href="/assets/endfield-tokens.css?v=4">';
             // 终末地组件桥：在 endfield.css 之后注入，继承 themes/endfield.css 的 contour 科技感背景（源 themes/endfield.css / components-bridge.css）
-            $document->head[] = '<link rel="stylesheet" href="/assets/endfield-components.css?v=8">';
+            $document->head[] = '<link rel="stylesheet" href="/assets/endfield-components.css?v=9">';
 
             // 动物森友会风格随机默认头像：
             // 当 .Avatar 是 span 且没有 src（即未上传头像的默认占位）时，

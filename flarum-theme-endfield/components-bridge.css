@@ -573,12 +573,16 @@ body .sideNav > li.active > button:hover .Button-labelText,
 body .sideNav .Dropdown-menu > li > a,
 body .sideNav .Dropdown-menu > li > a .Button-label,
 body .sideNav .Dropdown-menu > li > a .Button-labelText,
+body .sideNav .Dropdown-menu > li > a i.icon.Button-icon,
 body .sideNav .Dropdown-menu > li > button,
 body .sideNav .Dropdown-menu > li > button .Button-label,
 body .sideNav .Dropdown-menu > li > button .Button-labelText,
+body .sideNav .Dropdown-menu > li > button i.icon.Button-icon,
 body .sideNav .Dropdown-menu > li.active > a,
 body .sideNav .Dropdown-menu > li.active > a .Button-label,
 body .sideNav .Dropdown-menu > li.active > a .Button-labelText,
+body .sideNav .Dropdown-menu > li.active > a i.icon.Button-icon,
+body .sideNav .Dropdown-menu > li.active > button i.icon.Button-icon,
 body .Dropdown-menu > li > a,
 body .Dropdown-menu > li > button,
 body .SelectDropdown-list > li > a,
@@ -610,9 +614,11 @@ body .sideNav .Dropdown-menu > li.active,
 body .sideNav .Dropdown-menu > li.active > a,
 body .sideNav .Dropdown-menu > li.active > a .Button-label,
 body .sideNav .Dropdown-menu > li.active > a .Button-labelText,
+body .sideNav .Dropdown-menu > li.active > a i.icon.Button-icon,
 body .sideNav .Dropdown-menu > li.active > button,
 body .sideNav .Dropdown-menu > li.active > button .Button-label,
-body .sideNav .Dropdown-menu > li.active > button .Button-labelText {
+body .sideNav .Dropdown-menu > li.active > button .Button-labelText,
+body .sideNav .Dropdown-menu > li.active > button i.icon.Button-icon {
   background: hsl(var(--cathi-card) / .9) !important;
   color: hsl(var(--cathi-foreground)) !important;
   border-left: 3px solid hsl(var(--cathi-primary)) !important;
@@ -695,10 +701,13 @@ body .App-footer p {
 [data-theme^="dark"] body .sideNav > li.active > button:hover .Button-labelText,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li > a,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li > a .Button-label,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li > a .Button-labelText,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li > a i.icon.Button-icon,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li > button,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a .Button-label,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a .Button-labelText,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a i.icon.Button-icon,
 [data-theme^="dark"] body .Dropdown-menu > li > a,
 [data-theme^="dark"] body .Dropdown-menu > li > button,
 [data-theme^="dark"] body .SelectDropdown-list > li > a,
@@ -729,9 +738,11 @@ body .App-footer p {
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a .Button-label,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a .Button-labelText,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a i.icon.Button-icon,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button .Button-label,
-[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button .Button-labelText {
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button .Button-labelText,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button i.icon.Button-icon {
   background: hsl(var(--cathi-card) / .9) !important;
   color: hsl(var(--cathi-foreground)) !important;
   border-left: 3px solid hsl(var(--cathi-primary)) !important;
