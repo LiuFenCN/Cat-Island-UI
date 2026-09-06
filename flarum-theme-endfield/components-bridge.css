@@ -598,7 +598,21 @@ body .App-footer p {
   color: hsl(var(--cathi-foreground)) !important;
 }
 
-/* sideNav active 选中态强化：深色背景下必须一眼可见 */
+/* sideNav active 选中态强化：背景+左边框只落在 a/button 一层，
+   避免多层叠加出现双黄条/碎背景（此前 li 与 .Button-label 也被套了背景边框） */
+body .sideNav > li.active > a,
+body .sideNav > li.active > button,
+body .sideNav > li.active > a:hover,
+body .sideNav > li.active > button:hover,
+body .sideNav .Dropdown-menu > li.active > a,
+body .sideNav .Dropdown-menu > li.active > button {
+  background: hsl(var(--cathi-card) / .9) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+  border-left: 3px solid hsl(var(--cathi-primary)) !important;
+  border-radius: 4px !important;
+  text-shadow: none !important;
+}
+/* 选中态文字/图标色：覆盖所有内部元素，但不带背景和边框 */
 body .sideNav > li.active,
 body .sideNav > li.active > a,
 body .sideNav > li.active > button,
@@ -619,10 +633,7 @@ body .sideNav .Dropdown-menu > li.active > button,
 body .sideNav .Dropdown-menu > li.active > button .Button-label,
 body .sideNav .Dropdown-menu > li.active > button .Button-labelText,
 body .sideNav .Dropdown-menu > li.active > button i.icon.Button-icon {
-  background: hsl(var(--cathi-card) / .9) !important;
   color: hsl(var(--cathi-foreground)) !important;
-  border-left: 3px solid hsl(var(--cathi-primary)) !important;
-  text-shadow: none !important;
 }
 
 /* footer 单独加一条半透明底栏，避免压 contour 看不清 */
@@ -723,6 +734,19 @@ body .App-footer p {
   color: hsl(var(--cathi-foreground)) !important;
 }
 
+/* 深色档：选中态同浅色，背景+边框只在 a/button 一层 */
+[data-theme^="dark"] body .sideNav > li.active > a,
+[data-theme^="dark"] body .sideNav > li.active > button,
+[data-theme^="dark"] body .sideNav > li.active > a:hover,
+[data-theme^="dark"] body .sideNav > li.active > button:hover,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button {
+  background: hsl(var(--cathi-card) / .9) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+  border-left: 3px solid hsl(var(--cathi-primary)) !important;
+  border-radius: 4px !important;
+  text-shadow: none !important;
+}
 [data-theme^="dark"] body .sideNav > li.active,
 [data-theme^="dark"] body .sideNav > li.active > a,
 [data-theme^="dark"] body .sideNav > li.active > button,
@@ -743,10 +767,7 @@ body .App-footer p {
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button .Button-label,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button .Button-labelText,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button i.icon.Button-icon {
-  background: hsl(var(--cathi-card) / .9) !important;
   color: hsl(var(--cathi-foreground)) !important;
-  border-left: 3px solid hsl(var(--cathi-primary)) !important;
-  text-shadow: none !important;
 }
 
 [data-theme^="dark"] body .App-footer,
