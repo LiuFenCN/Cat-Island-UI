@@ -248,6 +248,11 @@ body.dark .DiscussionPage-options-dropdown {
 .sideNav .Dropdown-menu > li.active,
 .sideNav .Dropdown-menu > li > a:hover,
 .sideNav .Dropdown-menu > li > button:hover,
+.sideNav > li.active,
+.sideNav > li.active > a,
+.sideNav > li.active > button,
+.sideNav > li.active > a:hover,
+.sideNav > li.active > button:hover,
 .Notification:hover {
   background: hsl(var(--cathi-card) / .85) !important;
 }
@@ -281,6 +286,26 @@ body.dark .sideNav .Dropdown-menu > li > a:hover,
 .dark .sideNav .Dropdown-menu > li > button:hover,
 html.dark .sideNav .Dropdown-menu > li > button:hover,
 body.dark .sideNav .Dropdown-menu > li > button:hover,
+[data-theme^="dark"] .sideNav > li.active,
+.dark .sideNav > li.active,
+html.dark .sideNav > li.active,
+body.dark .sideNav > li.active,
+[data-theme^="dark"] .sideNav > li.active > a,
+.dark .sideNav > li.active > a,
+html.dark .sideNav > li.active > a,
+body.dark .sideNav > li.active > a,
+[data-theme^="dark"] .sideNav > li.active > button,
+.dark .sideNav > li.active > button,
+html.dark .sideNav > li.active > button,
+body.dark .sideNav > li.active > button,
+[data-theme^="dark"] .sideNav > li.active > a:hover,
+.dark .sideNav > li.active > a:hover,
+html.dark .sideNav > li.active > a:hover,
+body.dark .sideNav > li.active > a:hover,
+[data-theme^="dark"] .sideNav > li.active > button:hover,
+.dark .sideNav > li.active > button:hover,
+html.dark .sideNav > li.active > button:hover,
+body.dark .sideNav > li.active > button:hover,
 [data-theme^="dark"] .Notification:hover,
 .dark .Notification:hover,
 html.dark .Notification:hover,
@@ -526,6 +551,10 @@ body .DiscussionListItem .DiscussionListItem-info > a,
 body .DiscussionListItem-stats-item,
 body .sideNav > li > a,
 body .sideNav > li > button,
+body .sideNav > li.active > a,
+body .sideNav > li.active > button,
+body .sideNav > li.active > a:hover,
+body .sideNav > li.active > button:hover,
 body .sideNav .Dropdown-menu > li > a,
 body .sideNav .Dropdown-menu > li > button,
 body .sideNav .Dropdown-menu > li.active > a,
@@ -542,6 +571,21 @@ body .App-footer span,
 body .App-footer li,
 body .App-footer p {
   color: hsl(var(--cathi-foreground)) !important;
+}
+
+/* sideNav active 选中态强化：深色背景下必须一眼可见 */
+body .sideNav > li.active,
+body .sideNav > li.active > a,
+body .sideNav > li.active > button,
+body .sideNav > li.active > a:hover,
+body .sideNav > li.active > button:hover,
+body .sideNav .Dropdown-menu > li.active,
+body .sideNav .Dropdown-menu > li.active > a,
+body .sideNav .Dropdown-menu > li.active > button {
+  background: hsl(var(--cathi-card) / .9) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+  border-left: 3px solid hsl(var(--cathi-primary)) !important;
+  text-shadow: none !important;
 }
 
 /* footer 单独加一条半透明底栏，避免压 contour 看不清 */
@@ -601,6 +645,10 @@ body .App-footer p {
 [data-theme^="dark"] body .DiscussionListItem-stats-item,
 [data-theme^="dark"] body .sideNav > li > a,
 [data-theme^="dark"] body .sideNav > li > button,
+[data-theme^="dark"] body .sideNav > li.active > a,
+[data-theme^="dark"] body .sideNav > li.active > button,
+[data-theme^="dark"] body .sideNav > li.active > a:hover,
+[data-theme^="dark"] body .sideNav > li.active > button:hover,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li > a,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li > button,
 [data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,
@@ -617,6 +665,20 @@ body .App-footer p {
 [data-theme^="dark"] body .App-footer li,
 [data-theme^="dark"] body .App-footer p {
   color: hsl(var(--cathi-foreground)) !important;
+}
+
+[data-theme^="dark"] body .sideNav > li.active,
+[data-theme^="dark"] body .sideNav > li.active > a,
+[data-theme^="dark"] body .sideNav > li.active > button,
+[data-theme^="dark"] body .sideNav > li.active > a:hover,
+[data-theme^="dark"] body .sideNav > li.active > button:hover,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,
+[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button {
+  background: hsl(var(--cathi-card) / .9) !important;
+  color: hsl(var(--cathi-foreground)) !important;
+  border-left: 3px solid hsl(var(--cathi-primary)) !important;
+  text-shadow: none !important;
 }
 
 [data-theme^="dark"] body .App-footer,

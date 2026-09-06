@@ -140,6 +140,11 @@ def build_transparency_block():
         ".sideNav .Dropdown-menu > li.active",
         ".sideNav .Dropdown-menu > li > a:hover",
         ".sideNav .Dropdown-menu > li > button:hover",
+        ".sideNav > li.active",
+        ".sideNav > li.active > a",
+        ".sideNav > li.active > button",
+        ".sideNav > li.active > a:hover",
+        ".sideNav > li.active > button:hover",
         ".Notification:hover",
     ]
     sticky_selectors = [
@@ -408,6 +413,10 @@ def build_transparency_block():
     lines.append("body .DiscussionListItem-stats-item,")
     lines.append("body .sideNav > li > a,")
     lines.append("body .sideNav > li > button,")
+    lines.append("body .sideNav > li.active > a,")
+    lines.append("body .sideNav > li.active > button,")
+    lines.append("body .sideNav > li.active > a:hover,")
+    lines.append("body .sideNav > li.active > button:hover,")
     lines.append("body .sideNav .Dropdown-menu > li > a,")
     lines.append("body .sideNav .Dropdown-menu > li > button,")
     lines.append("body .sideNav .Dropdown-menu > li.active > a,")
@@ -424,6 +433,21 @@ def build_transparency_block():
     lines.append("body .App-footer li,")
     lines.append("body .App-footer p {")
     lines.append("  color: hsl(var(--cathi-foreground)) !important;")
+    lines.append("}")
+    lines.append("")
+    lines.append("/* sideNav active 选中态强化：深色背景下必须一眼可见 */")
+    lines.append("body .sideNav > li.active,")
+    lines.append("body .sideNav > li.active > a,")
+    lines.append("body .sideNav > li.active > button,")
+    lines.append("body .sideNav > li.active > a:hover,")
+    lines.append("body .sideNav > li.active > button:hover,")
+    lines.append("body .sideNav .Dropdown-menu > li.active,")
+    lines.append("body .sideNav .Dropdown-menu > li.active > a,")
+    lines.append("body .sideNav .Dropdown-menu > li.active > button {")
+    lines.append("  background: hsl(var(--cathi-card) / .9) !important;")
+    lines.append("  color: hsl(var(--cathi-foreground)) !important;")
+    lines.append("  border-left: 3px solid hsl(var(--cathi-primary)) !important;")
+    lines.append("  text-shadow: none !important;")
     lines.append("}")
     lines.append("")
     lines.append("/* footer 单独加一条半透明底栏，避免压 contour 看不清 */")
@@ -483,6 +507,10 @@ def build_transparency_block():
     lines.append('[data-theme^="dark"] body .DiscussionListItem-stats-item,')
     lines.append('[data-theme^="dark"] body .sideNav > li > a,')
     lines.append('[data-theme^="dark"] body .sideNav > li > button,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > a,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > button,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > a:hover,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > button:hover,')
     lines.append('[data-theme^="dark"] body .sideNav .Dropdown-menu > li > a,')
     lines.append('[data-theme^="dark"] body .sideNav .Dropdown-menu > li > button,')
     lines.append('[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,')
@@ -499,6 +527,20 @@ def build_transparency_block():
     lines.append('[data-theme^="dark"] body .App-footer li,')
     lines.append('[data-theme^="dark"] body .App-footer p {')
     lines.append("  color: hsl(var(--cathi-foreground)) !important;")
+    lines.append("}")
+    lines.append("")
+    lines.append('[data-theme^="dark"] body .sideNav > li.active,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > a,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > button,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > a:hover,')
+    lines.append('[data-theme^="dark"] body .sideNav > li.active > button:hover,')
+    lines.append('[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active,')
+    lines.append('[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > a,')
+    lines.append('[data-theme^="dark"] body .sideNav .Dropdown-menu > li.active > button {')
+    lines.append("  background: hsl(var(--cathi-card) / .9) !important;")
+    lines.append("  color: hsl(var(--cathi-foreground)) !important;")
+    lines.append("  border-left: 3px solid hsl(var(--cathi-primary)) !important;")
+    lines.append("  text-shadow: none !important;")
     lines.append("}")
     lines.append("")
     lines.append('[data-theme^="dark"] body .App-footer,')
