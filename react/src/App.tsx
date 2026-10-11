@@ -58,7 +58,8 @@ function AppInner() {
 
   React.useEffect(() => {
     document.body.setAttribute('data-theme', theme);
-    document.body.classList.toggle('cathi-theme-dark', dark && theme === 'cozy');
+    if (dark) document.body.setAttribute('data-dark', '');
+    else document.body.removeAttribute('data-dark');
   }, [theme, dark]);
 
   return (
@@ -80,7 +81,7 @@ function AppInner() {
                   {THEME_LABEL[t]}
                 </button>
               ))}
-              <button type="button" className={dark && theme === 'cozy' ? 'is-active' : ''} onClick={() => setDark((d) => !d)}>
+              <button type="button" className={dark ? 'is-active' : ''} onClick={() => setDark((d) => !d)}>
                 🌙 暗色
               </button>
             </div>

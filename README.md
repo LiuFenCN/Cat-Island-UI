@@ -146,7 +146,7 @@ cp flarum-theme-endfield/tokens-bridge.css \
 | 布局 | `.cathi-action-group` | 操作按钮组 |
 | 布局 | `.cathi-list` | iOS 风格设置列表项 |
 | 主题预设 | `data-theme="cozy\|endfield\|liquidglass"` / `.cathi-theme-X` | 三套主题：动森(默认) / 终末地 / 液态玻璃 |
-| 暗色 | `.cathi-dark` / `.cathi-theme-dark` / `data-theme="dark"` | 全局暗色（任选其一，独立于主题预设） |
+| 暗色 | `data-dark`（推荐，与 `data-theme` 同元素）/ `.cathi-dark` / `.cathi-theme-dark` / `.cathi-theme-X.cathi-dark` / `data-theme="dark"` | 全局暗色（任选其一，独立于主题预设，与三套主题正交叠加） |
 
 ## Design Token
 
