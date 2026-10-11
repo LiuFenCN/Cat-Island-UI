@@ -8,6 +8,10 @@ import {
   Dropdown, DropdownItem, DropdownLabel, DropdownSeparator,
   Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter, DialogClose,
   Sheet, Accordion, AccordionItem, AccordionTrigger, AccordionContent, Tabs,
+  RadioGroup, RadioItem, RadioPills, RadioPillItem,
+  List, ListRow, SettingsPanel, SettingRow, TaskItem,
+  SearchBar, Sidebar, SidebarItem, TabBar, TabBarItem,
+  ToastProvider, useToast,
 } from './components';
 
 const THEMES = ['cozy', 'endfield', 'liquidglass'] as const;
@@ -37,12 +41,20 @@ function Row({ children, wrap = true }: { children: React.ReactNode; wrap?: bool
   );
 }
 
-export default function App() {
+function AppInner() {
   const [theme, setTheme] = React.useState<Theme>('cozy');
   const [dark, setDark] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [sheetOpen, setSheetOpen] = React.useState(false);
   const [progress, setProgress] = React.useState(62);
+
+  // 新组件演示用的受控状态
+  const [plan, setPlan] = React.useState('month');
+  const [size, setSize] = React.useState('m');
+  const [taskDone, setTaskDone] = React.useState(false);
+  const [nav, setNav] = React.useState('home');
+  const [tab, setTab] = React.useState('home');
+  const { toast } = useToast();
 
   React.useEffect(() => {
     document.body.setAttribute('data-theme', theme);
@@ -245,6 +257,79 @@ export default function App() {
         ]} />
       </Section>
 
+      {/* ───────────── 新增组件演示 ───────────── */}
+
+      <Section title="选择控件 Selection">
+        <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+          <RadioGroup value={plan} onValueChange={setPlan} name="demo-plan">
+            <RadioItem value="month" label="月付" hint="¥12 / 月" />
+            <RadioItem value="year" label="年付" hint="¥99 / 年" />
+            <RadioItem value="off" label="暂不订阅" disabled />
+          </RadioGroup>
+          <div>
+            <div className="cathi-muted" style={{ fontWeight: 800, marginBottom: 8 }}>尺码（药丸组）</div>
+            <RadioPills value={size} onValueChange={setSize} name="demo-size">
+              <RadioPillItem value="s">S</RadioPillItem>
+              <RadioPillItem value="m">M</RadioPillItem>
+              <RadioPillItem value="l">L</RadioPillItem>
+              <RadioPillItem value="xl">XL</RadioPillItem>
+            </RadioPills>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="列表与面板 Lists & Panels">
+        <List>
+          <ListRow icon="🔔" iconColor="amber" title="通知" sub="你有 3 条新消息" chevron link onClick={() => toast('打开通知', { variant: 'default' })} />
+          <ListRow icon="💾" iconColor="sky" title="存储空间" sub="已用 64%" chevron link onClick={() => toast('打开存储', { variant: 'default' })} />
+          <ListRow icon="⚙️" iconColor="grape" title="设置" sub="系统偏好" chevron link onClick={() => toast('打开设置', { variant: 'default' })} />
+        </List>
+        <SettingsPanel title="隐私设置">
+          <SettingRow label="公开个人资料"><Switch defaultChecked /></SettingRow>
+          <SettingRow label="定位服务"><Switch /></SettingRow>
+          <SettingRow label="个性化推荐"><Switch defaultChecked /></SettingRow>
+        </SettingsPanel>
+        <div>
+          <div className="cathi-muted" style={{ fontWeight: 800, marginBottom: 8 }}>任务清单（点击圆圈切换完成态）</div>
+          <TaskItem done={taskDone} text="完成组件库 v2 演示" onToggle={setTaskDone} />
+          <TaskItem done text="修复 Dropdown 点击外部关闭" />
+          <TaskItem text="补充 Toast 组件" />
+        </div>
+      </Section>
+
+      <Section title="导航 Navigation">
+        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+          <div>
+            <div className="cathi-muted" style={{ fontWeight: 800, marginBottom: 8 }}>侧边导航</div>
+            <Sidebar>
+              <SidebarItem icon="🏠" active={nav === 'home'} onClick={() => setNav('home')}>首页</SidebarItem>
+              <SidebarItem icon="📊" active={nav === 'stats'} onClick={() => setNav('stats')}>统计</SidebarItem>
+              <SidebarItem icon="💬" active={nav === 'chat'} onClick={() => setNav('chat')}>消息</SidebarItem>
+              <SidebarItem icon="⚙️" active={nav === 'settings'} onClick={() => setNav('settings')}>设置</SidebarItem>
+            </Sidebar>
+          </div>
+          <div style={{ flex: 1, minWidth: 280 }}>
+            <div className="cathi-muted" style={{ fontWeight: 800, marginBottom: 8 }}>底部 Tab Bar</div>
+            <TabBar>
+              <TabBarItem icon="🏠" label="首页" active={tab === 'home'} onClick={() => setTab('home')} />
+              <TabBarItem icon="🔍" label="发现" active={tab === 'discover'} onClick={() => setTab('discover')} />
+              <TabBarItem icon="➕" label="发布" active={tab === 'post'} onClick={() => setTab('post')} />
+              <TabBarItem icon="👤" label="我的" active={tab === 'me'} onClick={() => setTab('me')} />
+            </TabBar>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="搜索与提示 Search & Toast">
+        <SearchBar placeholder="搜索组件…" onSubmit={(v) => toast(`搜索：${v || '（空）'}`, { variant: 'success' })} />
+        <Row>
+          <Button variant="outline" onClick={() => toast('这是一条普通提示')}>默认 Toast</Button>
+          <Button variant="outline" onClick={() => toast('保存成功', { variant: 'success' })}>成功 Toast</Button>
+          <Button variant="outline" onClick={() => toast('注意，磁盘快满了', { variant: 'warn' })}>警告 Toast</Button>
+          <Button variant="outline" onClick={() => toast('操作失败，请重试', { variant: 'error' })}>错误 Toast</Button>
+        </Row>
+      </Section>
+
       <Card>
         <CardHeader>
           <CardTitle>卡片示例</CardTitle>
@@ -290,5 +375,13 @@ export default function App() {
         </DialogFooter>
       </Sheet>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ToastProvider>
+      <AppInner />
+    </ToastProvider>
   );
 }

@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   root: '.',
+  // 相对路径 base：让 dist 可作为静态文件直接打开（file:// 或任意子路径服务器预览）
+  base: './',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
