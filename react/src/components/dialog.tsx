@@ -4,20 +4,52 @@ import { cn } from '../lib/cn';
 export interface DialogProps {
   open: boolean;
   onClose?: () => void;
+  closeOnOutside?: boolean;
+  closeOnEsc?: boolean;
   className?: string;
   children?: React.ReactNode;
 }
 
-export function Dialog({ open, onClose, className, children }: DialogProps) {
+export function Dialog({ open, onClose, closeOnOutside = true, closeOnEsc = true, className, children }: DialogProps) {
   const ref = React.useRef<HTMLDialogElement>(null);
+
+  // 同步 open 状态 <-> 原生 <dialog>
   React.useEffect(() => {
     const d = ref.current;
     if (!d) return;
     if (open && !d.open) d.showModal();
     if (!open && d.open) d.close();
   }, [open]);
+
+  // body 滚动锁
+  React.useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [open]);
+
+  // close / cancel 事件（用 addEventListener 避免 JSX 事件类型差异与重复回调）
+  React.useEffect(() => {
+    const d = ref.current;
+    if (!d) return;
+    const onCloseEvt = () => onClose?.();
+    const onCancelEvt = (e: Event) => { if (!closeOnEsc) e.preventDefault(); };
+    d.addEventListener('close', onCloseEvt);
+    d.addEventListener('cancel', onCancelEvt);
+    return () => {
+      d.removeEventListener('close', onCloseEvt);
+      d.removeEventListener('cancel', onCancelEvt);
+    };
+  }, [onClose, closeOnEsc]);
+
   return (
-    <dialog ref={ref} className={cn('cathi-dialog', className)} onClose={onClose}>
+    <dialog
+      ref={ref}
+      className={cn('cathi-dialog', className)}
+      data-state={open ? 'open' : 'closed'}
+      onClick={(e) => { if (closeOnOutside && e.target === e.currentTarget) ref.current?.close(); }}
+    >
       {children}
     </dialog>
   );

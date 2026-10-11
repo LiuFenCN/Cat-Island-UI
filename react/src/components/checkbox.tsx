@@ -15,11 +15,14 @@ export const Radio = React.forwardRef<HTMLInputElement, React.InputHTMLAttribute
 );
 Radio.displayName = 'Radio';
 
-export function Option({ label, className, children, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label?: React.ReactNode }) {
+export function Option({ label, hint, className, children, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label?: React.ReactNode; hint?: React.ReactNode }) {
   return (
-    <label className={cn('cathi-option', className)} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontWeight: 700, cursor: 'pointer' }}>
+    <label className={cn('cathi-option', className)} style={{ cursor: 'pointer' }}>
       <input type="checkbox" className="cathi-checkbox" {...props} />
-      {label ?? children}
+      <span className="cathi-option__body">
+        {label ?? children}
+        {hint != null && <span className="cathi-option__hint">{hint}</span>}
+      </span>
     </label>
   );
 }
