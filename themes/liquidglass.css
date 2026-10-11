@@ -33,16 +33,16 @@
 /* tokens → src/tokens.css */
 
 
-/* 液态玻璃深色：深色 mesh 光晕（玻璃在暗底上更通透）*/
+/* 液态玻璃深色：克制极光 mesh（降饱和降透明，更通透高级，不再像 disco）*/
 [data-theme="liquidglass"][data-dark].cathi-root,
 [data-theme="liquidglass"][data-dark] .cathi-root {
-  background-color: #0b1424;
+  background-color: #0a0f1c;
   background-image:
     radial-gradient(circle at 1px 1px, hsl(220 40% 70% / .08) 1px, transparent 1.6px),
-    radial-gradient(620px 620px at 12% 16%, hsl(205 100% 55% / .30), transparent 60%),
-    radial-gradient(540px 540px at 88% 22%, hsl(280 100% 60% / .26), transparent 60%),
-    radial-gradient(640px 640px at 72% 90%, hsl(150 80% 50% / .26), transparent 60%),
-    linear-gradient(135deg, #0b1424 0%, #140f28 48%, #0a1f1a 100%);
+    radial-gradient(620px 620px at 12% 16%, hsl(205 85% 52% / .22), transparent 60%),
+    radial-gradient(540px 540px at 88% 22%, hsl(265 70% 58% / .18), transparent 60%),
+    radial-gradient(640px 640px at 72% 90%, hsl(160 60% 46% / .18), transparent 60%),
+    linear-gradient(135deg, #0a0f1c 0%, #120e22 48%, #0a1d18 100%);
   background-size: 22px 22px, auto, auto, auto, auto;
   background-position: 0 0, center, center, center, center;
   background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;

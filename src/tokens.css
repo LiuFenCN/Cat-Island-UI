@@ -439,37 +439,39 @@
 /* ===================== 深色变体（[data-dark]：夜色治愈）===================== */
 [data-theme="cozy"][data-dark],
 .cathi-theme-cozy.cathi-dark {
-  --cathi-background:           30 18% 12%;
-  --cathi-foreground:           40 30% 90%;
-  --cathi-card:                 30 16% 16%;
-  --cathi-card-foreground:      40 30% 90%;
-  --cathi-popover:              30 16% 18%;
-  --cathi-popover-foreground:   40 30% 90%;
-  --cathi-primary:              var(--cathi-mint-400);
-  --cathi-primary-active:       var(--cathi-mint-500);
-  --cathi-primary-foreground:   30 30% 10%;
-  --cathi-secondary:            30 16% 22%;
-  --cathi-secondary-foreground: 40 30% 90%;
-  --cathi-muted:                30 16% 20%;
-  --cathi-muted-foreground:     34 20% 72%;
-  --cathi-accent:               30 20% 24%;
-  --cathi-accent-foreground:    var(--cathi-mint-300);
-  --cathi-destructive:          var(--cathi-danger-400);
+  /* 青绿夜色治愈：单色系、低饱和、干净通透，避免暖橙底+粉绿辉光的脏感 */
+  --cathi-background:           168 22% 9%;
+  --cathi-foreground:           160 18% 90%;
+  --cathi-card:                 168 20% 14%;
+  --cathi-card-foreground:      160 18% 90%;
+  --cathi-popover:              168 20% 16%;
+  --cathi-popover-foreground:   160 18% 90%;
+  --cathi-primary:              158 48% 62%;
+  --cathi-primary-active:       158 50% 52%;
+  --cathi-primary-foreground:   168 30% 8%;
+  --cathi-secondary:            168 16% 19%;
+  --cathi-secondary-foreground: 160 18% 90%;
+  --cathi-muted:                168 14% 17%;
+  --cathi-muted-foreground:     160 12% 70%;
+  --cathi-accent:               168 18% 22%;
+  --cathi-accent-foreground:    158 45% 74%;
+  --cathi-destructive:          0 70% 60%;
   --cathi-destructive-foreground: 0 0% 100%;
-  --cathi-success:              var(--cathi-leaf-400);
-  --cathi-success-foreground:   30 30% 10%;
-  --cathi-warning:              var(--cathi-amber-400);
-  --cathi-warning-foreground:   30 30% 10%;
-  --cathi-info:                 var(--cathi-sky-400);
-  --cathi-info-foreground:      30 30% 10%;
-  --cathi-border:               30 14% 26%;
-  --cathi-input:                30 14% 30%;
-  --cathi-ring:                 var(--cathi-mint-400);
-  --cathi-shadow-color: 30 20% 6%;
-  --cathi-shadow-sm:    0 2px 0 hsl(30 20% 6% / .25);
-  --cathi-shadow-md:    0 4px 0 hsl(30 20% 6% / .30), 0 8px 16px hsl(30 20% 6% / .30);
-  --cathi-shadow-lg:    0 6px 0 hsl(30 20% 6% / .30), 0 14px 28px hsl(30 20% 6% / .34);
-  --cathi-shadow-inset: inset 0 2px 4px hsl(30 20% 6% / .30);
+  --cathi-success:              145 48% 56%;
+  --cathi-success-foreground:   168 30% 8%;
+  --cathi-warning:              38 92% 62%;
+  --cathi-warning-foreground:   168 30% 8%;
+  --cathi-info:                 199 70% 64%;
+  --cathi-info-foreground:      168 30% 8%;
+  --cathi-border:               168 16% 26%;
+  --cathi-input:                168 16% 22%;
+  --cathi-ring:                 158 48% 62%;
+  --cathi-shadow-color: 168 30% 4%;
+  --cathi-shadow-sm:    0 2px 0 hsl(168 30% 4% / .35);
+  --cathi-shadow-md:    0 4px 0 hsl(168 30% 4% / .40), 0 8px 16px hsl(168 30% 4% / .40);
+  --cathi-shadow-lg:    0 6px 0 hsl(168 30% 4% / .40), 0 14px 28px hsl(168 30% 4% / .45);
+  --cathi-shadow-inset: inset 0 2px 4px hsl(168 30% 4% / .40);
+  --cathi-bg-alt:               168 20% 12%;   /* 次级面板底：暗色下必须重定义（light 引用了固定暖白 cream-50）*/
 }
 
 /* ===================== 深色变体（[data-dark]）===================== */
@@ -511,44 +513,47 @@
   --cathi-shadow-md:    0 6px 20px hsl(0 0% 0% / .55), 0 0 0 1px hsl(0 0% 0% / .35);
   --cathi-shadow-lg:    0 12px 36px hsl(0 0% 0% / .62);
   --cathi-shadow-inset: inset 0 1px 0 hsl(0 0% 100% / .06);
+  --cathi-bg-alt:               220 6% 12%;   /* 次级面板底（暗色重定义）*/
 }
 
 /* ===================== 深色变体（[data-dark]：暗色玻璃）===================== */
 [data-theme="liquidglass"][data-dark],
 .cathi-theme-liquidglass.cathi-dark {
-  --cathi-background:           220 30% 10%;
-  --cathi-foreground:           220 20% 92%;
-  --cathi-card:                 220 25% 16%;
-  --cathi-card-foreground:      220 20% 92%;
-  --cathi-popover:              220 25% 18%;
-  --cathi-popover-foreground:   220 20% 92%;
-  --cathi-primary:              205 90% 62%;
-  --cathi-primary-active:       205 90% 50%;
-  --cathi-primary-foreground:   220 40% 10%;
-  --cathi-secondary:            220 22% 24%;
-  --cathi-secondary-foreground: 220 20% 92%;
-  --cathi-muted:                220 22% 22%;
-  --cathi-muted-foreground:     220 14% 70%;
-  --cathi-accent:               205 60% 26%;
-  --cathi-accent-foreground:    205 90% 80%;
-  --cathi-destructive:          0 80% 66%;
+  /* 克制极光暗玻璃：降饱和、拉层级、主色(青蓝)从蓝底跳出，比原 100% 饱和三色 mesh 更高级 */
+  --cathi-background:           222 42% 7%;
+  --cathi-foreground:           220 22% 94%;
+  --cathi-card:                 222 30% 13%;
+  --cathi-card-foreground:      220 22% 94%;
+  --cathi-popover:              222 30% 15%;
+  --cathi-popover-foreground:   220 22% 94%;
+  --cathi-primary:              200 95% 66%;
+  --cathi-primary-active:       200 95% 54%;
+  --cathi-primary-foreground:   222 40% 8%;
+  --cathi-secondary:            222 24% 20%;
+  --cathi-secondary-foreground: 220 22% 94%;
+  --cathi-muted:                222 20% 18%;
+  --cathi-muted-foreground:     220 14% 72%;
+  --cathi-accent:               205 55% 28%;
+  --cathi-accent-foreground:    200 90% 82%;
+  --cathi-destructive:          0 78% 66%;
   --cathi-destructive-foreground: 0 0% 100%;
-  --cathi-success:              150 60% 52%;
-  --cathi-success-foreground:   220 40% 10%;
+  --cathi-success:              150 55% 56%;
+  --cathi-success-foreground:   222 40% 8%;
   --cathi-warning:              38 95% 62%;
-  --cathi-warning-foreground:   30 40% 12%;
-  --cathi-info:                 205 85% 65%;
-  --cathi-info-foreground:      220 40% 10%;
-  --cathi-border:               215 25% 38%;
-  --cathi-input:                215 25% 42%;
-  --cathi-ring:                 205 90% 62%;
-  --cathi-glass-edge:          220 40% 88%;   /* 暗底用更亮的镜面高光 */
-  --cathi-tint:                 220 40% 30%;
-  --cathi-shadow-color: 220 40% 6%;
-  --cathi-shadow-sm:    0 2px 8px hsl(220 40% 6% / .4);
-  --cathi-shadow-md:    0 8px 24px hsl(220 40% 6% / .5);
-  --cathi-shadow-lg:    0 16px 40px hsl(220 40% 6% / .55);
-  --cathi-shadow-inset: inset 0 1px 2px hsl(220 40% 90% / .12);
-  --cathi-surface-alpha: .55;
-  --cathi-glass-blur:    22px;
+  --cathi-warning-foreground:   222 40% 8%;
+  --cathi-info:                 200 90% 68%;
+  --cathi-info-foreground:      222 40% 8%;
+  --cathi-border:               215 22% 30%;
+  --cathi-input:                215 22% 34%;
+  --cathi-ring:                 200 95% 66%;
+  --cathi-glass-edge:          210 60% 90%;
+  --cathi-tint:                 222 45% 28%;
+  --cathi-shadow-color: 222 50% 4%;
+  --cathi-shadow-sm:    0 2px 8px hsl(222 50% 4% / .5);
+  --cathi-shadow-md:    0 8px 24px hsl(222 50% 4% / .6);
+  --cathi-shadow-lg:    0 16px 40px hsl(222 50% 4% / .65);
+  --cathi-shadow-inset: inset 0 1px 2px hsl(222 50% 92% / .16);
+  --cathi-bg-alt:               222 34% 10%;   /* 次级面板底（暗色重定义）*/
+  --cathi-surface-alpha: .6;
+  --cathi-glass-blur:    24px;
 }

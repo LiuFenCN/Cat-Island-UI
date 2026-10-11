@@ -18,14 +18,14 @@
 /* tokens → src/tokens.css */
 
 
-/* 动森深色：暗夜波点 + 暖色微辉 */
+/* 动森深色：青绿夜色波点 + 单色系微辉（去暖橙/粉红，干净治愈）*/
 [data-theme="cozy"][data-dark].cathi-root,
 [data-theme="cozy"][data-dark] .cathi-root {
-  background-color: hsl(30 18% 12%);
+  background-color: hsl(168 22% 9%);
   background-image:
-    radial-gradient(circle at 1px 1px, hsl(34 30% 40% / .5) 1.4px, transparent 1.6px),
-    radial-gradient(1100px 620px at 86% -12%, hsl(150 40% 32% / .5), transparent 60%),
-    radial-gradient(900px 560px at -6% 112%, hsl(350 60% 42% / .4), transparent 55%);
+    radial-gradient(circle at 1px 1px, hsl(168 25% 40% / .45) 1.4px, transparent 1.6px),
+    radial-gradient(1100px 620px at 86% -12%, hsl(158 50% 34% / .42), transparent 60%),
+    radial-gradient(900px 560px at -6% 112%, hsl(190 45% 32% / .30), transparent 55%);
   background-size: 26px 26px, auto, auto;
   background-position: 0 0, center, center;
   background-repeat: repeat, no-repeat, no-repeat;
