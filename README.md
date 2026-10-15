@@ -1,6 +1,6 @@
 # Cat Island UI
 
-自研治愈系 CSS 组件库。**CC BY-NC 4.0 许可（非商业用途），零外部依赖。**
+自研治愈系 CSS 组件库。**AGPL-3.0-or-later 许可，零外部依赖。**
 
 引入一个 CSS 文件即可使用全部组件。
 
@@ -192,4 +192,16 @@ v4 改用三层架构（原始色板 → 语义 token → 组件），完整列�
 
 ## License
 
-CC BY-NC 4.0（署名 — 非商业性使用）。**禁止将本组件库用于任何商业目的。** 完整条款见仓库 `LICENSE` 文件与 https://creativecommons.org/licenses/by-nc/4.0/
+AGPL-3.0-or-later（GNU Affero 通用公共许可证 v3.0 或更高版本）。可自由使用、修改与商用；但若你修改后对外提供服务（网络服务），必须以相同许可开源你的改动。完整条款见仓库 `LICENSE` 文件。
+
+> React 适配层基于 [shadcn/ui](https://ui.shadcn.com)（MIT）的组件设计思路重写，见 `NOTICE`。
+
+---
+
+## 联系作者 / Contact
+
+| 渠道 | 地址 |
+|---|---|
+| 🏝️ 论坛（CatIsland） | https://bbs.cathi.cn |
+| 💬 QQ 交流群 | 369748859 |
+| 📮 邮箱 | 792818521@qq.com |

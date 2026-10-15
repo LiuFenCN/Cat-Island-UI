@@ -3,7 +3,7 @@
 **自研治愈系（cozy）UI 设计系统** — 纯手写 CSS 组件库，零依赖。
 
 > 灵感来自温暖、圆润、治愈的视觉风格。所有代码 100% 手写，不依赖任何第三方 UI 库源码。
-> 授权：CC BY-NC 4.0（**非商业**），见仓库根目录 `LICENSE`。
+> 授权：AGPL-3.0-or-later，见仓库根目录 `LICENSE`。
 
 ## ✨ v4 重大升级
 
@@ -190,7 +190,7 @@ Cat-Island-UI/
 │   └── src/styles.css  # 引入仓库根 cathi-ui.css + 三主题
 ├── README-CATHI-UI.md  # 本文件
 ├── README.md           # 总览
-├── LICENSE             # CC BY-NC 4.0
+├── LICENSE             # AGPL-3.0-or-later
 ├── CHANGELOG.md        # 变更记录
 └── tools/
     ├── minify.py       # cathi-ui.min.css 构建脚本（纯 Python，无依赖）
@@ -212,4 +212,14 @@ PPTR_PATH=/path/to/puppeteer-core.js EDGE_PATH=/path/to/edge node tools/_verify.
 
 ## 📄 License
 
-CC BY-NC 4.0（署名 — 非商业性使用）。**禁止将本组件库用于任何商业目的。** 完整条款见仓库 `LICENSE` 与 https://creativecommons.org/licenses/by-nc/4.0/
+AGPL-3.0-or-later（GNU Affero 通用公共许可证 v3.0 或更高版本）。可自由使用、修改与商用；但若你修改后对外提供服务（网络服务），必须以相同许可开源你的改动。完整条款见仓库 `LICENSE`。
+
+---
+
+## 联系作者 / Contact
+
+| 渠道 | 地址 |
+|---|---|
+| 🏝️ 论坛（CatIsland） | https://bbs.cathi.cn |
+| 💬 QQ 交流群 | 369748859 |
+| 📮 邮箱 | 792818521@qq.com |
